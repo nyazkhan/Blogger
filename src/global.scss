@@ -29,20 +29,221 @@
 h1, h2, h3, h4, h5, h6, button, p, span{
     font-family: 'Roboto', sans-serif;
 }
-h6{
+ion-content{
+    --background: #fbfbfd;
+}
+ion-button{
+    margin-bottom: 10px;
+}
+.proceed-button{
+    --border-radius: 5px;
+}
+.ml-auto{
+    margin-left: auto;
+}
+ion-content{
+    font-family: 'Roboto', sans-serif;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+.backbar .page-heading{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: start;
+    display: flex;
+    font-size: 17px;
+    font-weight: bold;
+}
+.backbar ion-icon{
+    font-size: 20px;
+    margin-right: 0;
+}
+ion-item{
+    --padding-start: 0px !important;
+    --inner-padding-end: 0px !important;
+    --border-color:rgba(0, 0, 0, 0.1);
+    --background: transparent;
+}
+ion-input{
+    --placeholder-color: #000000 !important;
+    --placeholder-font-weight: 500 !important;
+    --placeholder-opacity: 1 !important;
+}
+ion-label{
+    margin: 0;;
+}
+.rest-heading{
+   font-weight: 500 !important;
+}
+.add-image{
+    background: #EFF4FF;
+    border: 1px solid #1966FB;
+    box-sizing: border-box;
+    border-radius: 11px;
+}
+.rest-img img{
+    height: fit-content !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+.rest-sm-img img{
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+.small-content{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 12px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4) !important;
+    margin-top: 5px !important;
+}
+.km-part{
+    justify-content: start;
+    display: flex;
+    font-size: 11px;
+    float: right;
+    position: relative;
+    top: -18px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part ion-icon{
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.time-heading{
+    font-weight: bold;
+    font-size: 20px !important;
     line-height: 28px;
-    color: var(--main-font-color);
-    font-size: 16px;
-    font-weight: 400;
 }
-p{
-    line-height: 28px;
-    color: var(--main-font-color);
-    font-size: 18px;
+.ico-list{
+    justify-content: start;
+    display: flex;
+    font-size: 13px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    position: relative;
+    top: -20px;
+    font-weight: 500;
 }
-.main-color{
-    color:var(--main-font-color) !important;
+.border-btn{
+    font-size: 13px;
 }
-.main-light-color{
-    color:var(--light-font-color) !important;
+.fixed-bottom-button{
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    padding: 10px;
 }
+.list-heading{
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+.list-heading-2{
+    font-size: 17px;
+    margin-bottom: 25px;
+    font-weight: 400 !important;
+    color: rgba(0, 0, 0, 0.4);
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.mb-25{
+    margin-bottom: 25px;
+}
+.mtb-25{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.mtb-15{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.mtb-10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.mb-30{
+    margin-bottom: 30px;
+}
+.mt-30{
+    margin-top: 30px;
+}
+.mt-15{
+    margin-top: 15px;
+}
+.mb-6{
+    margin-bottom: 6px;
+}
+.primary{
+    color: #1966FB;
+}
+.danger{
+    color:#FF4949 !important;
+}
+.success{
+    color: #0F9D58;
+}
+.light-gray{
+    color: rgba(0, 0, 0, 0.4);
+}
+.light-danger-btn {
+    color: #FF4949 !important;
+    --background: #FFEDED !important;
+}
+.arrow-forword{
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.pro-ico{
+    color: rgba(0, 0, 0, 0.4);
+}
+.pro-pic{
+    border:1px solid #EFEFEF;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background: #EFEFEF;
+    margin: auto;
+}
+
+.text{
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 24px;
+    color: #0F2F54;
+    opacity: 0.4;
+  }
+  .dark-text{
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 24px;
+    color: #000000;
+  }
+  .dark-small-heading{
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 24px;
+    color: #000000;
+    font-weight: bold !important;
+  }
+  .rest-slide-img{
+      height: 70px;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+  }

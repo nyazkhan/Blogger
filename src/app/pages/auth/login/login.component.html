@@ -1,128 +1,267 @@
 <ion-content>
+  <ion-slides options="myOptions">
 
-  <ion-slides options="myOptions" class="swiper-no-swiping">
-    <ion-slide class="ion-padding " style=" vertical-align:top">
+
+
+    <ion-slide style="vertical-align:top">
       <ion-row>
-        <ion-col size="12"  class="ion-padding">
+        <div class="image-box">
+          <img src="assets/illu_with_crab.svg">
+        </div>
+      </ion-row>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <h6 class="ion-text-start sllide-dark-heading">let’s start our journey</h6>
 
-          <ion-row>
-            <ion-col size="12">
+            <ion-item class="mb-30">
+              <ion-label class="lable-style" position="stacked">Mobile No.</ion-label>
+              <ion-input class="input-style" type="text" placeholder="+91 89221452"></ion-input>
+            </ion-item>
 
-              <img style="width: 95%;" src="assets/login1.svg" class="img-logo">
+            <p class="text ion-text-start mb-25">We will send an OTP on this mobile number to verify you</p>
 
-              <h6 style="font-size: 18px !important; margin-top: 0;" class="ion-text-center bold">Create A New Account
-                /
-                Login</h6>
-
-            </ion-col>
-            <ion-col size="12">
-              <ion-item class="stylist-input" lines="none" color="undefine">
-                <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Mobile Number</ion-label>
-                <ion-input class="opacity-1" type="number" (keyup)="phoneValidation()" name="phoneNo"
-                  [(ngModel)]="phoneNo">
-                </ion-input>
-
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-button expand="block"   (click)="onSignInSubmit()" color='undefine'
-                class="full-with-btn  mt-20 transition">Send
-                OTP</ion-button>
-            </ion-col>
-          </ion-row>
-
-          <!-- <ion-row>
-          
-          </ion-row> -->
-          <!-- <ion-text class="error ion-text-center">{{error}}</ion-text> -->
-          <!-- <ion-row>
            
-          </ion-row> -->
-          <ion-row>
-            <ion-col>
-              <div id="recaptcha"></div>
-            </ion-col>
-          </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-        </ion-col>
-      </ion-row>
+      <ion-grid class="fixed-bottom-part-2">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SEND OTP</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
 
-    <ion-slide class="ion-padding " style=" vertical-align:top">
-      <ion-row class="login-screen">
-        <div class="ion-padding login-screen-content">
-          <p class="bold ion-text-left">OTP recived on</p>
-          <ion-row>
-            <ion-col>
-              <ion-text class="block btn-color"><span class="ion-float-left">+91 {{phoneNo}}</span>
-                <span style="float: right;" class="link-btn" (click)="previous()">Change</span></ion-text>
-            </ion-col>
-          </ion-row>
-
-          <br>
-          <br>
-
-
-          <ion-row>
-            <ion-col class="all-content-center">
-              <img src="assets/otp.svg" class="img-logo" style="height: 75%;">
-            </ion-col>
-          </ion-row>
-
-          <br>
-
-
-          <p class="ion-text-center bold">Enter 6 Digit OTP Received</p>
-
-          <br>
 
 
 
-          <ion-item class="stylist-input" lines="none" color="undefine">
-            <ion-label slot="end" class="main-light-color">OTP</ion-label>
-            <ion-input class="opacity-1" [(ngModel)]="otp" name="otp" placeholder="OTP"></ion-input>
-          </ion-item>
-          <ion-row>
-            <ion-col>
-              <ion-button expand="block" (click)="otpSummit()" color='undefine' class="full-with-btn  mt-20 transition">
-                Verify OTP</ion-button>
-            </ion-col>
-          </ion-row>
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon name="arrow-back"></ion-icon> &nbsp; Enter OTP Recived
+              </h5>
+            </div>
+            <ion-item lines="none">
+              <ion-label class="ion-padding-top ion-padding-bottom">
+                <h5 class="otp-change-no">+91 8930252306 <span class="ion-float-right primary"> Change</span></h5>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-item class="mb-30">
+              <ion-label class="lable-style" position="stacked">Enter OTP</ion-label>
+              <ion-input class="input-style" type="text" placeholder="123456"></ion-input>
+            </ion-item>
 
-          <br>
-          <ion-row>
-            <ion-col>
-            </ion-col>
-          </ion-row>
-        </div>
-      </ion-row>
+            <p class="text ion-text-start mb-25">OTP will expire in 59 seconds</p>
+
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
 
-    <ion-slide class="ion-padding " style=" vertical-align:top">
-      <div class="image-box">
-        <div class="center-box">
-          <img src="assets/tik.svg" class="ion-text-center" style="height: 30px;">
-          <h4 class="ion-text-center success-text bold">
-            OTP Verified Successfully</h4>
-        </div>
-      </div>
 
 
-      <ion-row>
-        <ion-col class="all-content-center" style=" margin-bottom: 120px;">
-          <img src="assets/welcomeToCrab.svg" class="img-logo">
-        </ion-col>
-      </ion-row>
 
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon name="arrow-back"></ion-icon> &nbsp; Set your residance location
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <p class="text ion-text-start mb-25"> We need to know where you live so we can make our suggestion
+              confortable for you</p>
 
-      <ion-row>
-        <ion-col class="ion-padding">
-          <ion-button expand="block" color='undefine' (click)="goToMap()" class="full-with-btn  mt-20 transition">
-            ONBOARD YOUR RESTAURANT</ion-button>
-        </ion-col>
-
-      </ion-row>
-
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">CHOOSE LOCATION </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
+
+
+
+
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon name="arrow-back"></ion-icon> &nbsp; Set your residance location
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-label class="ion-padding-top ion-padding-bottom">
+                <h5 class="dark-small-heading">Residance Locality <span class="ion-float-right primary"> Change</span></h5>
+              </ion-label>
+            </ion-item>
+
+            <p class="text ion-text-start mb-25"> Business Development Directorate <br> Dak Bhavan <br> Parliament Street <br> NEW DELHI 110001 <br> INDIA</p>
+
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SET LOCATION </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon name="arrow-back"></ion-icon> &nbsp; Social Profiles
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Facebook</ion-label>
+              <ion-input class="input-style" type="text" placeholder="facebook.com/mani025.mani"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Instagram</ion-label>
+              <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">Twitter</ion-label>
+              <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+            </ion-item>
+
+            <ion-item class="mb-6">
+              <ion-label class="lable-style" position="stacked">TripAdvisor</ion-label>
+              <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+            </ion-item>
+
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+
+    <ion-slide style="vertical-align:top">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="backbar">
+                <h5 class="page-heading">
+                  <ion-icon name="arrow-back"></ion-icon> &nbsp; About You
+                </h5>
+                 <h6 class="dark-small-heading ion-text-start mtb-25"> Tell us something about yourself</h6>
+                  <p class="dark-text ion-text-start"> I started Deliciously Ella back in 2012 whilst I was still at university. In 2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and Mast Cell Activation Disorder, following four months in and out of hospital. The condition affected the workings of my autonomic nervous system; I couldn’t control my heart rate and blood pressure properly, while also struggling with digestive issues, chronic fatigue, a series of infections and a whole host of other symptoms.</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="fixed-bottom-part">
+          <ion-row>
+            <ion-col>
+              <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+
+
+
+
+      <ion-slide style="vertical-align:top">
+          <ion-grid class="fixed-bottom-part">
+            <ion-row>
+              <ion-col>
+                <h6 class="ion-text-start sllide-dark-heading">let’s complete our journey</h6>
+    
+                <ion-item class="mb-30">
+                  <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+                  <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+                </ion-item>
+    
+                <p class="text ion-text-start mb-25">We will send a verification link on this email ID to verify you.</p>
+    
+                <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SEND OTP</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+
+
+        
+
+      <ion-slide style="vertical-align:top">
+          <ion-grid class="fixed-bottom-part">
+            <ion-row>
+              <ion-col>
+                <h6 class="ion-text-start sllide-dark-heading">Verify your Email ID</h6>
+    
+                <ion-item class="mb-30">
+                  <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+                  <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+                </ion-item>
+    
+                <p class="text ion-text-start mb-25">We have sent a verification link on this email ID to verify you.</p>
+                
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+
+
+        <ion-slide style="vertical-align:top">
+            <ion-grid class="fixed-bottom-part">
+              <ion-row>
+                <ion-col>
+                  <h5 class="success">Email Verified</h5>
+      
+                  <ion-item class="mb-30">
+                    <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+                    <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+                  </ion-item>
+      
+                  <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">DASHBOARD</ion-button>
+                  
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-slide>
+
+
   </ion-slides>
 </ion-content>
