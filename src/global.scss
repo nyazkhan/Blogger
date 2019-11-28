@@ -37,6 +37,8 @@ ion-button{
 }
 .proceed-button{
     --border-radius: 5px;
+    height: 7vh;
+    font-size: 14px;
 }
 .ml-auto{
     margin-left: auto;
@@ -121,6 +123,10 @@ ion-label{
     line-height: 12px;
     color: rgba(0, 0, 0, 0.4);
 }
+.km-part img{
+    height: 14px;
+    width: auto;
+}
 .time-heading{
     font-weight: bold;
     font-size: 20px !important;
@@ -135,6 +141,7 @@ ion-label{
     position: relative;
     top: -20px;
     font-weight: 500;
+    margin-bottom: 16px;
 }
 .border-btn{
     font-size: 13px;
@@ -186,17 +193,38 @@ ion-label{
 .mt-15{
     margin-top: 15px;
 }
+.p-12{
+    padding: 20px 12px;
+}
+.mt-20{
+    margin-top: 15px;
+}
+.mb-15{
+    margin-bottom: 15px;
+}
 .mb-6{
     margin-bottom: 6px;
 }
 .primary{
     color: #1966FB;
 }
+.pink{
+    color: #DD1F91;
+}
+.sky-blue{
+    color:#198FFB;
+}
 .danger{
     color:#FF4949 !important;
 }
+.orange{
+    color: #FC810F !important;
+}
 .success{
     color: #0F9D58;
+}
+.white{
+    color: #ffffff;
 }
 .light-gray{
     color: rgba(0, 0, 0, 0.4);
@@ -246,4 +274,63 @@ ion-label{
       width: 100%;
       background-size: cover;
       overflow: hidden;
+  }
+  .justify-content-center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .icon-small{
+      height: 13px;
+      width: auto;
+  }
+  .ico-img{
+    height: 14px;
+    width: auto;
+  }
+  .imogy-btn{
+    border: 1px solid transparent;
+    --border-radius: 20px;
+    --padding-start: 0.2em;
+    --padding-end: 0.2em;
+    font-size: 10px;
+  }
+//   .emogy-btn-list{
+//       border:1px solid red
+//   }
+  .imogy-btn img{
+    height: 12px;
+    width: auto;
+  }
+  .timing-btn{
+    font-size: 11px;
+    height: 30px;
+    width: 23.7%;
+  }
+  .fixed-bottom-part {
+    position: fixed;
+    top: 79vh;
+    width: 100%;
+  }
+  .fixed-bottom-part-2{
+    position: fixed;
+    top: 85vh;
+    width: 100%;
+  }
+  .crab-bootm-vector{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+  }
+  .upload-box{
+    background: #EFF4FF;
+    border: 1px solid #1966FB;
+    border-radius: 11px;
+    height: 70px;
+    width: 70px;
+  }
+  .upload-box .add-photo-text{
+      font-size: 9px;
+      margin: 0;
   }

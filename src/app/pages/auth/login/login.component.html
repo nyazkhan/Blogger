@@ -4,24 +4,18 @@
 
 
     <ion-slide style="vertical-align:top">
-      <ion-row>
-        <div class="image-box">
-          <img src="assets/illu_with_crab.svg">
-        </div>
-      </ion-row>
-      <ion-grid class="fixed-bottom-part">
+      <ion-grid>
         <ion-row>
           <ion-col>
+            <div class="top-illu-box mb-20">
+              <img src="assets/illu_with_crab.svg">
+            </div>
             <h6 class="ion-text-start sllide-dark-heading">let’s start our journey</h6>
-
-            <ion-item class="mb-30">
+            <ion-item class="mb-20">
               <ion-label class="lable-style" position="stacked">Mobile No.</ion-label>
               <ion-input class="input-style" type="text" placeholder="+91 89221452"></ion-input>
             </ion-item>
-
-            <p class="text ion-text-start mb-25">We will send an OTP on this mobile number to verify you</p>
-
-           
+            <p class="text ion-text-start mb-20">We will send an OTP on this mobile number to verify you</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -52,20 +46,26 @@
                 <h5 class="otp-change-no">+91 8930252306 <span class="ion-float-right primary"> Change</span></h5>
               </ion-label>
             </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="fixed-bottom-part">
-        <ion-row>
-          <ion-col>
+            <div class="svg-image-box">
+              <img src="assets/OTP_bird.svg">
+            </div>
+
             <ion-item class="mb-30">
               <ion-label class="lable-style" position="stacked">Enter OTP</ion-label>
               <ion-input class="input-style" type="text" placeholder="123456"></ion-input>
             </ion-item>
 
             <p class="text ion-text-start mb-25">OTP will expire in 59 seconds</p>
-
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
             <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -83,16 +83,23 @@
                 <ion-icon name="arrow-back"></ion-icon> &nbsp; Set your residance location
               </h5>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="fixed-bottom-part">
-        <ion-row>
-          <ion-col>
+
+            <div class="svg-image-box">
+              <img src="assets/Location_House.svg">
+            </div>
+
             <p class="text ion-text-start mb-25"> We need to know where you live so we can make our suggestion
               confortable for you</p>
-
-            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">CHOOSE LOCATION </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -111,21 +118,33 @@
                 <ion-icon name="arrow-back"></ion-icon> &nbsp; Set your residance location
               </h5>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="fixed-bottom-part">
-        <ion-row>
-          <ion-col>
+
+            <div class="svg-image-box">
+              <img src="assets/Location_House.svg">
+            </div>
+
+
             <ion-item lines="none">
               <ion-label class="ion-padding-top ion-padding-bottom">
-                <h5 class="dark-small-heading">Residance Locality <span class="ion-float-right primary"> Change</span></h5>
+                <h5 class="dark-small-heading">Residance Locality <span class="ion-float-right primary"> Change</span>
+                </h5>
               </ion-label>
             </ion-item>
 
-            <p class="text ion-text-start mb-25"> Business Development Directorate <br> Dak Bhavan <br> Parliament Street <br> NEW DELHI 110001 <br> INDIA</p>
+            <p style="margin-top: 0;" class="text ion-text-start mb-25"> Business Development Directorate <br> Dak
+              Bhavan <br> Parliament
+              Street <br> NEW DELHI 110001 <br> INDIA</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SET LOCATION </ion-button>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -143,12 +162,11 @@
                 <ion-icon name="arrow-back"></ion-icon> &nbsp; Social Profiles
               </h5>
             </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="fixed-bottom-part">
-        <ion-row>
-          <ion-col>
+
+            <div class="svg-image-box-2">
+              <img src="assets/Social_Profile.svg">
+            </div>
+
             <ion-item class="mb-6">
               <ion-label class="lable-style" position="stacked">Facebook</ion-label>
               <ion-input class="input-style" type="text" placeholder="facebook.com/mani025.mani"></ion-input>
@@ -169,11 +187,56 @@
               <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
             </ion-item>
 
-            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-slide>
+
+
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon name="arrow-back"></ion-icon> &nbsp; About You
+              </h5>
+              <h6 class="dark-small-heading ion-text-start mtb-25"> Tell us something about yourself</h6>
+              <p class="dark-text ion-text-start"> I started Deliciously Ella back in 2012 whilst I was still at
+                university. In 2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well
+                as Ehlers-Danlos and Mast Cell Activation Disorder, following four months in and out of hospital. The
+                condition affected the workings of my autonomic nervous system; I couldn’t control my heart rate and
+                blood pressure properly, while also struggling with digestive issues, chronic fatigue, a series of
+                infections and a whole host of other symptoms.</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
 
 
 
@@ -183,84 +246,140 @@
             <ion-col>
               <div class="backbar">
                 <h5 class="page-heading">
-                  <ion-icon name="arrow-back"></ion-icon> &nbsp; About You
+                  <ion-icon name="arrow-back"></ion-icon> &nbsp; Max. Distance Radius
                 </h5>
-                 <h6 class="dark-small-heading ion-text-start mtb-25"> Tell us something about yourself</h6>
-                  <p class="dark-text ion-text-start"> I started Deliciously Ella back in 2012 whilst I was still at university. In 2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and Mast Cell Activation Disorder, following four months in and out of hospital. The condition affected the workings of my autonomic nervous system; I couldn’t control my heart rate and blood pressure properly, while also struggling with digestive issues, chronic fatigue, a series of infections and a whole host of other symptoms.</p>
               </div>
+  
+              <div class="svg-image-box">
+                <img src="assets/Location_House.svg">
+              </div>
+
+
+              <h1 class="primary">5 <span style="font-size: 14px;">km</span></h1>
+  
+              <ion-item lines="none">
+                  <ion-range value="20">
+                    <ion-icon slot="start" size="small"></ion-icon>
+                  </ion-range>
+                </ion-item>
+                
             </ion-col>
           </ion-row>
         </ion-grid>
         <ion-grid class="fixed-bottom-part">
           <ion-row>
             <ion-col>
-              <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT </ion-button>
+              <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+              <div class="crab-bootm-vector">
+                <img src="assets/CRAB_Vector.svg">
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-slide>
+  
 
 
 
 
-      <ion-slide style="vertical-align:top">
-          <ion-grid class="fixed-bottom-part">
-            <ion-row>
-              <ion-col>
-                <h6 class="ion-text-start sllide-dark-heading">let’s complete our journey</h6>
-    
-                <ion-item class="mb-30">
-                  <ion-label class="lable-style" position="stacked">Email ID</ion-label>
-                  <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
-                </ion-item>
-    
-                <p class="text ion-text-start mb-25">We will send a verification link on this email ID to verify you.</p>
-    
-                <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SEND OTP</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-slide>
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="top-illu-box mb-20">
+              <img src="assets/illu_with_crab.svg">
+            </div>
+            <h6 class="ion-text-start sllide-dark-heading">let’s complete our journey</h6>
+
+            <ion-item class="mb-30">
+              <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+              <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+            </ion-item>
+
+            <p class="text ion-text-start mb-25">We will send a verification link on this email ID to verify you.</p>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
 
 
-        
-
-      <ion-slide style="vertical-align:top">
-          <ion-grid class="fixed-bottom-part">
-            <ion-row>
-              <ion-col>
-                <h6 class="ion-text-start sllide-dark-heading">Verify your Email ID</h6>
-    
-                <ion-item class="mb-30">
-                  <ion-label class="lable-style" position="stacked">Email ID</ion-label>
-                  <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
-                </ion-item>
-    
-                <p class="text ion-text-start mb-25">We have sent a verification link on this email ID to verify you.</p>
-                
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-slide>
 
 
-        <ion-slide style="vertical-align:top">
-            <ion-grid class="fixed-bottom-part">
-              <ion-row>
-                <ion-col>
-                  <h5 class="success">Email Verified</h5>
-      
-                  <ion-item class="mb-30">
-                    <ion-label class="lable-style" position="stacked">Email ID</ion-label>
-                    <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
-                  </ion-item>
-      
-                  <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">DASHBOARD</ion-button>
-                  
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-slide>
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="top-illu-box mb-20">
+              <img src="assets/illu_with_crab.svg">
+            </div>
+            <h6 class="ion-text-start sllide-dark-heading">Verify your Email ID</h6>
+
+            <ion-item class="mb-30">
+              <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+              <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+            </ion-item>
+
+            <p class="text ion-text-start mb-25">We have sent a verification link on this email ID to verify you.</p>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+            <div class="top-verify-illu-box mb-30">
+              <img src="assets/Email_Verified.svg">
+            </div>
+
+            <h5 class="success veryfied"><img src="assets/green_set.svg"> &nbsp; Email Verified</h5>
+
+            <ion-item class="mb-30">
+              <ion-label class="lable-style" position="stacked">Email ID</ion-label>
+              <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="fixed-bottom-part">
+        <ion-row>
+          <ion-col>
+            <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT OTP </ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
 
 
   </ion-slides>
