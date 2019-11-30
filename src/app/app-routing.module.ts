@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },  { path: 'review', loadChildren: './pages/review/review.module#ReviewPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: 'profile-dashboard', loadChildren: './pages/profile-dashboard/profile-dashboard.module#ProfileDashboardPageModule' },
+  { path: 'booking', loadChildren: './pages/booking/booking.module#BookingPageModule' },
 
 ];
 

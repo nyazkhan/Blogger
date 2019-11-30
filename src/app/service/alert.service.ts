@@ -14,7 +14,7 @@ export class AlertService {
     public toastController: ToastController
   ) { }
 
-  async showErrorAlert(msg: any) {
+  showErrorAlert = async (msg: any) => {
     const alert = await this.alertController.create({
       header: 'Error',
       message: msg,

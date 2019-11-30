@@ -1,9 +1,104 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="padding-0">
+  <div class="top-green-bar">
+    <h1 class="prof-name">
+      <ion-icon slot="start" name="arrow-dropleft"></ion-icon> &nbsp; Hi, Manishanker
+    </h1>
+    <ion-row style="padding-left: 40px;">
+      <ion-col size="3">
+        <div class="review-list">
+          <h6>22</h6>
+          <span>Reviews</span>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="review-list">
+          <h6>22</h6>
+          <span>Invites</span>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="view-profile" routerLink="/profile-dashboard">
+          <p>View Profile <ion-icon slot="start" name="arrow-forward"></ion-icon>
+          </p>
+        </div>
+      </ion-col>
+      <div class="curve"></div>
+    </ion-row>
+  </div>
+  <ion-grid class="p-12 top-set">
+    <ion-row>
+      <ion-col>
+        <h5 class="list-heading">Upcoming Appointments</h5>
+        <div class="slider-appointment">
 
-<ion-content>
+          <div class="white-box ion-margin-bottom">
+            <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
+            <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
+            <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
+                  src="assets/km-arrorw.svg"> </span></p>
+          </div>
 
+          <div class="white-box ion-margin-bottom">
+            <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
+            <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
+            <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
+                  src="assets/km-arrorw.svg"> </span></p>
+          </div>
+
+          <div class="white-box-view-more ion-margin-bottom">
+            <p class="ion-text-center primary">View All    ></p>
+           
+          </div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class=" ion-margin-bottom">
+      <ion-col size="9">
+        <ion-searchbar placeholder="Search Restaurent"></ion-searchbar>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="rest_address_item mb-15">
+          <div slot="start" class="rest-img">
+            <img src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">Chai Sutta Bar</h4>
+            <p class="small-content">Veg, Cafe & restaurent <br>
+              Navrangpura, Ahmedabad</p>
+            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none" class="rest_address_item mb-15">
+          <div slot="start" class="rest-img">
+            <img src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">Chai Sutta Bar</h4>
+            <p class="small-content">Veg, Cafe & restaurent <br>
+              Navrangpura, Ahmedabad</p>
+            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item>
+
+        <ion-item lines="none" class="rest_address_item mb-15">
+          <div slot="start" class="rest-img">
+            <img src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">Chai Sutta Bar</h4>
+            <p class="small-content">Veg, Cafe & restaurent <br>
+              Navrangpura, Ahmedabad</p>
+            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core'
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
+import { IonSlides } from '@ionic/angular';
 
 declare const google: any;
 
@@ -12,6 +13,7 @@ declare const google: any;
 })
 export class MapPage implements OnInit {
   @ViewChild('map', { static: true }) mapElement: ElementRef;
+  @ViewChild(IonSlides, { static: false }) slides: IonSlides;
 
   map: any;
 
@@ -42,8 +44,9 @@ export class MapPage implements OnInit {
     country: 'long_name',
     postal_code: 'short_name'
   };
-  restaurantDetails: any = [];
+  bloggerAddress: any = [];
   input: any;
+  geocoder: any;
 
   constructor(
     @Inject(Geolocation) public geolocation: Geolocation,
@@ -55,6 +58,21 @@ export class MapPage implements OnInit {
 
   ngOnInit() {
   }
+
+
+  next() {
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+    this.slides.lockSwipes(true);
+  }
+
+  previous() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+    this.slides.lockSwipes(true);
+  }
+
+
   // tslint:disable-next-line: use-lifecycle-interface
   async ngAfterViewInit() {
     // this.loadMap();
@@ -84,12 +102,12 @@ export class MapPage implements OnInit {
 
   initAutocomplete() {
     this.map = new google.maps.Map(document.getElementById('map'), this.mapOptions);
-
+    this.geocoder = new google.maps.Geocoder;
     // Create the search box and link it to the UI element.
     this.input = document.getElementById('autocomplete');
 
     const searchBox = new google.maps.places.SearchBox(document.getElementById('autocomplete'), {
-      types: ['(restaurant)'], componentRestrictions: { country: 'In' }
+      types: ['(address)'], componentRestrictions: { country: 'In' }
     });
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(this.input);
 
@@ -99,106 +117,15 @@ export class MapPage implements OnInit {
     });
 
     searchBox.addListener('places_changed', () => {
-      this.restaurantDetails = [];
+      this.bloggerAddress = [];
       const places = searchBox.getPlaces();
-      this.restaurantDetails = places[0];
+      this.bloggerAddress = places[0];
       console.log(places);
       if (places.length === 0) {
         return;
       }
 
-      // Clear out the old markers.
-
-      // Clear out the old markers.
-      this.markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      this.markers = [];
-
-
-
-
-
-      // Get each component of the address from the place details,
-      // and then fill-in the corresponding field on the form.
-
-      // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < places[0].address_components.length; i++) {
-        const addressType = places[0].address_components[i].types[0];
-        if (this.componentForm[addressType]) {
-          console.log(places[0].address_components[i][this.componentForm[addressType]]);
-
-          if (addressType === 'postal_code') {
-            this.address.pincode = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-
-          if (addressType === 'country') {
-            this.address.country = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-
-
-          if (addressType === 'administrative_area_level_1') {
-            this.address.state = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-
-
-          if (addressType === 'locality') {
-            this.address.distic = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-          if (addressType === 'street_number') {
-            this.address.address = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-          if (addressType === 'route') {
-            this.address.landMark = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-          if (addressType === 'neighborhood') {
-            this.address.landMark += '  ' + places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-          if (addressType === 'sublocality_level_3') {
-            this.address.locality = places[0].address_components[i][this.componentForm[addressType]] || '';
-
-          }
-
-
-
-          if (addressType === 'sublocality_level_2') {
-            this.address.locality += '  ' + places[0].address_components[i][this.componentForm[addressType]];
-
-          }
-
-
-
-          if (addressType === 'sublocality_level_1') {
-            this.address.city = places[0].address_components[i][this.componentForm[addressType]];
-
-          }
-
-        }
-      }
-      this.address.address = places[0].vicinity;
-
-      console.log(this.address);
-      console.log(this.restaurantDetails);
-      // For each place, get the icon, name and location.
-
-
-      this.setMarkerOnMap();
-      google.maps.event.addListener(this.map, 'bounds_changed', () => {
-        this.bounds = this.map.getBounds();
-        searchBox.setBounds(this.bounds);
-      });
+      this.setAddress(searchBox);
 
 
       this.changeMapHieght('50vh');
@@ -206,6 +133,100 @@ export class MapPage implements OnInit {
     });
 
 
+  }
+
+  setAddress(searchBox?) {
+    // Clear out the old markers.
+    console.log(searchBox);
+
+    // Clear out the old markers.
+    this.markers.forEach((marker) => {
+      marker.setMap(null);
+    });
+    this.markers = [];
+
+
+
+
+
+    // Get each component of the address from the place details,
+    // and then fill-in the corresponding field on the form.
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.bloggerAddress.address_components.length; i++) {
+      const addressType = this.bloggerAddress.address_components[i].types[0];
+      if (this.componentForm[addressType]) {
+        console.log(this.bloggerAddress.address_components[i][this.componentForm[addressType]]);
+
+        if (addressType === 'postal_code') {
+          this.address.pincode = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+
+        if (addressType === 'country') {
+          this.address.country = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+
+
+        if (addressType === 'administrative_area_level_1') {
+          this.address.state = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+
+
+        if (addressType === 'locality') {
+          this.address.distic = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+        if (addressType === 'street_number') {
+          this.address.address = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+        if (addressType === 'route') {
+          this.address.landMark = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+        if (addressType === 'neighborhood') {
+          this.address.landMark += '  ' + this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+        if (addressType === 'sublocality_level_3') {
+          this.address.locality = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+
+        }
+
+
+
+        if (addressType === 'sublocality_level_2') {
+          this.address.locality += '  ' + this.bloggerAddress.address_components[i][this.componentForm[addressType]];
+
+        }
+
+
+
+        if (addressType === 'sublocality_level_1') {
+          this.address.city = this.bloggerAddress.address_components[i][this.componentForm[addressType]];
+
+        }
+
+      }
+    }
+    this.address.address = this.bloggerAddress.vicinity;
+
+    this.setMarkerOnMap();
+    if (searchBox) {
+
+      google.maps.event.addListener(this.map, 'bounds_changed', () => {
+        this.bounds = this.map.getBounds();
+        searchBox.setBounds(this.bounds);
+      });
+    }
   }
 
 
@@ -217,8 +238,8 @@ export class MapPage implements OnInit {
 
     const marker = new google.maps.Marker({
       map: this.map,
-      title: this.restaurantDetails.name,
-      position: this.restaurantDetails.geometry.location,
+      title: this.bloggerAddress.name,
+      position: this.bloggerAddress.geometry.location,
       draggable: true,
     });
     marker.setAnimation(4);
@@ -236,12 +257,21 @@ export class MapPage implements OnInit {
     });
     google.maps.event.addListener(marker, 'dragend', (event) => {
       // infoWindow.setContent(marker.title);
-      console.log('dragend');
-      console.log(event);
-      console.log(event.latLng.lat());
-      console.log(event.latLng.lng());
-      console.log(event.latLng);
-      console.log(marker.getPosition());
+      const latlng = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+      this.geocoder.geocode({ location: latlng }, (results, status) => {
+        console.log(status);
+        if (status == 'OK') {
+          this.bloggerAddress = results[0];
+          this.setAddress();
+        }
+        console.log(results);
+      });
+      // console.log('dragend');
+      // console.log(event);
+      // console.log(event.latLng.lat());
+      // console.log(event.latLng.lng());
+      // console.log(event.latLng);
+      // console.log(marker.getPosition());
 
 
       // infoWindow.open(this.map, marker);
@@ -252,7 +282,7 @@ export class MapPage implements OnInit {
 
       // infoWindow.open(this.map, marker);
     });
-    this.bounds.extend(this.restaurantDetails.geometry.location);
+    this.bounds.extend(this.bloggerAddress.geometry.location);
 
     this.map.fitBounds(this.bounds);
     this.map.setZoom(17);
@@ -263,5 +293,7 @@ export class MapPage implements OnInit {
     (document.getElementById('map') as HTMLInputElement).style.height = val;
 
   }
-
+  saveAddress() {
+    this.router.navigateByUrl('/registration');
+  }
 }

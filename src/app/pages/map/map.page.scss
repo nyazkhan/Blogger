@@ -52,6 +52,8 @@
   .map-setting-part{
     background-color: var(--main-white-font-color);
     padding: 20px 30px;
+    overflow: scroll;
+    height: 44vh;
   }
   .stylist-input{
     border: 1px solid var(--main-border-color);
@@ -81,3 +83,21 @@ ion-input{
   justify-content: center;
   align-items: center !important;
 }
+
+
+
+ion-content {
+  --background: #ffffff;
+ --padding: 0px !important;
+}
+  ion-slides{
+      height: 100%;
+}
+ion-slide{
+  display: block;
+  background: url(/assets/Background-3.svg) 45% 4%/87% 49% no-repeat !important;
+}
+
+// .swiper-container {
+//   overflow: scroll;
+// }

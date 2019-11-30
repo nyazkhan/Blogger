@@ -5,15 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class StorageService {
 
-  constructor() {}
+  constructor() { }
 
   // tslint:disable-next-line: variable-name
   public storeData(field_name: any, data: any) {
-    if (field_name === 'access_token') {
-      localStorage.setItem(field_name, data);
-    } else {
-      localStorage.setItem(field_name, JSON.stringify(data));
-    }
+
+    localStorage.setItem(field_name, JSON.stringify(data));
+
   }
 
   // tslint:disable-next-line: variable-name
