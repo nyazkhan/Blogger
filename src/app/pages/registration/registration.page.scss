@@ -8,6 +8,26 @@ ion-content {
     display: block;
     background: url(/assets/Background-3.svg) 45% 4%/87% 49% no-repeat !important;
   }
+
+
+
+
+
+  .veg , .non-veg{
+    transition : all 600ms;
+}
+
+
+.non-veg-hide .non-veg{
+  transform-origin: left;
+transform: scale(0) translateX(100px);
+opacity: 0;
+}
+.non-veg-hide .veg{
+  transform : scale(1.2) translatex(-60px) translatey(-20px);
+  transform-origin: right
+}
+
   .sllide-dark-heading{
     font-weight: bold;
     font-size: 19px;

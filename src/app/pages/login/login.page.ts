@@ -107,6 +107,7 @@ export class LoginPage implements OnInit {
 
   resendOTP() {
     this.loginservice.resendOTP(this.phoneNo).subscribe((res) => {
+      this.alertService.showInfoAlert('OTP SEND');
       this.seconds = 60;
       this.timer = null;
       this.resendOtp();

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 import { IonSlides } from '@ionic/angular';
+import { LoginService } from 'src/app/service/login.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 declare const google: any;
 
@@ -22,13 +24,18 @@ export class MapPage implements OnInit {
   latLng: any;
   bounds: any;
   address = {
-    address: '',
+    id: null,
+    premisesNo: '',
     locality: '',
-    landMark: '',
+    landmark: '',
     state: '',
     city: '',
-    distic: '',
+    district: '',
     country: '',
+    gMapFullAddress: '',
+    placeId: '',
+    longitude: null,
+    latitude: null,
     pincode: null,
   };
 
@@ -47,14 +54,19 @@ export class MapPage implements OnInit {
   bloggerAddress: any = [];
   input: any;
   geocoder: any;
+  userPhoneNo: any;
 
   constructor(
     @Inject(Geolocation) public geolocation: Geolocation,
     @Inject(Router) private router: Router,
-
+    @Inject(LoginService) private loginservice: LoginService,
+    @Inject(StorageService) private storageService: StorageService,
     @Inject(AlertService) private alertService: AlertService,
 
-  ) { }
+  ) {
+    this.userPhoneNo = this.storageService.getData('mobile');
+
+  }
 
   ngOnInit() {
   }
@@ -102,6 +114,7 @@ export class MapPage implements OnInit {
 
   initAutocomplete() {
     this.map = new google.maps.Map(document.getElementById('map'), this.mapOptions);
+    // tslint:disable-next-line: new-parens
     this.geocoder = new google.maps.Geocoder;
     // Create the search box and link it to the UI element.
     this.input = document.getElementById('autocomplete');
@@ -120,6 +133,11 @@ export class MapPage implements OnInit {
       this.bloggerAddress = [];
       const places = searchBox.getPlaces();
       this.bloggerAddress = places[0];
+      this.address.latitude = places[0].geometry.location.lat();
+      this.address.longitude = places[0].geometry.location.lng();
+      this.address.placeId = places[0].place_id;
+      this.address.gMapFullAddress = JSON.stringify(places[0].address_components);
+
       console.log(places);
       if (places.length === 0) {
         return;
@@ -149,9 +167,6 @@ export class MapPage implements OnInit {
 
 
 
-    // Get each component of the address from the place details,
-    // and then fill-in the corresponding field on the form.
-
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.bloggerAddress.address_components.length; i++) {
       const addressType = this.bloggerAddress.address_components[i].types[0];
@@ -179,21 +194,21 @@ export class MapPage implements OnInit {
 
 
         if (addressType === 'locality') {
-          this.address.distic = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+          this.address.district = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
 
         }
 
         if (addressType === 'street_number') {
-          this.address.address = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+          this.address.premisesNo = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
 
         }
         if (addressType === 'route') {
-          this.address.landMark = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+          this.address.landmark = this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
 
         }
 
         if (addressType === 'neighborhood') {
-          this.address.landMark += '  ' + this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
+          this.address.landmark += '  ' + this.bloggerAddress.address_components[i][this.componentForm[addressType]] || '';
 
         }
         if (addressType === 'sublocality_level_3') {
@@ -217,7 +232,6 @@ export class MapPage implements OnInit {
 
       }
     }
-    this.address.address = this.bloggerAddress.vicinity;
 
     this.setMarkerOnMap();
     if (searchBox) {
@@ -260,21 +274,12 @@ export class MapPage implements OnInit {
       const latlng = { lat: event.latLng.lat(), lng: event.latLng.lng() };
       this.geocoder.geocode({ location: latlng }, (results, status) => {
         console.log(status);
-        if (status == 'OK') {
+        if (status === 'OK') {
           this.bloggerAddress = results[0];
           this.setAddress();
         }
         console.log(results);
       });
-      // console.log('dragend');
-      // console.log(event);
-      // console.log(event.latLng.lat());
-      // console.log(event.latLng.lng());
-      // console.log(event.latLng);
-      // console.log(marker.getPosition());
-
-
-      // infoWindow.open(this.map, marker);
     });
     google.maps.event.addListener(marker, 'dragstart', () => {
       // infoWindow.setContent(marker.title);
@@ -294,6 +299,43 @@ export class MapPage implements OnInit {
 
   }
   saveAddress() {
-    this.router.navigateByUrl('/registration');
+
+    if (this.address.premisesNo.length < 2) {
+      this.alertService.showErrorAlert('Please Fill Premise No');
+      return;
+    }
+
+    if (this.address.locality.length < 2) {
+      this.alertService.showErrorAlert('Please Fill Locality');
+      return;
+    }
+
+    if (this.address.landmark.length < 2) {
+      this.alertService.showErrorAlert('Please Fill LandMark');
+      return;
+    }
+
+    if (this.address.placeId.length < 2) {
+      this.alertService.showErrorAlert('Somthing wents wrong Please search again restaurant on map');
+      return;
+    }
+
+    this.loginservice.updateBloggerDetails({
+      mobile: this.userPhoneNo,
+      stage: 3,
+      address: this.address,
+      gMapFullDetail: JSON.stringify(this.bloggerAddress)
+    }).subscribe((res) => {
+      if (res.status === 200) {
+
+        this.storageService.storeData('stage', res.data.stage);
+        this.router.navigateByUrl('/registration');
+
+
+      }
+
+    });
+
+
   }
 }

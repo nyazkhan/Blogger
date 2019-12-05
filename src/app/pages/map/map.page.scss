@@ -86,15 +86,17 @@ ion-input{
 
 
 
-ion-content {
-  --background: #ffffff;
- --padding: 0px !important;
-}
+// ion-content {
+//   --background: #ffffff;
+//  --padding: 0px !important;
+// }
   ion-slides{
       height: 100%;
 }
 ion-slide{
   display: block;
+  padding: 10px;
+  --background: #ffffff;
   background: url(/assets/Background-3.svg) 45% 4%/87% 49% no-repeat !important;
 }
 

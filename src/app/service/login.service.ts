@@ -9,7 +9,7 @@ export class LoginService {
   constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService) { }
 
   signUp(phoneNo) {
-    return this.Http.postLogin('user/save', { mobile: phoneNo, type: 2, name: 'nyaz khan' });
+    return this.Http.postLogin('user/save', { mobile: phoneNo, type: 2, });
   }
   verifyOTP(phoneNo, OTP) {
     return this.Http.post('notification/verify/otp', { mobile: phoneNo, otp: OTP, });
@@ -20,8 +20,8 @@ export class LoginService {
 
   }
 
-  updateRestaurantDetails(details) {
-    return this.Http.post('user/updateRestaurantDetails', details);
+  updateBloggerDetails(details) {
+    return this.Http.post('user/updateBloggerDetails', details);
 
   }
 

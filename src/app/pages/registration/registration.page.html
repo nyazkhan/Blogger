@@ -1,5 +1,5 @@
 <ion-content>
-    <ion-slides options="myOptions">
+    <ion-slides options="myOptions" class="swiper-no-swiping">
 
 
         <!-- distance radius -->
@@ -7,32 +7,37 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; Max. Distance Radius
-                            </h5>
-                        </div>
-
-                        <div class="svg-image-box">
-                            <img src="assets/Location_House.svg">
-                        </div>
-
-
-                        <h1 class="primary">5 <span style="font-size: 14px;">km</span></h1>
-
-                        <ion-item lines="none">
-                            <ion-range value="20">
-                                <ion-icon slot="start" size="small"></ion-icon>
-                            </ion-range>
-                        </ion-item>
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; Awesome text</h5>
+                        </ion-text>
 
                     </ion-col>
                 </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <img src="assets/Location_House.svg">
+                        
+                    </ion-col>
+                </ion-row>
+                <h1 class="primary">{{ bloggerDetail.maxDistance}} <span style="font-size: 14px;">km</span></h1>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="none">
+                            <ion-range min="5" max="200" step="5" [(ngModel)]="bloggerDetail.maxDistance"
+                                name="maxDistance" color="primary">
+                            </ion-range>
+
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
             </ion-grid>
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SET RADIUS
+                        <ion-button size="large" class="proceed-button  ion-margin-top" (click)="saveDistance()" expand="block">
+                            SET RADIUS
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -48,12 +53,9 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; Select Food Type
-                            </h5>
-                        </div>
-
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; Select Food Type</h5>
+                        </ion-text>
 
                     </ion-col>
                 </ion-row>
@@ -62,9 +64,9 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div>
-                            <svg width="100%" height="274" viewBox="0 0 361 274" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                       
+                            <svg [ngClass]="{ 'non-veg-hide':(bloggerDetail.foodType ===1)}" width="100%" height="274"
+                                viewBox="0 0 361 274" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g class="veg">
                                     <g opacity="0.35">
                                         <path opacity="0.32"
@@ -785,7 +787,6 @@
                                 </g>
 
                             </svg>
-                        </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -793,13 +794,15 @@
             top: 17vh;">
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.foodType == 1)?  'solid': 'outline'"
+                            (click)="bloggerDetail.foodType = 1">
                             Veg
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="8">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.foodType == 3)? 'solid' : 'outline'"
+                            (click)="bloggerDetail.foodType = 3">
                             Veg & Non-Veg
                         </ion-button>
                     </ion-col>
@@ -810,7 +813,8 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">PROCEED
+                        <ion-button size="large" (click)="saveFoodType()" class="proceed-button  ion-margin-top" expand="block">
+                            PROCEED
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -823,15 +827,13 @@
         <!-- want to single table -->
 
         <ion-slide style="vertical-align:top">
+
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; How Whould You Lik To Get Invite
-                            </h5>
-                        </div>
-
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; How Whould You Lik To Get Invite</h5>
+                        </ion-text>
 
                     </ion-col>
                 </ion-row>
@@ -840,9 +842,12 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="svg-image-box">
-                            <img src="assets/table3.svg">
-                        </div>
+                        <!-- <div class="svg-image-box"> -->
+                        <img *ngIf="bloggerDetail.invitationType === 1 " src="assets/table1.svg">
+                        <img *ngIf="((bloggerDetail.invitationType === 2) || (!bloggerDetail.invitationType)) "
+                            src="assets/table3.svg">
+                        <img *ngIf="bloggerDetail.invitationType === 3 " src="assets/table2.svg">
+                        <!-- </div> -->
                     </ion-col>
                 </ion-row>
 
@@ -850,18 +855,21 @@
             <ion-grid style=" position: relative; top: 12vh;">
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 1)?  'solid': 'outline'"
+                            (click)="bloggerDetail.invitationType = 1">
                             single
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 2)?  'solid': 'outline'"
+                            (click)="bloggerDetail.invitationType = 2">
                             Table
                         </ion-button>
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 3)?  'solid': 'outline'"
+                            (click)="bloggerDetail.invitationType = 3">
                             Both
                         </ion-button>
                     </ion-col>
@@ -874,7 +882,8 @@
 
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">PROCEED
+                        <ion-button size="large" (click)="saveInvitationType()" class="proceed-button  ion-margin-top" expand="block">
+                            PROCEED
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -886,24 +895,23 @@
 
         <!-- Paid Un Paid -->
         <ion-slide style="vertical-align:top">
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; Select Your Review Preferences
-                            </h5>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
 
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="svg-image-box">
-                            <img src="assets/Location_House.svg">
-                        </div>
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; Select Your Review Preferencese</h5>
+                        </ion-text>
+
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+
+                        <img src="assets/Location_House.svg">
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -914,43 +922,49 @@
             <ion-grid style=" position: relative;">
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType == 1)?  'solid': 'outline'"
+                            (click)="bloggerDetail.reviewType = 1">
                             Paid
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType == 2)?  'solid': 'outline'"
+                            (click)="bloggerDetail.reviewType = 2; bloggerDetail.reviewAmount = 0">
                             Unpaid
                         </ion-button>
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' fill="outline" (click)="onClick()">
+                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType ==3)?  'solid': 'outline'"
+                            (click)="bloggerDetail.reviewType =3">
                             Both
                         </ion-button>
                     </ion-col>
 
                 </ion-row>
+                <span class="text ion-text-start ">Select your approx cost per review</span>
 
-            </ion-grid>
-            <span class="text ion-text-start ">Select your approx cost per review</span>
-            <ion-grid style=" position: relative;">
                 <ion-row>
 
-                    <ion-col>
-                        <span>30+ </span>
-                        <ion-item lines="none">
-                            <ion-range value="20">
-                                <ion-icon slot="start" size="small"></ion-icon>
+                    <ion-col *ngIf="(bloggerDetail.reviewType !== 2)">
+                        <!-- <span>{{bloggerDetail.reviewAmount}}+ </span> -->
+                        <h1 style="padding: 0; margin: 0;" class="primary ">{{ bloggerDetail.reviewAmount || 0}}/ <span
+                                style="font-size: 13px;">RS</span></h1>
+
+                        <ion-item lines="none" style="padding: 0; margin: 0;">
+                            <ion-range min="100" max="30000" step="200" [(ngModel)]="bloggerDetail.reviewAmount"
+                                name="reviewAmount" color="primary">
                             </ion-range>
                         </ion-item>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+          
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">PROCEED
+                        <ion-button size="large" (click)="saveReviewType()" class="proceed-button  ion-margin-top" expand="block">
+                            PROCEED
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -964,38 +978,51 @@
         <!-- social login page -->
 
         <ion-slide style="vertical-align:top">
+
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; Social Profiles
-                            </h5>
-                        </div>
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; Social Profiles</h5>
+                        </ion-text>
 
-                        <div class="svg-image-box-2">
-                            <img src="assets/Social_Profile.svg">
-                        </div>
+                    </ion-col>
+                </ion-row>
 
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <img src="assets/Social_Profile.svg">
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
                         <ion-item class="mb-6">
                             <ion-label class="lable-style" position="stacked">Facebook</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="facebook.com/mani025.mani">
+                            <ion-input class="input-style" name="fbProfile" [(ngModel)]="bloggerDetail.fbProfile"
+                                type="text" placeholder="fb Profile Username">
                             </ion-input>
                         </ion-item>
 
                         <ion-item class="mb-6">
                             <ion-label class="lable-style" position="stacked">Instagram</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+                            <ion-input class="input-style" name="instaProfile" [(ngModel)]="bloggerDetail.instaProfile"
+                                type="text" placeholder="insta Profile Username"></ion-input>
                         </ion-item>
 
                         <ion-item class="mb-6">
                             <ion-label class="lable-style" position="stacked">Twitter</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+                            <ion-input class="input-style" name="twitterProfile"
+                                [(ngModel)]="bloggerDetail.twitterProfile" type="text"
+                                placeholder="twitter Profile Username"></ion-input>
                         </ion-item>
 
                         <ion-item class="mb-6">
                             <ion-label class="lable-style" position="stacked">TripAdvisor</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="mani.sharma22_99"></ion-input>
+                            <ion-input class="input-style" name="tripAdProfile"
+                                [(ngModel)]="bloggerDetail.tripAdProfile" type="text"
+                                placeholder="tripAd Profile Username"></ion-input>
                         </ion-item>
 
                     </ion-col>
@@ -1005,7 +1032,8 @@
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">PROCEED
+                        <ion-button size="large" (click)="saveSocialUserName()" class="proceed-button  ion-margin-top" expand="block">
+                            PROCEED
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -1021,32 +1049,40 @@
 
         <ion-slide style="vertical-align:top">
             <ion-grid>
+                <ion-row style="padding-left: 20Px;">
+                    <ion-col>
+                        <ion-text color="none">
+                            <h5 class="ion-text-start"> &nbsp; About You</h5>
+                        </ion-text>
+                        <ion-text color="none">
+                            <h6 class="ion-text-start" style="font-weight: 400;"> &nbsp; Tell us something about
+                                yourself</h6>
+                        </ion-text>
+
+                    </ion-col>
+                </ion-row>
                 <ion-row>
                     <ion-col>
-                        <div class="backbar">
-                            <h5 class="page-heading">
-                                <ion-icon name="arrow-back"></ion-icon> &nbsp; About You
-                            </h5>
-                            <h6 class="dark-small-heading ion-text-start mtb-25"> Tell us something about yourself</h6>
 
+
+
+
+                        <div class="ion-padding" style="max-height: 80%; overflow: scroll;">
+
+                            <ion-textarea style=" line-height: 26px" name="description"
+                                [(ngModel)]="bloggerDetail.description" type="text" class="ion-text-left"
+                                auto-grow="true" placeholder="tripAd Profile Username"></ion-textarea>
                         </div>
 
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <ion-grid >
-                <ion-row >
-                    <ion-col>
-                        <!-- <ion-textarea style="line-height: 26px;" name="aboutRestaurant" 
-                            autofocus auto-grow="true"
-                            placeholder=" I started Deliciously Ella back in 2012 whilst I was"></ion-textarea> -->
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">PROCEED
+                        <ion-button size="large" (click)="saveAboutUser()" class="proceed-button  ion-margin-top" expand="block">
+                            PROCEED
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -1061,21 +1097,30 @@
 
         <!-- enter your email -->
         <ion-slide style="vertical-align:top">
+
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="top-illu-box mb-20">
-                            <img src="assets/illu_with_crab.svg">
-                        </div>
+                        <img src="assets/illu_with_crab.svg">
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+
                         <h6 class="ion-text-start sllide-dark-heading">let’s complete our journey</h6>
 
-                        <ion-item class="mb-30">
+                        <ion-item>
                             <ion-label class="lable-style" position="stacked">Email ID</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com">
+                            <ion-input class="input-style" type="text" [(ngModel)]="bloggerDetail.email" name="email"
+                            placeholder="Example@gmail.com">
                             </ion-input>
                         </ion-item>
 
-                        <p class="text ion-text-start mb-25">We will send a verification link on this email ID to verify
+                        <p class="text ion-text-start ">We will send a verification link on this email ID to verify
                             you.</p>
 
                     </ion-col>
@@ -1085,7 +1130,8 @@
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SEND VERIFICATION
+                        <ion-button size="large" class="proceed-button  ion-margin-top" (click)="saveEmail()" expand="block">
+                            SEND VERIFICATION
                             LINK
                         </ion-button>
                         <div class="crab-bootm-vector">
@@ -1100,21 +1146,50 @@
         <!-- verify your email id -->
 
         <ion-slide style="vertical-align:top">
+
+
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <div class="top-illu-box mb-20">
-                            <img src="assets/illu_with_crab.svg">
-                        </div>
-                        <h6 class="ion-text-start sllide-dark-heading">Verify your Email ID</h6>
 
-                        <ion-item class="mb-30">
+                        <ion-item lines="none">
+                            <ion-label class="ion-padding-top ion-padding-bottom">
+                                <h5>manishanker112545@gmail.com <span style="padding-right: 20px;"
+                                        class="ion-float-right primary" (click)="editDetails(6)">
+                                        Change</span></h5>
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <img src="assets/illu_with_crab.svg">
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+
+                    <ion-col>
+
+                        <ion-item lines="none">
+                            <ion-label class=" sllide-dark-heading">
+                                <h5>Verify your Email ID <span id="timer" class="ion-float-right ">
+                                        1:00 seconds</span></h5>
+                            </ion-label>
+                        </ion-item>
+
+                        <ion-item>
                             <ion-label class="lable-style" position="stacked">Email OTP</ion-label>
-                            <ion-input class="input-style" type="text" placeholder="manishanker112545@gmail.com">
+                            <ion-input class="input-style" type="text" [(ngModel)]="bloggerDetail.code" name="code"
+                                placeholder="- - - - - - -">
                             </ion-input>
                         </ion-item>
 
-                        <p class="text ion-text-start mb-25">We have sent a verification link on this email ID to verify
+                        <p class="text ion-text-start mb-20">We have sent a verification link on this email ID to verify
                             you.</p>
 
                     </ion-col>
@@ -1124,7 +1199,8 @@
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">SUBMIT EMAIL OTP
+                        <ion-button size="large" class="proceed-button  ion-margin-top" (click)="saveEmailOTP()" expand="block">
+                            SUBMIT EMAIL OTP
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
@@ -1140,10 +1216,12 @@
                 <ion-row>
                     <ion-col>
 
-                        <div class="top-verify-illu-box mb-30">
-                            <img src="assets/Email_Verified.svg">
-                        </div>
+                        <img src="assets/Email_Verified.svg">
 
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
                         <h5 class="success veryfied"><img src="assets/green_set.svg"> &nbsp; Email Verified</h5>
 
                         <p>mainshankesr@gmail.com</p>
@@ -1154,7 +1232,7 @@
             <ion-grid class="fixed-bottom-part">
                 <ion-row>
                     <ion-col>
-                        <ion-button size="large" class="proceed-button  ion-margin-top" expand="block">DASHBOARD
+                        <ion-button size="large" class="proceed-button  ion-margin-top" (click)="showData()" expand="block">DASHBOARD
                         </ion-button>
                         <div class="crab-bootm-vector">
                             <img src="assets/CRAB_Vector.svg">
