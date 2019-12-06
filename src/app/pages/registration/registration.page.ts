@@ -14,6 +14,9 @@ export class RegistrationPage implements OnInit {
   userPhoneNO = null;
   nxtStage: any;
   bloggerDetail: any = {};
+
+  seconds = 60;
+  timer: any;
   constructor(
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
@@ -59,6 +62,10 @@ export class RegistrationPage implements OnInit {
   }
   editDetails(id) {
     console.log(id);
+    if (id === 7) {
+      this.resendOtp();
+
+    }
     this.slides.slideTo(id, 10);
 
   }
@@ -275,4 +282,50 @@ export class RegistrationPage implements OnInit {
     console.log(this.bloggerDetail);
 
   }
+
+
+
+  resendEmailOTP() {
+    this.loginservice.updateBloggerDetails({
+      mobile: this.bloggerDetail.mobile,
+      stage: 10,
+      email: this.bloggerDetail.email
+
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        // this.updateObject(res.data);
+        // this.next();
+        this.seconds = 60;
+        this.timer = null;
+        this.resendOtp();
+        this.alertService.presentToast('OTP SEND');
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
+
+    });
+  }
+
+  changeSeconds() {
+    if ((this.seconds < 60) && (this.seconds > 0)) {
+      document.getElementById('timer').innerHTML = 'Resend OTP in ' + this.seconds.toString() + 'seconds';
+    }
+    if (this.seconds > 0) {
+      this.seconds--;
+    } else {
+      clearInterval(this.timer);
+
+    }
+  }
+
+  resendOtp() {
+    if (!this.timer) {
+      this.timer = window.setInterval(() => {
+        this.changeSeconds();
+      }, 1000);
+    }
+  }
+
+
+
 }

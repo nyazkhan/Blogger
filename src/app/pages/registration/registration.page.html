@@ -16,7 +16,7 @@
 
                 <ion-row>
                     <ion-col>
-                        <img src="assets/Location_House.svg">
+                        <img class="img-Height" src="assets/Location_House.svg">
                         
                     </ion-col>
                 </ion-row>
@@ -65,7 +65,7 @@
                 <ion-row>
                     <ion-col>
                        
-                            <svg [ngClass]="{ 'non-veg-hide':(bloggerDetail.foodType ===1)}" width="100%" height="274"
+                            <svg style="height: 50vh;" [ngClass]="{ 'non-veg-hide':(bloggerDetail.foodType ===1)}" width="100%" height="274"
                                 viewBox="0 0 361 274" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g class="veg">
                                     <g opacity="0.35">
@@ -790,8 +790,7 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <ion-grid style="position: relative;
-            top: 17vh;">
+            <ion-grid >
                 <ion-row>
                     <ion-col size="4">
                         <ion-button expand='block' [fill]="(bloggerDetail.foodType == 1)?  'solid': 'outline'"
@@ -843,7 +842,7 @@
                 <ion-row>
                     <ion-col>
                         <!-- <div class="svg-image-box"> -->
-                        <img *ngIf="bloggerDetail.invitationType === 1 " src="assets/table1.svg">
+                        <img  *ngIf="bloggerDetail.invitationType === 1 " src="assets/table1.svg">
                         <img *ngIf="((bloggerDetail.invitationType === 2) || (!bloggerDetail.invitationType)) "
                             src="assets/table3.svg">
                         <img *ngIf="bloggerDetail.invitationType === 3 " src="assets/table2.svg">
@@ -852,7 +851,7 @@
                 </ion-row>
 
             </ion-grid>
-            <ion-grid style=" position: relative; top: 12vh;">
+            <ion-grid >
                 <ion-row>
                     <ion-col size="4">
                         <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 1)?  'solid': 'outline'"
@@ -911,7 +910,7 @@
                 <ion-row>
                     <ion-col>
 
-                        <img src="assets/Location_House.svg">
+                        <img  style="height: 35vh;" src="assets/Location_House.svg">
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -990,10 +989,10 @@
                 </ion-row>
 
             </ion-grid>
-            <ion-grid>
+            <ion-grid class="content-scroll"  >
                 <ion-row>
                     <ion-col>
-                        <img src="assets/Social_Profile.svg">
+                        <img style="height: 30vh;"  src="assets/Social_Profile.svg">
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -1101,7 +1100,15 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <img src="assets/illu_with_crab.svg">
+                        <!-- <img  class="img-Height" src="assets/illu_with_crab.svg"> -->
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <img  class="img-Height" src="assets/illu_with_crab.svg">
 
                     </ion-col>
                 </ion-row>
@@ -1165,7 +1172,7 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <img src="assets/illu_with_crab.svg">
+                        <img  class="img-Height" src="assets/illu_with_crab.svg">
 
                     </ion-col>
                 </ion-row>
@@ -1216,7 +1223,7 @@
                 <ion-row>
                     <ion-col>
 
-                        <img src="assets/Email_Verified.svg">
+                        <img style="height: 55vh;"  src="assets/Email_Verified.svg">
 
                     </ion-col>
                 </ion-row>

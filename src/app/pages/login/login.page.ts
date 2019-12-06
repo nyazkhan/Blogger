@@ -120,9 +120,9 @@ export class LoginPage implements OnInit {
 
 
   changeSeconds() {
-    if ((this.seconds < 60) && (this.seconds > 0)) {
-      document.getElementById('timer').innerHTML = 'OTP will expire in ' + this.seconds.toString() + 'seconds';
-    }
+    // if ((this.seconds < 60) && (this.seconds > 0)) {
+    //   document.getElementById('timer').innerHTML = 'OTP will expire in ' + this.seconds.toString() + 'seconds';
+    // }
     if (this.seconds > 0) {
       this.seconds--;
     } else {
