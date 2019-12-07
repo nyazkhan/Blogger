@@ -1,10 +1,11 @@
-ion-content {
-    --background: #ffffff;
-  }
+// ion-content {
+//     --background: #ffffff;
+//   }
     ion-slides{
-        height: 100%;
-  }
-  ion-slide{
+      height: 100%;
+    }
+    ion-slide{
+      overflow-y: scroll;
     display: block;
     background: url(/assets/Background-3.svg) 45% 4%/87% 49% no-repeat !important;
   }
@@ -77,38 +78,15 @@ opacity: 0;
     color:rgba(0,0,0,0.4);
   }
   
-  .otp-change-no{
-    color: rgba(0,0,0,0.4);
-  }
-  // .crab-bootm-vector{
-  //   overflow: hidden;
-  //   position: fixed;
-  //   top:93vh;
-  //   justify-content: center;
-  //   align-items: center;
-  //   width: 100%;
-  // }
+
   .crab-bootm-vector img{
     height: 2vh;
     width: auto;
     background-size: cover;
   }
-  .top-illu-box{
-    -background: url('/assets/Background.svg') 0 0/100% 85% no-repeat !important;
-    height: 50vh;
-    padding-top: 5vh;
-  }
-  .top-illu-box img{
-    height: auto;
-  }
-  .top-verify-illu-box{
-    -background: url('/assets/Background.svg') 0 0/100% 60% no-repeat !important;
-    height: 55vh;
-  }
-  .top-verify-illu-box img{
-   height:55vh;
-   background-repeat: no-repeat;
-  }
+  
+
+
   .veryfied{
   display: flex;
   justify-content: center;
@@ -118,22 +96,5 @@ opacity: 0;
     height: 30px;
     width: auto;
     }
-  .svg-image-box{
-    -background: url('/assets/Background.svg') 0 0/100% 85% no-repeat !important;
-    height: 40vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
-  .svg-image-box-2{
-    -background: url('/assets/Background.svg') 0 0/100% 85% no-repeat !important;
-    height: 30vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
-  .svg-image-box img{
-    height: auto;
-  }
-
+ 
 

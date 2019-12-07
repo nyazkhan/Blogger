@@ -115,7 +115,7 @@ export class MapPage implements OnInit {
   initAutocomplete() {
     this.map = new google.maps.Map(document.getElementById('map'), this.mapOptions);
     // tslint:disable-next-line: new-parens
-    this.geocoder = new google.maps.Geocoder;
+    this.geocoder = new google.maps.Geocoder();
     // Create the search box and link it to the UI element.
     this.input = document.getElementById('autocomplete');
 

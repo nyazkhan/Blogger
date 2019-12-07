@@ -9,7 +9,7 @@ export class LoginService {
   constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService) { }
 
   signUp(phoneNo) {
-    return this.Http.postLogin('user/save', { mobile: phoneNo, type: 2, });
+    return this.Http.post('user/save', { mobile: phoneNo, type: 2, appId: 2 });
   }
   verifyOTP(phoneNo, OTP) {
     return this.Http.post('notification/verify/otp', { mobile: phoneNo, otp: OTP, });
@@ -32,7 +32,7 @@ export class LoginService {
 
 
   masterApi() {
-    return this.Http.postLogin('master/data/get', [1, 2, 3, 4]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4]);
 
   }
 
@@ -42,6 +42,12 @@ export class LoginService {
   }
   deleteImgById(id) {
     return this.Http.get('file/delete/' + id);
+
+  }
+
+
+  getRestaurantList() {
+    return this.Http.post('admin/users', 1 );
 
   }
 

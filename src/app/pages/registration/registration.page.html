@@ -793,14 +793,14 @@
             <ion-grid >
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.foodType == 1)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.foodType == 1)?  'solid': 'outline'"
                             (click)="bloggerDetail.foodType = 1">
                             Veg
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="8">
-                        <ion-button expand='block' [fill]="(bloggerDetail.foodType == 3)? 'solid' : 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.foodType == 3)? 'solid' : 'outline'"
                             (click)="bloggerDetail.foodType = 3">
                             Veg & Non-Veg
                         </ion-button>
@@ -841,12 +841,10 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <!-- <div class="svg-image-box"> -->
                         <img  *ngIf="bloggerDetail.invitationType === 1 " src="assets/table1.svg">
                         <img *ngIf="((bloggerDetail.invitationType === 2) || (!bloggerDetail.invitationType)) "
                             src="assets/table3.svg">
                         <img *ngIf="bloggerDetail.invitationType === 3 " src="assets/table2.svg">
-                        <!-- </div> -->
                     </ion-col>
                 </ion-row>
 
@@ -854,20 +852,20 @@
             <ion-grid >
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 1)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.invitationType == 1)?  'solid': 'outline'"
                             (click)="bloggerDetail.invitationType = 1">
                             single
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 2)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.invitationType == 2)?  'solid': 'outline'"
                             (click)="bloggerDetail.invitationType = 2">
                             Table
                         </ion-button>
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.invitationType == 3)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.invitationType == 3)?  'solid': 'outline'"
                             (click)="bloggerDetail.invitationType = 3">
                             Both
                         </ion-button>
@@ -921,20 +919,20 @@
             <ion-grid style=" position: relative;">
                 <ion-row>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType == 1)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.reviewType == 1)?  'solid': 'outline'"
                             (click)="bloggerDetail.reviewType = 1">
                             Paid
                         </ion-button>
 
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType == 2)?  'solid': 'outline'"
+                        <ion-button size="large" expand='block' [fill]="(bloggerDetail.reviewType == 2)?  'solid': 'outline'"
                             (click)="bloggerDetail.reviewType = 2; bloggerDetail.reviewAmount = 0">
                             Unpaid
                         </ion-button>
                     </ion-col>
                     <ion-col size="4">
-                        <ion-button expand='block' [fill]="(bloggerDetail.reviewType ==3)?  'solid': 'outline'"
+                        <ion-button  size="large" expand='block' [fill]="(bloggerDetail.reviewType ==3)?  'solid': 'outline'"
                             (click)="bloggerDetail.reviewType =3">
                             Both
                         </ion-button>
@@ -1161,7 +1159,7 @@
 
                         <ion-item lines="none">
                             <ion-label class="ion-padding-top ion-padding-bottom">
-                                <h5>manishanker112545@gmail.com <span style="padding-right: 20px;"
+                                <h5>{{bloggerDetail.email}} <span style="padding-right: 20px;"
                                         class="ion-float-right primary" (click)="editDetails(6)">
                                         Change</span></h5>
                             </ion-label>
@@ -1189,14 +1187,14 @@
                             </ion-label>
                         </ion-item>
 
-                        <ion-item>
+                        <ion-item lines="none">
                             <ion-label class="lable-style" position="stacked">Email OTP</ion-label>
                             <ion-input class="input-style" type="text" [(ngModel)]="bloggerDetail.code" name="code"
                                 placeholder="- - - - - - -">
                             </ion-input>
                         </ion-item>
 
-                        <p class="text ion-text-start mb-20">We have sent a verification link on this email ID to verify
+                        <p class="text ion-text-start ">We have sent a verification link on this email ID to verify
                             you.</p>
 
                     </ion-col>
@@ -1231,7 +1229,7 @@
                     <ion-col>
                         <h5 class="success veryfied"><img src="assets/green_set.svg"> &nbsp; Email Verified</h5>
 
-                        <p>mainshankesr@gmail.com</p>
+                        <p>{{bloggerDetail.email}}</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>

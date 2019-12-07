@@ -3,6 +3,7 @@ import { IonSlides, } from '@ionic/angular';
 import { AlertService } from 'src/app/service/alert.service';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -21,6 +22,7 @@ export class RegistrationPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
     private storageService: StorageService,
+    @Inject(Router) private router: Router,
 
 
   ) {
@@ -32,7 +34,9 @@ export class RegistrationPage implements OnInit {
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
       if (res.data) {
         console.log(res.data);
-
+        if (res.data.stage >= 12) {
+          this.router.navigateByUrl('/dashboard');
+        }
         this.nxtStage = res.data.stage - 4;
         this.editDetails(res.data.stage - 4);
         // this.next(res.data.stage);
@@ -239,7 +243,7 @@ export class RegistrationPage implements OnInit {
   saveEmail() {
     if (!this.isValidEmail()) {
       this.alertService.showErrorAlert('Please Enter Valid Email Id');
-
+      return;
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
@@ -250,6 +254,10 @@ export class RegistrationPage implements OnInit {
       if (res.status === 200) {
         this.updateObject(res.data);
         // this.next();
+        this.seconds = 60;
+        this.timer = null;
+        this.resendOtp();
+        this.alertService.presentToast('OTP SEND');
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -271,7 +279,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        // this.next();
+
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -279,6 +287,7 @@ export class RegistrationPage implements OnInit {
   }
 
   showData() {
+    this.router.navigateByUrl('/dashboard');
     console.log(this.bloggerDetail);
 
   }
