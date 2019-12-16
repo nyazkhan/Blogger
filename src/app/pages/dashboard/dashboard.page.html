@@ -54,12 +54,13 @@
       </ion-col>
     </ion-row>
     <ion-row class=" ion-margin-bottom">
-      <ion-col size="9">
-        <ion-searchbar placeholder="Search Restaurent"></ion-searchbar>
-      </ion-col>
-      <ion-col size="3">
-        <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
-      </ion-col>
+    
+      <ion-toolbar>
+          <ion-searchbar (click)="presentModal()" placeholder="Search Restaurent"></ion-searchbar>
+          <ion-buttons slot="end">
+              <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -100,5 +101,6 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    
   </ion-grid>
 </ion-content>

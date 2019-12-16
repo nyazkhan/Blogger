@@ -4,7 +4,7 @@
       <ion-col>
         <div class="backbar">
           <h5 class="page-heading">
-            <ion-icon routerLink="/booking" name="arrow-back"></ion-icon> &nbsp; Booking Requested
+            <ion-icon routerLink="/invitation" name="arrow-back"></ion-icon> &nbsp; New Invitation
           </h5>
         </div>
       </ion-col>
@@ -32,17 +32,22 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-
           <ion-item lines="none mb-30">
-              <ion-label class="time-heading">23 Aug , 02:30 pm</ion-label>
-              <ion-note class="small-content" slot="end">Tuesday</ion-note>
+              <ion-label class="time-heading danger">Today , 04:30 pm</ion-label>
+              <ion-note class="small-content" slot="end">in 2 hours</ion-note>
             </ion-item>
 
-        <p class="ico-list success">
-            <img class="ico-small" src="assets/toys.svg">&nbsp; Booking Confirmed
+        <p class="ico-list">
+            <img class="ico-small" src="assets/pass.svg">&nbsp; Invitation for 2 people
         </p>
         <p class="ico-list">
-            <img class="ico-small" src="assets/pass.svg">&nbsp; Booking for 2 people
+            <img class="ico-small" src="assets/dollar_gray.svg">&nbsp; Paid Review
+        </p>
+        <p class="ico-list success">
+            <img class="ico-small" src="assets/success.svg">&nbsp; Invitation Accepted
+        </p>
+        <p class="ico-list danger">
+            <img class="ico-small" src="assets/cross.svg">&nbsp; Appointment Cancelled
         </p>
       </ion-col>
     </ion-row>
@@ -50,26 +55,28 @@
     <ion-row>
         <ion-col size="6">
           <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
-              <img class="ico-small" src="assets/direction.svg">&nbsp; Get Directions
+              <img class="ico-img" src="assets/call.svg">&nbsp; Get Directions
           </ion-button>
         </ion-col>
         <ion-col size="6">
           <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
-              <img class="ico-small" src="assets/call.svg">&nbsp; Call Restaurent
+              <img class="ico-img" src="assets/direction.svg">&nbsp; Call Restaurent
           </ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>
 
+
   <ion-grid class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-          <ion-button size="large" class="light-danger-btn proceed-button ion-margin-top" expand="block">CANCEL APPOINTMENT
+          <ion-button class="light-danger-btn proceed-button" expand="block">CANCEL APPOINTMENT
         </ion-button>
-        <div class="crab-bootm-vector">
-            <img src="assets/CRAB_Vector.svg">
-          </div>
+        <ion-button class="proceed-button" expand="block" color="danger">REJECT
+        </ion-button>
+        <ion-button class="proceed-button" expand="block" color="primary">ACCPET INVITATION 
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-content> 

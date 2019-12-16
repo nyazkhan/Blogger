@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: '',
     component: BookingPage
+  },
+  {
+    path: 'booked',
+    component: BookedComponent
   }
 ];
 

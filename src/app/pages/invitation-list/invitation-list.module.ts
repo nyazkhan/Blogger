@@ -5,13 +5,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DashboardPage } from './dashboard.page';
-import { SearchComponent } from './search/search.component';
+import { InvitationListPage } from './invitation-list.page';
+import { InvitationComponent } from './invitation/invitation.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardPage
+    component: InvitationListPage
+  }, {
+    path: 'invitationdetails',
+    component: InvitationComponent
   }
 ];
 
@@ -22,8 +25,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DashboardPage, SearchComponent],
-  exports: [SearchComponent],
-  entryComponents: [SearchComponent]
+  declarations: [InvitationListPage, InvitationComponent]
 })
-export class DashboardPageModule { }
+export class InvitationListPageModule {}

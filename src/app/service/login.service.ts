@@ -1,12 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { CustomHTTPService } from './custom-http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService) { }
+  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService, public http: HttpClient, ) { }
 
   signUp(phoneNo) {
     return this.Http.post('user/save', { mobile: phoneNo, type: 2, appId: 2 });
@@ -47,7 +48,13 @@ export class LoginService {
 
 
   getRestaurantList() {
-    return this.Http.post('admin/users', 1 );
+    return this.Http.post('admin/users', 1);
+
+  }
+
+
+  localRestaurantList() {
+    return this.http.get('./../assets/restaurant.json');
 
   }
 
