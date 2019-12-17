@@ -22,7 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers:[Geolocation],
+  providers: [Geolocation],
   declarations: [MapPage]
 })
-export class MapPageModule {}
+export class MapPageModule { }

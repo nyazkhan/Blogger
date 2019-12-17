@@ -47,11 +47,17 @@ export class LoginService {
   }
 
 
-  getRestaurantList() {
-    return this.Http.post('admin/users', 1);
+  getRestaurantList(position) {
+    return this.Http.post('search/restaurant', position);
 
   }
+getRestaurantDetails(mobileNo) {
+  return this.Http.post('user/getUserDetails', {
+    mobile : mobileNo,
+    type : 1
+  });
 
+}
 
   localRestaurantList() {
     return this.http.get('./../assets/restaurant.json');

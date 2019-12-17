@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DashboardPage } from './dashboard.page';
 import { SearchComponent } from './search/search.component';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
   ],
   declarations: [DashboardPage, SearchComponent],
   exports: [SearchComponent],
+  providers: [Geolocation],
   entryComponents: [SearchComponent]
 })
 export class DashboardPageModule { }

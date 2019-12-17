@@ -908,7 +908,9 @@
                 <ion-row>
                     <ion-col>
 
-                        <img  style="height: 35vh;" src="assets/Location_House.svg">
+                        <img  *ngIf="bloggerDetail.reviewType == 1" style="height: 35vh;" src="assets/Review_Paid.svg">
+                        <img  *ngIf="bloggerDetail.reviewType == 2" style="height: 35vh;" src="assets/Review_UNpaid.svg">
+                        <img  *ngIf="((bloggerDetail.reviewType == 3)|| (!bloggerDetail.reviewType))" style="height: 35vh;" src="assets/Review_Both.svg">
                     </ion-col>
                 </ion-row>
             </ion-grid>

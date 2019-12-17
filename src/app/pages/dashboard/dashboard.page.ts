@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { SearchComponent } from './search/search.component';
 import { ModalController } from '@ionic/angular';
+import { Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardPage implements OnInit {
   userDetails: any = {};
   restaurantDetails: any = {};
 
-
+  position: any = {};
 
 
 
@@ -26,9 +27,19 @@ export class DashboardPage implements OnInit {
     private loginservice: LoginService,
     private storageService: StorageService,
     @Inject(Router) private router: Router,
-    public modalController: ModalController
+    public modalController: ModalController,
+    @Inject(Geolocation) public geolocation: Geolocation,
+
   ) {
 
+    this.geolocation.getCurrentPosition().then((position: Geoposition) => {
+      this.position = {
+        lat: position.coords.latitude, lon: position.coords.longitude,
+        name: 'c'
+      };
+      // position.coords.latitude, position.coords.longitude
+      this.getListOfRestaurant();
+    });
 
 
     this.userPhoneNO = this.storageService.getData('mobile');
@@ -37,7 +48,6 @@ export class DashboardPage implements OnInit {
         this.userDetails = res.data;
       }
     });
-    // this.getListOfRestaurant();
 
   }
   async presentModal() {
@@ -55,11 +65,22 @@ export class DashboardPage implements OnInit {
   }
 
   getListOfRestaurant() {
-    this.loginservice.getRestaurantList().subscribe((res) => {
+    // this.loginservice.getRestaurantList(this.position).subscribe((res) => {
+    //   if (res.status === 200) {
+    //     this.restaurantDetails = res.data;
+    //     console.log(res);
+
+    //   }
+    // });
+
+    this.loginservice.getRestaurantDetails('9004568745').subscribe((res) => {
       if (res.status === 200) {
         this.restaurantDetails = res.data;
+        console.log(res);
+
       }
     });
+
   }
 
 }
