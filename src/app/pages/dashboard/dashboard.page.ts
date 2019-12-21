@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from '../comman/search/search.component';
 import { ModalController } from '@ionic/angular';
 import { Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
-import { ProfileListComponent } from './profile-list/profile-list.component';
-import { ReviewDetailsComponent } from '../review/review-details/review-details.component';
+import { ProfileListComponent } from '../comman/profile-list/profile-list.component';
+import { RestaurantDetailsComponent } from '../comman/restaurant-details/restaurant-details.component';
+import { BookedComponent } from '../comman/booked/booked.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,7 +58,7 @@ export class DashboardPage implements OnInit {
   }
   async presentRestaurantModal() {
     const modal = await this.modalController.create({
-      component: ReviewDetailsComponent,
+      component: SearchComponent,
       componentProps: {
 
         restaurantList: this.restaurantDetails,
@@ -76,6 +77,30 @@ export class DashboardPage implements OnInit {
     });
     return await modal.present();
   }
+  async presentRestaurantDetailsModal(mobile) {
+    const modal = await this.modalController.create({
+      component: RestaurantDetailsComponent,
+      componentProps: {
+
+        mobileNo: mobile,
+      }
+    });
+    return await modal.present();
+  }
+
+
+  async presentBookingModal() {
+    const modal = await this.modalController.create({
+      component: BookedComponent,
+      componentProps: {
+
+        // userDetails: this.userDetails,
+      }
+    });
+    return await modal.present();
+  }
+
+
 
   ngOnInit() {
   }

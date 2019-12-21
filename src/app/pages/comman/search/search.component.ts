@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { RestaurantDetailsComponent } from '../restaurant-details/restaurant-details.component';
 
 @Component({
   selector: 'app-search',
@@ -20,7 +21,8 @@ export class SearchComponent implements OnInit {
     navParams: NavParams,
     public modalCtrl: ModalController,
     private loginservice: LoginService,
-    private router: Router
+    private router: Router,
+
 
   ) {
     // componentProps can also be accessed at construction time using NavParams
@@ -44,8 +46,22 @@ export class SearchComponent implements OnInit {
   }
   gotToRestaurantDetailsPage(mobile) {
     this.dismiss();
-    this.router.navigate(['/dashboard/restaurant', mobile]);
+    this.presentRestaurantDetailsModal(mobile);
+    // this.router.navigate(['/dashboard/restaurant', mobile]);
   }
+
+  async presentRestaurantDetailsModal(mobile) {
+    const modal = await this.modalCtrl.create({
+      component: RestaurantDetailsComponent,
+      componentProps: {
+
+        mobileNo: mobile,
+      }
+    });
+    return await modal.present();
+  }
+
+
   ngOnInit() { }
   dismiss() {
     // using the injected ModalController this page

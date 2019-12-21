@@ -6,21 +6,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DashboardPage } from './dashboard.page';
-import { SearchComponent } from './search/search.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
-import { ProfileListComponent } from './profile-list/profile-list.component';
-import { ReviewPageModule } from '../review/review.module';
-import { ReviewDetailsComponent } from '../review/review-details/review-details.component';
+import { CommanModule } from '../comman/comman.module';
+import { SearchComponent } from '../comman/search/search.component';
+import { RestaurantDetailsComponent } from '../comman/restaurant-details/restaurant-details.component';
+import { ProfileListComponent } from '../comman/profile-list/profile-list.component';
+import { BookedComponent } from '../comman/booked/booked.component';
+
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardPage
-  }, {
-    path: 'restaurant/:id',
-    component: RestaurantDetailsComponent
-  }
+  },
+  // {
+  //   path: 'restaurant/:id',
+  //   component: RestaurantDetailsComponent
+  // }
 ];
 
 @NgModule({
@@ -28,12 +30,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReviewPageModule,
+    CommanModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DashboardPage, ProfileListComponent, RestaurantDetailsComponent, SearchComponent],
-  exports: [SearchComponent, ProfileListComponent, RestaurantDetailsComponent],
+  declarations: [DashboardPage],
+  entryComponents: [SearchComponent, RestaurantDetailsComponent, ProfileListComponent, BookedComponent],
+
   providers: [Geolocation],
-  entryComponents: [ProfileListComponent, ReviewDetailsComponent, SearchComponent]
 })
 export class DashboardPageModule { }

@@ -31,21 +31,21 @@
         <h5 class="list-heading">Upcoming Appointments</h5>
         <div class="slider-appointment">
 
-          <div class="white-box ion-margin-bottom">
+          <div class="white-box ion-margin-bottom" (click)="presentBookingModal()">
             <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
             <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
             <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
                   src="assets/km-arrorw.svg"> </span></p>
           </div>
 
-          <div class="white-box ion-margin-bottom">
+          <div class="white-box ion-margin-bottom" (click)="presentBookingModal()">
             <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
             <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
             <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
                   src="assets/km-arrorw.svg"> </span></p>
           </div>
 
-          <div class="white-box-view-more ion-margin-bottom">
+          <div class="white-box-view-more ion-margin-bottom"  routerLink="/booking">
             <p class="ion-text-center primary">View All    ></p>
            
           </div>
@@ -64,7 +64,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item [routerLink]="['/dashboard/restaurant',restaurant.mobile ]" lines="none" *ngFor="let restaurant of restaurantDetails" class="rest_address_item mb-15">
+        <ion-item (click)="presentRestaurantDetailsModal(restaurant.mobile)" lines="none" *ngFor="let restaurant of restaurantDetails" class="rest_address_item mb-15">
           <div slot="start" class="rest-img">
             <img *ngIf="restaurant.profilePic" [src]="restaurant.profilePic">
             <img *ngIf="!restaurant.profilePic" src="assets/restaurent.png">

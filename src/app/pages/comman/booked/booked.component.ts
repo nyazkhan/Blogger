@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-booked',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public modalController: ModalController,
+
+  ) { }
 
   ngOnInit() {}
-
+  back() {
+    this.modalController.dismiss({
+      dismissed: true
+    });
+  }
 }

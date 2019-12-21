@@ -1,7 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { LoginService } from 'src/app/service/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { ModalController, NavParams } from '@ionic/angular';
+import { ReviewDetailsComponent } from '../review-details/review-details.component';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -9,8 +11,10 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
   styleUrls: ['./restaurant-details.component.scss'],
 })
 export class RestaurantDetailsComponent implements OnInit {
+  @Input() mobileNo: object;
+
   restaurantDetail: any = {};
-  restauratMoblieNo = null;
+  restauratMoblieNo: any;
   paymentOption = {
     cash: false,
     credit: false,
@@ -21,12 +25,17 @@ export class RestaurantDetailsComponent implements OnInit {
 
   constructor(
     private loginservice: LoginService,
-    private activatedRoute: ActivatedRoute,
+    // private activatedRoute: ActivatedRoute,
     private router: Router,
+    navParams: NavParams,
+
     @Inject(Geolocation) public geolocation: Geolocation,
+    public modalCtrl: ModalController,
+
 
   ) {
-    this.restauratMoblieNo = this.activatedRoute.snapshot.paramMap.get('id');
+    this.restauratMoblieNo = navParams.get('mobileNo');
+
   }
 
 
@@ -75,9 +84,16 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
+  goBack() {
 
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalCtrl.dismiss({
+      dismissed: true
+    });
+
+  }
   ngOnInit() {
-    this.getRestaurantDetails();
     this.geolocation.getCurrentPosition().then((position: Geoposition) => {
       this.position = {
         lat: position.coords.latitude, lon: position.coords.longitude,
@@ -88,4 +104,17 @@ export class RestaurantDetailsComponent implements OnInit {
       this.getRestaurantDetails();
     });
   }
+
+
+  async presentReviewgModal() {
+    const modal = await this.modalCtrl.create({
+      component: ReviewDetailsComponent,
+      componentProps: {
+
+        // userDetails: this.userDetails,
+      }
+    });
+    return await modal.present();
+  }
+
 }
