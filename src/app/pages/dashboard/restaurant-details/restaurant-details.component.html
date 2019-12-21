@@ -1,9 +1,9 @@
 <ion-content  *ngIf="restaurantDetail.list" class="padding-0">
   <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
     [style.background-image]="'url(' + restaurantDetail.list[1].data[0].storagePath + ')'">
-    <h5 style="    text-align: right;
+    <h5 style="    text-align: left;
         color: white;" class="page-heading">
-      <ion-icon class="white" name="create" (click)="editDetails(9)"></ion-icon>&nbsp;
+      <ion-icon class="white" name="arrow-back" routerLink="/dashboard" ></ion-icon>&nbsp;
     </h5>
   </div>
 
@@ -19,7 +19,7 @@
       {{restaurantDetail.address.locality}} <br>
       {{restaurantDetail.address.city}} {{restaurantDetail.address.district}}
       {{restaurantDetail.address.pincode}}</p>
-      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+      <span class="km-part" >  {{restaurantDetail.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img src="assets/km-arrorw.svg"> </span>
     </ion-label>
       </ion-item>
          
@@ -197,6 +197,25 @@
       <h6 class="dark-text ion-text-start">{{restaurantDetail.description}}</h6>
     </div>
   </div>
+  <div class="panel-card light-grey">
+    <h5 class="panel-heading dark">reviews</h5>
+    
+    <div class="review-part">
+        <ion-item lines="none">
+            <ion-thumbnail class="ion-thumbnail-2" slot="start">
+              <img src="assets/reviewer.svg">
+            </ion-thumbnail>
+            <ion-label>
+              <h3>Nyaz Khan</h3>
+              <p>2 Days Ago</p>
+            </ion-label>
+          </ion-item>
+
+          <p class="dark-text ion-text-start">I started Deliciously Ella back in 2012 whilst I was still at university. In
+              2011, I had been diagnosed with a condition called Postural Tachycardia Syndrome, as well as Ehlers-Danlos and
+              Mast Cell Activation Disorder, following four months in and out of hospital. The condition</p>
+    </div>
+</div>
  
   <div class="panel-card fixed-back-white">
     <ion-button size="large" class="proceed-button ion-margin-top" expand="block">REQUEST A TABLE </ion-button>

@@ -9,10 +9,10 @@ import { ReviewPage } from './review.page';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ReviewPage
-  },
+  // {
+  //   path: '',
+  //   component: ReviewPage
+  // },
   {
     path: 'reviewdetails',
     component: ReviewDetailsComponent
@@ -26,6 +26,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ReviewPage, ReviewDetailsComponent]
+  declarations: [ReviewPage, ReviewDetailsComponent],
+  exports: [ReviewDetailsComponent],
+  // entryComponents: [ReviewDetailsComponent],
 })
-export class ReviewPageModule {}
+export class ReviewPageModule { }

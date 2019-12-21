@@ -1,207 +1,70 @@
-<ion-content  *ngIf="restaurantDetail.list" class="padding-0">
-  <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
-    [style.background-image]="'url(' + restaurantDetail.list[1].data[0].storagePath + ')'">
-    <h5 style="    text-align: right;
-        color: white;" class="page-heading">
-      <ion-icon class="white" name="create" (click)="editDetails(9)"></ion-icon>&nbsp;
-    </h5>
-  </div>
+<!--  -->
 
-  <div class="panel-card back-white">
-    <ion-item color="none" lines="none">
-      <ion-label>
-        <h5 class="panel-heading dark">{{restaurantDetail.name}}<span class="ion-float-right right-review" color="dark">23
-          Reviews</span> </h5>
-      <p *ngIf="restaurantDetail.address" class="small-content">
-        <!-- Veg, Cafe & restaurent <br> -->
-        {{restaurantDetail.address.premisesNo}}
-
-      {{restaurantDetail.address.locality}} <br>
-      {{restaurantDetail.address.city}} {{restaurantDetail.address.district}}
-      {{restaurantDetail.address.pincode}}</p>
+<ion-list>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
+    </div>
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
       <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
     </ion-label>
-      </ion-item>
-         
-    <!-- <h6 class="small-content ion-text-left" *ngIf="restaurantDetail.address">{{restaurantDetail.address.premisesNo}}
-
-      {{restaurantDetail.address.locality}} {{restaurantDetail.address.landmark}}
-      {{restaurantDetail.address.city}} {{restaurantDetail.address.district}} {{restaurantDetail.address.state}}
-      {{restaurantDetail.address.pincode}}</h6> -->
-  </div>
-
-  <div class="panel-card back-orange">
-    <h5 class="panel-heading dark">About Restaurent</h5>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/veg-nonveg.svg">
-      </ion-avatar>
-      <ion-label>
-        <ng-container *ngIf="restaurantDetail.foodType==1">
-          Veg
-        </ng-container>
-        <ng-container *ngIf="restaurantDetail.foodType==2">
-          Nonveg
-        </ng-container>
-        <ng-container *ngIf="restaurantDetail.foodType==3">
-
-          Veg & Nonveg
-        </ng-container>
-      </ion-label>
-      
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-
-      <ion-avatar slot="start">
-        <img src="assets/knief.svg">
-      </ion-avatar>
-      <ion-label>
-
-        <ng-container *ngIf="restaurantDetail.restaurantType==1">
-          Cafe
-        </ng-container>
-        <ng-container *ngIf="restaurantDetail.restaurantType==2">
-          Restaurent
-        </ng-container>
-        <ng-container *ngIf="restaurantDetail.restaurantType==3">
-
-          Cafe & Restaurent
-        </ng-container>
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/dollar_gray.svg">
-      </ion-avatar>
-      <ion-label>
-        {{restaurantDetail.avgCost}} per person
-
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/card2.svg">
-      </ion-avatar>
-      <ion-label>
-        <ng-container *ngIf="paymentOption.cash">
-          Cash
-        </ng-container>
-        <ng-container *ngIf="paymentOption.credit">
-          Card
-        </ng-container>
-        <ng-container *ngIf="paymentOption.upi">
-
-          UPI
-        </ng-container>
-        <ng-container *ngIf="paymentOption.paytm">
-
-          Paytm
-        </ng-container>
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/watch.svg">
-      </ion-avatar>
-      <ion-label>
-        Mon-Fri 08:30AM - 09:30 PM
-
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/p.svg">
-      </ion-avatar>
-      <ion-label *ngIf="restaurantDetail.isParking">
-        Parking Avaliable
-
-
-      </ion-label>
-      <ion-label *ngIf="!restaurantDetail.isParking">
-        Parking Not Avaliable
-
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/accomodation.svg">
-      </ion-avatar>
-      <ion-label>
-        {{restaurantDetail.accommodationSize}} people’s accomodation
-
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="full">
-      <ion-avatar slot="start">
-        <img src="assets/envelope.svg">
-      </ion-avatar>
-      <ion-label>
-        {{restaurantDetail.email}}
-
-
-      </ion-label>
-      
-
-    </ion-item>
-
-    <ion-item color="none" lines="none">
-      <ion-avatar slot="start">
-        <img src="assets/call_gray.svg">
-      </ion-avatar>
-      <ion-label>
-        +91 {{restaurantDetail.mobile}}
-
-
-      </ion-label>
-
-    </ion-item>
-  </div>
-
-  <div class="panel-card light-green">
-    <!-- <h5 class="panel-heading dark">About</h5> -->
-    <ion-item color="none" lines="none">
-
-      <ion-label class="panel-heading dark">
-        About
-
-      </ion-label>
-      
-
-    </ion-item>
-    <div class="review-part">
-      <h6 class="dark-text ion-text-start">{{restaurantDetail.description}}</h6>
+  </ion-item>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
     </div>
-  </div>
- 
-  <div class="panel-card fixed-back-white">
-    <ion-button size="large" class="proceed-button ion-margin-top" expand="block">REQUEST A TABLE </ion-button>
-    <div class="crab-bootm-vector">
-      <img src="assets/CRAB_Vector.svg">
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
+      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
     </div>
-  </div>
-</ion-content>
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
+      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
+    </div>
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
+      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
+    </div>
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
+      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <div slot="start" class="rest-img">
+      <img src="assets/restaurent.png">
+    </div>
+    <ion-label>
+      <h4 class="rest-heading">Chai Sutta Bar</h4>
+      <p class="small-content">Veg, Cafe & restaurent <br>
+        Navrangpura, Ahmedabad</p>
+      <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+    </ion-label>
+  </ion-item>
+</ion-list>

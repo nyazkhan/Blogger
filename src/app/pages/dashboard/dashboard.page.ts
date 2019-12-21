@@ -6,6 +6,8 @@ import { StorageService } from 'src/app/service/storage.service';
 import { SearchComponent } from './search/search.component';
 import { ModalController } from '@ionic/angular';
 import { Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
+import { ProfileListComponent } from './profile-list/profile-list.component';
+import { ReviewDetailsComponent } from '../review/review-details/review-details.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,7 @@ import { Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 export class DashboardPage implements OnInit {
   userPhoneNO = null;
   userDetails: any = {};
-  restaurantDetails: any = {};
+  restaurantDetails: any = [];
 
   position: any = {};
 
@@ -35,8 +37,10 @@ export class DashboardPage implements OnInit {
     this.geolocation.getCurrentPosition().then((position: Geoposition) => {
       this.position = {
         lat: position.coords.latitude, lon: position.coords.longitude,
-        name: 'c'
+        name: "",
       };
+      console.log(this.position);
+
       // position.coords.latitude, position.coords.longitude
       this.getListOfRestaurant();
     });
@@ -46,16 +50,28 @@ export class DashboardPage implements OnInit {
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
       if (res.data) {
         this.userDetails = res.data;
+        // this.storageService.storeData('userDetails', res.data);
       }
     });
 
   }
-  async presentModal() {
+  async presentRestaurantModal() {
     const modal = await this.modalController.create({
-      component: SearchComponent,
+      component: ReviewDetailsComponent,
       componentProps: {
 
-        restaurantList: this.userDetails
+        restaurantList: this.restaurantDetails,
+        position: this.position,
+      }
+    });
+    return await modal.present();
+  }
+  async presentProfileModal() {
+    const modal = await this.modalController.create({
+      component: ProfileListComponent,
+      componentProps: {
+
+        userDetails: this.userDetails,
       }
     });
     return await modal.present();
@@ -65,21 +81,21 @@ export class DashboardPage implements OnInit {
   }
 
   getListOfRestaurant() {
-    // this.loginservice.getRestaurantList(this.position).subscribe((res) => {
-    //   if (res.status === 200) {
-    //     this.restaurantDetails = res.data;
-    //     console.log(res);
-
-    //   }
-    // });
-
-    this.loginservice.getRestaurantDetails('9004568745').subscribe((res) => {
+    this.loginservice.getRestaurantList(this.position).subscribe((res) => {
       if (res.status === 200) {
         this.restaurantDetails = res.data;
         console.log(res);
 
       }
     });
+
+    // this.loginservice.getRestaurantDetails('9512015723').subscribe((res) => {
+    //   if (res.status === 200) {
+    //     this.restaurantDetails = res.data;
+    //     console.log(res);
+
+    //   }
+    // });
 
   }
 

@@ -58,7 +58,10 @@ getRestaurantDetails(mobileNo) {
   });
 
 }
+restaurantDetails(obj) {
+  return this.Http.post('user/getUserDetails', obj);
 
+}
   localRestaurantList() {
     return this.http.get('./../assets/restaurant.json');
 

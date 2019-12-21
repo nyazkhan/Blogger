@@ -42,26 +42,20 @@
   ::placeholder{
     color: var(--main-font-color);
   }
-  input:focus{
-    outline:none !important;
-  }
-  .input {
-    background-color: var(--main-white-font-color);
-    padding: 0 !important;
-  }
+  // input:focus{
+  //   outline:none !important;
+  // }
+  // .input {
+  //   background-color: var(--main-white-font-color);
+  //   padding: 0 !important;
+  // }
   .map-setting-part{
     background-color: var(--main-white-font-color);
     padding: 20px 30px;
     overflow: scroll;
     height: 44vh;
   }
-  .stylist-input{
-    border: 1px solid var(--main-border-color);
-    border-radius: 6px;
-    font-size: 15px;
-    color: var(--main-font-color);
-    margin-bottom: 20px;
-  }
+ 
 ion-button.full-with-btn{
     background-color: var(--main-btn-background);
     color: var(--main-white-font-color);
@@ -71,13 +65,7 @@ ion-button.full-with-btn{
     border-radius: 4px;
     width: 100%;
 }
-.ion-label {
-  font-size: 14px;
-}
-.opacity-1{--placeholder-opacity: 1  !important;}
-ion-input{
-  --padding-start: 0px;
-}
+
 .all-content-center{
   display: flex;
   justify-content: center;

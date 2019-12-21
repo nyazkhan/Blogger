@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'review', loadChildren: './pages/review/review.module#ReviewPageModule' },
   { path: 'profile-dashboard', loadChildren: './pages/profile-dashboard/profile-dashboard.module#ProfileDashboardPageModule' },
   { path: 'booking', loadChildren: './pages/booking/booking.module#BookingPageModule' },
-  { path: 'restaurant', loadChildren: './pages/restaurant/restaurant.module#RestaurantPageModule' },
+  // { path: 'restaurant', loadChildren: './pages/restaurant/restaurant.module#RestaurantPageModule' },
   { path: 'invitation', loadChildren: './pages/invitation-list/invitation-list.module#InvitationListPageModule' },
 
 
