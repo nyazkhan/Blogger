@@ -9,6 +9,7 @@ import { Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 import { ProfileListComponent } from '../comman/profile-list/profile-list.component';
 import { RestaurantDetailsComponent } from '../comman/restaurant-details/restaurant-details.component';
 import { BookedComponent } from '../comman/booked/booked.component';
+import { InvitationComponent } from '../comman/invitation/invitation.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,11 +35,16 @@ export class DashboardPage implements OnInit {
     @Inject(Geolocation) public geolocation: Geolocation,
 
   ) {
+    this.loginservice.getALlBooking().subscribe((res) => {
+      console.log(res);
 
+    });
     this.geolocation.getCurrentPosition().then((position: Geoposition) => {
       this.position = {
         lat: position.coords.latitude, lon: position.coords.longitude,
-        name: "",
+        name: '',
+        searchType: 1
+
       };
       console.log(this.position);
 
@@ -56,7 +62,7 @@ export class DashboardPage implements OnInit {
     });
 
   }
-  async presentRestaurantModal() {
+  async presentRestaurantSearchModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,
       componentProps: {
@@ -89,6 +95,17 @@ export class DashboardPage implements OnInit {
   }
 
 
+  appointmenType(val) {
+    if (val === 'invitaion') {
+      this.presentInvitationModal();
+
+    }
+    if (val === 'booking') {
+      this.presentBookingModal();
+    }
+  }
+
+
   async presentBookingModal() {
     const modal = await this.modalController.create({
       component: BookedComponent,
@@ -99,7 +116,16 @@ export class DashboardPage implements OnInit {
     });
     return await modal.present();
   }
+  async presentInvitationModal() {
+    const modal = await this.modalController.create({
+      component: InvitationComponent,
+      componentProps: {
 
+        // userDetails: this.userDetails,
+      }
+    });
+    return await modal.present();
+  }
 
 
   ngOnInit() {

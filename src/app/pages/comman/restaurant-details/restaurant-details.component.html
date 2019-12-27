@@ -1,12 +1,23 @@
 <ion-content *ngIf="restaurantDetail.list" class="padding-0">
-  <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
+  <!-- <div *ngIf="restaurantDetail.list[0].data.length > 0" class="img-top-part"
     [style.background-image]="'url(' + restaurantDetail.list[1].data[0].storagePath + ')'">
     <h5 style="    text-align: left;
         color: white;" class="page-heading">
       <ion-icon class="white" name="arrow-back" (click)="goBack()"></ion-icon>&nbsp;
     </h5>
-  </div>
+  </div> -->
+  <ion-slides [options]="slideOptsOne" #slideWithNav  (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+    <ng-container *ngFor="let s of sliderOne.slidesItems">
 
+   
+      <ion-slide style="display: block;" class="img-top-part"  [style.background-image]="'url(' + s + ')'" >
+      <h5 style="    text-align: left;
+      color: white;" >
+    <ion-icon class="white" name="arrow-back" (click)="goBack()"></ion-icon>
+  </h5>
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
   <div class="panel-card back-white">
     <ion-item color="none" lines="none">
       <ion-label>
@@ -25,11 +36,7 @@
       </ion-label>
     </ion-item>
 
-    <!-- <h6 class="small-content ion-text-left" *ngIf="restaurantDetail.address">{{restaurantDetail.address.premisesNo}}
-
-      {{restaurantDetail.address.locality}} {{restaurantDetail.address.landmark}}
-      {{restaurantDetail.address.city}} {{restaurantDetail.address.district}} {{restaurantDetail.address.state}}
-      {{restaurantDetail.address.pincode}}</h6> -->
+    
   </div>
 
   <div class="panel-card back-orange">
@@ -220,7 +227,7 @@
   </div>
 
   <div class="panel-card fixed-back-white">
-    <ion-button size="large" class="proceed-button ion-margin-top" expand="block">REQUEST A TABLE </ion-button>
+    <ion-button size="large" class="proceed-button ion-margin-top" expand="block" (click)="bookTableModel()">REQUEST A TABLE </ion-button>
     <div class="crab-bootm-vector">
       <img src="assets/CRAB_Vector.svg">
     </div>

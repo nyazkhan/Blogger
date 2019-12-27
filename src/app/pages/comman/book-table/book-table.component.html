@@ -1,0 +1,142 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="backbar">
+          <h5 class="page-heading">
+            <ion-icon name="arrow-back" (click)="back()"></ion-icon> &nbsp; Request Booking
+          </h5>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!-- <ion-item lines="none" class="rest_address_item">
+          <div slot="start" class="rest-img">
+            <img src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">{{restaurantDetailCopy.name}}</h4>
+            <p class="small-content">Veg, Cafe & restaurent <br>
+              Navrangpura, Ahmedabad</p>
+            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item> -->
+        <ion-item (click)="back()" lines="none">
+          <div slot="start" class="rest-img">
+            <img *ngIf="restaurantListCopy.profilePic" [src]="restaurantListCopy.profilePic">
+            <img *ngIf="!restaurantListCopy.profilePic" src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">{{restaurantListCopy.name}}</h4>
+            <p class="small-content">
+              <ng-container *ngIf="restaurantListCopy.foodType==1">
+                Veg
+              </ng-container>
+              <ng-container *ngIf="restaurantListCopy.foodType==2">
+                Nonveg
+              </ng-container>
+              <ng-container *ngIf="restaurantListCopy.foodType==3">
+
+                Veg & Nonveg
+              </ng-container>
+              <ng-container *ngIf="restaurantListCopy.restaurantType==1">
+                Cafe
+              </ng-container>
+              <ng-container *ngIf="restaurantListCopy.restaurantType==2">
+                Restaurent
+              </ng-container>
+              <ng-container *ngIf="restaurantListCopy.restaurantType==3">
+
+                Cafe & Restaurent
+              </ng-container> <br>
+              {{restaurantListCopy.address.locality}}, {{restaurantListCopy.address.city}}
+            </p>
+            <span class="km-part"> {{restaurantListCopy.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img
+                src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item>
+
+        <h4 class="title-heading">Please Select Date & timeslot</h4>
+        <div class="time-slot-box">
+          <ion-item>
+            <ion-label>
+              <h5 class="list-title">
+                <img class="ico-img" src="assets/table.svg">&nbsp; Table for
+                <span class="ion-float-right justify-content-center primary">
+                  <!-- <ion-button (click)="onClick()">
+                    <ion-icon  slot="icon-only" name="remove"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="onClick()">
+                    <ion-icon  slot="icon-only" name="add"></ion-icon>
+                  </ion-button> -->
+                  &nbsp; <ion-icon (click)="noOfPerson(1)" class="ico-box" name="remove"></ion-icon> &nbsp; &nbsp;
+                  {{bookingDetails.persons}} &nbsp; &nbsp; <ion-icon (click)="noOfPerson(2)" class="ico-box" name="add">
+                  </ion-icon>
+
+                </span>
+              </h5>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>
+              <h5 class="list-title">
+                <img class="ico-img" src="assets/calender.svg">&nbsp; Booking on
+
+                <!-- <span class="ion-float-right primary"> &nbsp; Select Date </span> -->
+              </h5>
+            </ion-label>
+            <ion-datetime [min]="currentDate" [max]="maxDate" displayFormat="DD MMM YYYY"
+              [(ngModel)]="bookingDetails.bookingDate"></ion-datetime>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label class="ion-padding-top ion-padding-bottom">
+              <h5 class="list-title ion-margin-bottom">
+                <img class="ico-img" src="assets/watch.svg">&nbsp; Select Timeslot
+              </h5>
+
+            </ion-label>
+
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>
+              <p class="small-content"><img class="icon-small" src="assets/sun.svg"> &nbsp; Afternoon</p>
+
+            </ion-label>
+
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>
+
+              <p class="small-content"><img class="icon-small" src="assets/evening.svg"> &nbsp; Evening</p>
+            </ion-label>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+            <ion-button class="timing-btn" fill="outline" color="primary">10:00 am</ion-button>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="fixed-bottom-button">
+    <ion-row>
+      <ion-col>
+        <ion-button size="large" class="proceed-button  ion-margin-top" (click)="bookTable()" expand="block">REQUEST A TABLE </ion-button>
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

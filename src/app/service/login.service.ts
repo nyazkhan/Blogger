@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService, public http: HttpClient, ) { }
+  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService,  ) { }
 
   signUp(phoneNo) {
     return this.Http.post('user/save', { mobile: phoneNo, type: 2, appId: 2 });
@@ -48,23 +48,37 @@ export class LoginService {
 
 
   getRestaurantList(position) {
-    return this.Http.post('search/restaurant', position);
+    return this.Http.post('search/all', position);
 
   }
-getRestaurantDetails(mobileNo) {
-  return this.Http.post('user/getUserDetails', {
-    mobile : mobileNo,
-    type : 1
-  });
+  getRestaurantDetails(mobileNo) {
+    return this.Http.post('user/getUserDetails', {
+      mobile: mobileNo,
+      type: 1
+    });
 
-}
-restaurantDetails(obj) {
-  return this.Http.post('user/getUserDetails', obj);
+  }
+  restaurantDetails(obj) {
+    return this.Http.post('user/getUserDetails', obj);
 
-}
+  }
   localRestaurantList() {
-    return this.http.get('./../assets/restaurant.json');
+    // return this.http.get('./../assets/restaurant.json');
 
   }
+
+
+  bookTable(bookingDetails) {
+
+    return this.Http.post('/connect/booking/save', bookingDetails);
+
+  }
+
+
+getALlBooking() {
+  return this.Http.get('connect/booking/get/1');
+
+
+}
 
 }
