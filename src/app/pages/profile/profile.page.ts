@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/service/login.service';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +10,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  BloggerMoblieNo: any;
+  bloggerDetails: any = {};
+  constructor(
 
-  constructor() { }
+    private loginservice: LoginService,
+    // private activatedRoute: ActivatedRoute,
+    private router: Router,
+    // navParams: NavParams,
+    private storageService: StorageService,
+
+    public modalCtrl: ModalController,
+
+
+  ) {
+    this.BloggerMoblieNo = this.storageService.getData('mobile');
+    this.getBloggerDetails();
+  }
 
   ngOnInit() {
   }
 
+  getBloggerDetails() {
+    this.loginservice.getBlogerDetails(this.BloggerMoblieNo).subscribe((res) => {
+      if (res.status === 200) {
+        this.bloggerDetails = res.data;
+      }
+    });
+  }
+
+  goBack() {
+
+    this.router.navigateByUrl('/dashboard');
+
+  }
 }

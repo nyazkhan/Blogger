@@ -80,5 +80,9 @@ getALlBooking() {
 
 
 }
+getBlogerDetails(phoneNo) {
+  return this.Http.post('user/getUserDetails', { mobile: phoneNo, type: 2 });
 
+
+}
 }
