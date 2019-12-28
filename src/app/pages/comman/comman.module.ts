@@ -10,6 +10,7 @@ import { BookTableComponent } from './book-table/book-table.component';
 import { FormsModule } from '@angular/forms';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { InvitationComponent } from './invitation/invitation.component';
+import { SocialprofileComponent } from './socialprofile/socialprofile.component';
 
 
 
@@ -17,7 +18,7 @@ import { InvitationComponent } from './invitation/invitation.component';
   declarations: [
     SearchComponent,
     BookTableComponent,
-    ReviewDetailsComponent, InvitationComponent,
+    ReviewDetailsComponent, SocialprofileComponent, InvitationComponent,
     RestaurantDetailsComponent,
     ProfileListComponent,
     BookedComponent],
@@ -29,12 +30,12 @@ import { InvitationComponent } from './invitation/invitation.component';
   ],
   exports: [
     SearchComponent,
-    ReviewDetailsComponent, InvitationComponent,
+    ReviewDetailsComponent, SocialprofileComponent, InvitationComponent,
     BookTableComponent,
     RestaurantDetailsComponent,
     ProfileListComponent,
     BookedComponent],
-  entryComponents: [ReviewDetailsComponent, InvitationComponent, BookTableComponent],
+  entryComponents: [ReviewDetailsComponent, SocialprofileComponent, InvitationComponent, BookTableComponent],
   providers: [CallNumber]
 
 })

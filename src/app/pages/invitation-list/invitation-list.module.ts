@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { InvitationListPage } from './invitation-list.page';
+import { CommanModule } from '../comman/comman.module';
+import { InvitationComponent } from '../comman/invitation/invitation.component';
 
 const routes: Routes = [
   {
@@ -17,10 +19,12 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    CommanModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [InvitationListPage]
+  declarations: [InvitationListPage],
+  entryComponents: [InvitationComponent]
 })
-export class InvitationListPageModule {}
+export class InvitationListPageModule { }

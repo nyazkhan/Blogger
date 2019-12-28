@@ -35,7 +35,7 @@ export class DashboardPage implements OnInit {
     @Inject(Geolocation) public geolocation: Geolocation,
 
   ) {
-    this.loginservice.getALlBooking().subscribe((res) => {
+    this.loginservice.getAllBooking().subscribe((res) => {
       console.log(res);
 
     });
@@ -121,7 +121,7 @@ export class DashboardPage implements OnInit {
       component: InvitationComponent,
       componentProps: {
 
-        // userDetails: this.userDetails,
+        // invitaion: invitaion details jayegi yaha se,
       }
     });
     return await modal.present();

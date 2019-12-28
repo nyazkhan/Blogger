@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavParams, ModalController } from '@ionic/angular';
+import { SocialprofileComponent } from '../socialprofile/socialprofile.component';
 
 @Component({
   selector: 'app-profile-list',
@@ -13,7 +14,7 @@ export class ProfileListComponent implements OnInit {
   constructor(
     @Inject(Router) private router: Router,
     navParams: NavParams,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
   ) {
     this.userDetailsCopy = navParams.get('userDetails');
 
@@ -28,8 +29,18 @@ export class ProfileListComponent implements OnInit {
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
-    this.modalCtrl.dismiss({
+    this.modalController.dismiss({
       dismissed: true
     });
+  }
+
+  async presentSocialprofileModal() {
+    const modal = await this.modalController.create({
+      component: SocialprofileComponent,
+      componentProps: {
+
+      }
+    });
+    return await modal.present();
   }
 }

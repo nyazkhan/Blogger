@@ -1,0 +1,41 @@
+.profile-shadow-box{
+    background: #FBFBFD;
+    border: 0.5px dashed #FFFFFF;
+    box-shadow: 5px 5px 10px rgba(55, 84, 170, 0.1), -5px -5px 10px #FFFFFF, inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    width: 100%;
+    padding: 7px 15px;
+    margin-top: 22px;
+}
+.profile-shadow-box h1{
+    font-weight: bold;
+    display: flex;
+}
+.profile-shadow-box h1 img{
+    height: 25px;
+    width: auto;
+}
+.profile-shadow-box p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-shadow-box p img{
+    height: 20px;
+    width: auto;
+}
+.social-content{
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.social-content span{
+    display: flex;
+    color: #000000;
+}
+.social-content img{
+    height: 15px;
+    width: auto;
+}

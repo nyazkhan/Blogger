@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService,  ) { }
+  constructor(@Inject(CustomHTTPService) private Http: CustomHTTPService, ) { }
 
   signUp(phoneNo) {
     return this.Http.post('user/save', { mobile: phoneNo, type: 2, appId: 2 });
@@ -75,14 +75,42 @@ export class LoginService {
   }
 
 
-getALlBooking() {
-  return this.Http.get('connect/booking/get/1');
+  getAllBooking() {
+    return this.Http.get('connect/booking/get');
+  }
+
+  getAllBookingByStatus(statusId) {
+    return this.Http.get('connect/booking/get/' + statusId);
 
 
-}
-getBlogerDetails(phoneNo) {
-  return this.Http.post('user/getUserDetails', { mobile: phoneNo, type: 2 });
+  }
+
+  getAllInvitaion() {
+    return this.Http.get('connect/invitation/get');
 
 
-}
+  }
+
+  getAllInvitaionByStatus(statusId) {
+    return this.Http.get('connect/invitation/get/' + statusId);
+
+
+  }
+
+  getBlogerDetails(phoneNo) {
+    return this.Http.post('user/getUserDetails', { mobile: phoneNo, type: 2 });
+
+
+  }
+
+  updateBookingStatus(statusObject) {
+    return this.Http.post('connect/booking/updateStatus', statusObject);
+
+  }
+  updateInvitationStatus(statusObject) {
+    return this.Http.post('connect/booking/updateStatus', statusObject);
+
+  }
+
+
 }

@@ -34,15 +34,24 @@
       <ion-col>
 
           <ion-item lines="none mb-30">
-              <ion-label class="time-heading">23 Aug , 02:30 pm</ion-label>
-              <ion-note class="small-content" slot="end">Tuesday</ion-note>
+              <ion-label class="time-heading">23 Aug , 02:30 pm  
+                <!-- {{bookingDetails.bookingDate}} , {{bookingDetails.bookingTime | h:mm a}}  -->
+              </ion-label>
+              <ion-note class="small-content" slot="end">Tuesday 
+                <!-- {{bookingDetails.bookingDate | EEEE}}  -->
+              </ion-note>
             </ion-item>
-
+            
         <p class="ico-list success">
             <img class="ico-small" src="assets/toys.svg">&nbsp; Booking Confirmed
+            <br>
+            <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled
+
         </p>
         <p class="ico-list">
-            <img class="ico-small" src="assets/pass.svg">&nbsp; Booking for 2 people
+            <img class="ico-small" src="assets/pass.svg">&nbsp; Booking for 
+            <!-- {{bookingDetails.persons}} -->
+             people
         </p>
       </ion-col>
     </ion-row>
@@ -61,15 +70,21 @@
       </ion-row>
   </ion-grid>
 
-  <ion-grid class="fixed-bottom-button">
-    <ion-row>
-      <ion-col>
-          <ion-button size="large" class="light-danger-btn proceed-button ion-margin-top" expand="block">CANCEL APPOINTMENT
-        </ion-button>
-        <div class="crab-bootm-vector">
-            <img src="assets/CRAB_Vector.svg">
-          </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div *ngIf="x!==2" (click)="x=2" class="panel-card cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
+    <ion-button color="light" size="large" class="cancel-button ion-margin-top" expand="block">No, Please Don’t Cancel </ion-button>
+  <ion-button color="danger" size="large" class="cancel-button ion-margin-top" expand="block" (click)="cancelInvitaion()">Yes, Cancel My Appointment </ion-button>
+
+</div>
+<ion-grid  *ngIf="x==2"  class="fixed-bottom-button">
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="x=1"  size="large" color="undefine" class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
+      <div class="crab-bootm-vector">
+        <img src="assets/CRAB_Vector.svg">
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

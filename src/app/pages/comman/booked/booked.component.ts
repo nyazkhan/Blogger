@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 import { RestaurantDetailsComponent } from '../restaurant-details/restaurant-details.component';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
@@ -9,11 +9,18 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
   styleUrls: ['./booked.component.scss'],
 })
 export class BookedComponent implements OnInit {
-
+  @Input() booking: object;
+  bookingDetails: any = {};
   constructor(
     public modalController: ModalController,
+    navParams: NavParams,
+
     @Inject(CallNumber) private callNumber: CallNumber
-  ) { }
+  ) {
+
+    this.bookingDetails = navParams.get('booking');
+
+  }
 
   ngOnInit() { }
   back() {
