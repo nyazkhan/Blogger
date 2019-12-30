@@ -23,6 +23,7 @@ export class BookingPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getBookingList();
   }
 
 
@@ -63,12 +64,12 @@ export class BookingPage implements OnInit {
     }
   }
 
-  async presentBookingDetailsModal(mobile) {
+  async presentBookingDetailsModal(i) {
     const modal = await this.modalController.create({
       component: BookedComponent,
       componentProps: {
 
-        // booking: this.bookingList[i],
+        booking: this.bookingList[i],
       }
     });
     return await modal.present();

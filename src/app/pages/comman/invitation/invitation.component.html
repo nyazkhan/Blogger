@@ -49,9 +49,11 @@
 
 
               <br>
+              <ng-container *ngIf="invitationDetails.userDetails.address">
 
               {{invitationDetails.userDetails.address.locality}}
               {{invitationDetails.userDetails.address.city}}
+              </ng-container>
             </p>
             <!-- <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span> -->
           </ion-label>
@@ -78,12 +80,12 @@
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
 
-        <p *ngIf="invitationDetails.status == 2" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 2" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
         </p>
 
-        <p *ngIf="invitationDetails.status == 4" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Blogger
         </p>
@@ -108,7 +110,7 @@
         </ion-button>
       </ion-col>
       <ion-col size="6">
-        <ion-button (click)="callRestaurant(9017697290)" expand="block" shape="round" fill="outline" color="primary"
+        <ion-button (click)="callRestaurant(invitationDetails.userDetails.mobile)" expand="block" shape="round" fill="outline" color="primary"
           class="border-btn">
           <img class="ico-img" src="assets/direction.svg">&nbsp; Call Restaurent
         </ion-button>
@@ -116,12 +118,7 @@
     </ion-row>
   </ion-grid>
 
-  <div *ngIf="x!==2" (click)="x=2" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
-    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
-    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
-    <ion-button color="light" size="large" class="cancel-button ion-margin-top" expand="block">No, Please Don’t Cancel </ion-button>
-  <ion-button color="danger" size="large" class="cancel-button ion-margin-top" expand="block" (click)="cancelInvitaion()">Yes, Cancel My Appointment </ion-button>
-
+ 
   <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
     <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
     <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
@@ -135,7 +132,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="invitationDetails.status==1" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="invitationDetails.status==5" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
         <ion-button *ngIf="invitationDetails.status==1" (click)="acceptinvitation()" size="large" color="primary"
           class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>

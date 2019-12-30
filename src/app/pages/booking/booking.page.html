@@ -15,11 +15,11 @@
       <ion-col>
         <h5 class="list-heading-2">Booking Requested</h5>
 
-        <ion-item class="rest_address_item mb-20" (click)="presentBookingDetailsModal()">
+        <ion-item class="rest_address_item mb-20" *ngFor="let book of bookingList; let i = index" (click)="presentBookingDetailsModal(i)">
           <ion-label>
-            <h5 class="rest-heading primary">Today, 04:30 PM</h5>
-            <p class="small-content">Invitation @ Chai sutta bar</p>
-            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+            <h5   [ngClass]="((book.status ==3)|| (book.status ==2))?'invi-date danger':'invi-date primary'">{{book.toDate | date:'EEE,  d MMM ,  y'}}</h5>
+            <p class="small-content">Booking | {{book.userDetails.name}} </p>
+            <!-- <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span> -->
           </ion-label>
         </ion-item>
       </ion-col>

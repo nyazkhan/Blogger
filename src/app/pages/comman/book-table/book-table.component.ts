@@ -18,7 +18,7 @@ export class BookTableComponent implements OnInit {
     // id: null,
     persons: 1,
     toDate: this.currentDate,
-    onTime: '15:59',
+    onTime: '15:00',
     to: null
   };
 
@@ -52,11 +52,11 @@ export class BookTableComponent implements OnInit {
       this.bookingDetails.persons++;
     }
   }
-  async presentBookedModelModal() {
+  async presentBookedModelModal(details) {
     const modal = await this.modalController.create({
       component: BookedComponent,
       componentProps: {
-
+        booking: details
       }
     });
     return await modal.present();
@@ -66,11 +66,11 @@ export class BookTableComponent implements OnInit {
     // this.back();
     // this.presentBookedModelModal();
     this.bookingDetails.to = this.restaurantListCopy.id;
-    this.bookingDetails.toDate = '2020-01-01';
+    // this.bookingDetails.toDate = '2020-01-01';
     this.loginservice.bookTable(this.bookingDetails).subscribe((res: any) => {
       if (res.status === 200) {
         this.back();
-        this.presentBookedModelModal();
+        this.presentBookedModelModal(res.data);
       }
     });
   }

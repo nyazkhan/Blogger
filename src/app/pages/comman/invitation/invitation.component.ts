@@ -51,7 +51,7 @@ export class InvitationComponent implements OnInit {
       status: 3
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.alertService.presentToast('Reject Booking Request Successfuly');
+        this.alertService.presentToast('Reject Invitation Request Successfuly');
         console.log(res.data);
         this.invitationDetails.status = 3;
       }
@@ -64,8 +64,8 @@ export class InvitationComponent implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.invitationDetails.status = 3;
-        this.alertService.presentToast('Accept Booking Request Successfuly');
+        this.invitationDetails.status = 5;
+        this.alertService.presentToast('Accept Invitation Request Successfuly');
 
       }
     });
