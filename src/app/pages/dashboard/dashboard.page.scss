@@ -1,9 +1,13 @@
 
 
 // nyaz css start
-.rest-img{
-
-    margin-inline-end: 12px;
+.rest-img {
+    -webkit-margin-end: 15px;
+    margin-inline-end: 15px;
+}
+.rest-img img {
+    height: 65px;
+    border-radius: 10px;
 }
 
 ion-toolbar {
