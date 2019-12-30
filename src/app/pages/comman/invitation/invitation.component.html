@@ -10,19 +10,50 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <!-- userDetails -->
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-item lines="none" class="rest_address_item">
-          <div slot="start" class="rest-img">
-            <img src="assets/restaurent.png">
+          <div *ngIf="invitationDetails.userDetails.profilePic" slot="start" class="rest-img">
+            <img [src]="invitationDetails.userDetails.profilePic">
           </div>
+          <div *ngIf="!invitationDetails.userDetails.profilePic" slot="start" class="rest-img">
+            <img src="assets/b2.svg">
+          </div>
+
           <ion-label>
-            <h4 class="rest-heading">Chai Sutta Bar</h4>
-            <p class="small-content">Veg, Cafe & restaurent <br>
-              Navrangpura, Ahmedabad</p>
-            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+            <h4 class="rest-heading">{{invitationDetails.userDetails.name}}</h4>
+            <p class="small-content">
+
+              <ng-container *ngIf="invitationDetails.userDetails.foodType==1">
+                Veg
+              </ng-container>
+              <ng-container *ngIf="invitationDetails.userDetails.foodType==2">
+                Nonveg
+              </ng-container>
+              <ng-container *ngIf="invitationDetails.userDetails.foodType==3">
+
+                Veg & Nonveg
+              </ng-container>
+              <ng-container *ngIf="invitationDetails.userDetails.restaurantType==1">
+                Cafe
+              </ng-container>
+              <ng-container *ngIf="invitationDetails.userDetails.restaurantType==2">
+                Restaurent
+              </ng-container>
+              <ng-container *ngIf="invitationDetails.userDetails.restaurantType==3">
+
+                Cafe & Restaurent
+              </ng-container>
+
+
+              <br>
+
+              {{invitationDetails.userDetails.address.locality}}
+              {{invitationDetails.userDetails.address.city}}
+            </p>
+            <!-- <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span> -->
           </ion-label>
         </ion-item>
       </ion-col>
@@ -32,51 +63,83 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-          <ion-item lines="none mb-30">
-              <ion-label class="time-heading danger">Today , 04:30 pm</ion-label>
-              <ion-note class="small-content" slot="end">in 2 hours</ion-note>
-            </ion-item>
+        <ion-item lines="none mb-30">
+          <ion-label class="time-heading">{{invitationDetails.toDate  | date:'  d MMM ,  y'}} ,
+            {{invitationDetails.onTime}}</ion-label>
+          <!-- <ion-note class="small-content" slot="end">in 2 hours</ion-note> -->
+        </ion-item>
+        <p class="ico-list">
+          <img class="ico-small" src="assets/pass.svg">&nbsp; Invitation for 1 people
+        </p>
+        <p class="ico-list">
+          <img class="ico-small" src="assets/dollar_gray.svg">&nbsp; Paid Review
+        </p>
+        <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
+          <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
+        </p>
 
-        <p class="ico-list">
-            <img class="ico-small" src="assets/pass.svg">&nbsp; Invitation for 2 people
+        <p *ngIf="invitationDetails.status == 2" class="ico-list success">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
         </p>
-        <p class="ico-list">
-            <img class="ico-small" src="assets/dollar_gray.svg">&nbsp; Paid Review
+
+        <p *ngIf="invitationDetails.status == 4" class="ico-list success">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Blogger
         </p>
-        <p class="ico-list success">
+        <p *ngIf="invitationDetails.status==5" class="ico-list success">
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Invitation confirmed
+        </p>
+
+
+        <!-- <p class="ico-list success">
             <img class="ico-small" src="assets/success.svg">&nbsp; Invitation Accepted
         </p>
         <p class="ico-list danger">
             <img class="ico-small" src="assets/cross.svg">&nbsp; Appointment Cancelled
-        </p>
+        </p> -->
       </ion-col>
     </ion-row>
 
     <ion-row>
-        <ion-col size="6">
-          <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
-              <img class="ico-img" src="assets/call.svg">&nbsp; Get Directions
-          </ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button (click)="callRestaurant(9017697290)" expand="block" shape="round" fill="outline" color="primary" class="border-btn">
-              <img class="ico-img" src="assets/direction.svg">&nbsp; Call Restaurent
-          </ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" shape="round" fill="outline" color="primary" class="border-btn">
+          <img class="ico-img" src="assets/call.svg">&nbsp; Get Directions
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="callRestaurant(9017697290)" expand="block" shape="round" fill="outline" color="primary"
+          class="border-btn">
+          <img class="ico-img" src="assets/direction.svg">&nbsp; Call Restaurent
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 
-  <ion-grid class="fixed-bottom-button">
+  <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
+    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
+    <ion-button color="light" size="large" (click)="cancelButtonClick=false"
+      class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
+      Don’t Cancel </ion-button>
+    <ion-button color="danger" (click)="cancelInvitation();" size="large"
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My Appointment </ion-button>
+
+  </div>
+  <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-          <ion-button class="light-danger-btn proceed-button" expand="block">CANCEL APPOINTMENT
-        </ion-button>
-        <ion-button class="proceed-button" expand="block" color="danger">REJECT
-        </ion-button>
-        <ion-button class="proceed-button" expand="block" color="primary">ACCPET INVITATION 
-        </ion-button>
+        <ion-button *ngIf="invitationDetails.status==1" (click)="cancelButtonClick = true" size="large" color="undefine"
+          class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
+        <ion-button *ngIf="invitationDetails.status==1" (click)="acceptinvitation()" size="large" color="primary"
+          class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>
+        <ion-button *ngIf="invitationDetails.status==1" (click)="cancelButtonClick = true" size="large" color="danger"
+          class="proceed-button  ion-margin-top" expand="block">REJECT BOOKING</ion-button>
+        <div class="crab-bootm-vector">
+          <img src="assets/CRAB_Vector.svg">
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content> 
+</ion-content>

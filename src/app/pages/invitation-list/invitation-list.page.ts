@@ -22,6 +22,7 @@ export class InvitationListPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getInvitationList();
   }
 
 
@@ -44,12 +45,12 @@ export class InvitationListPage implements OnInit {
   }
 
 
-  async presentInvitationModal() {
+  async presentInvitationModal(i) {
     const modal = await this.modalController.create({
       component: InvitationComponent,
       componentProps: {
 
-        // invitaion: this.invitaionListCopy[i],
+        invitaion: this.invitaionList[i],
       }
     });
     return await modal.present();
