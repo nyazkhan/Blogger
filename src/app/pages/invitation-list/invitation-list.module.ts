@@ -6,25 +6,25 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { InvitationListPage } from './invitation-list.page';
-import { InvitationComponent } from './invitation/invitation.component';
+import { CommanModule } from '../comman/comman.module';
+import { InvitationComponent } from '../comman/invitation/invitation.component';
 
 const routes: Routes = [
   {
     path: '',
     component: InvitationListPage
-  }, {
-    path: 'invitationdetails',
-    component: InvitationComponent
-  }
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    CommanModule,
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [InvitationListPage, InvitationComponent]
+  declarations: [InvitationListPage],
+  entryComponents: [InvitationComponent]
 })
-export class InvitationListPageModule {}
+export class InvitationListPageModule { }

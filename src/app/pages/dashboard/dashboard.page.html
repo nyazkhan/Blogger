@@ -31,14 +31,14 @@
         <h5 class="list-heading">Upcoming Appointments</h5>
         <div class="slider-appointment">
 
-          <div class="white-box ion-margin-bottom" (click)="presentBookingModal()">
+          <div class="white-box ion-margin-bottom" (click)="appointmenType('invitaion')">
             <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
             <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
             <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
                   src="assets/km-arrorw.svg"> </span></p>
           </div>
 
-          <div class="white-box ion-margin-bottom" (click)="presentBookingModal()">
+          <div class="white-box ion-margin-bottom" (click)="appointmenType('booking')">
             <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
             <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
             <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
@@ -56,7 +56,7 @@
     <ion-row class=" ion-margin-bottom">
     
       <ion-toolbar>
-          <ion-searchbar (click)="presentRestaurantModal()" placeholder="Search Restaurent"></ion-searchbar>
+          <ion-searchbar (click)="presentRestaurantSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
           <ion-buttons slot="end">
               <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
           </ion-buttons>

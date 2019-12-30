@@ -6,12 +6,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ReviewPage } from './review.page';
-import { ReviewDetailsComponent } from '../comman/review-details/review-details.component';
+import { StartComponent } from './start/start.component';
+import { RatingComponent } from './rating/rating.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ReviewPage
+  },
+  {
+    path: 'rating',
+    component: RatingComponent
   },
 ];
 
@@ -22,6 +27,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ReviewPage ],
+  declarations: [ReviewPage, StartComponent, RatingComponent],
 })
 export class ReviewPageModule { }

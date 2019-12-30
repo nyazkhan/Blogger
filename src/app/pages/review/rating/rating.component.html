@@ -1,0 +1,208 @@
+<!-- <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="backbar">
+          <h5 class="page-heading">
+            <ion-icon routerLink="/review" name="arrow-back"></ion-icon> &nbsp; Please Rate
+          </h5>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="rest_address_item">
+          <div slot="start" class="rest-img">
+            <img src="assets/restaurent.png">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">Chai Sutta Bar</h4>
+            <p class="small-content">Veg, Cafe & restaurent <br>
+              Navrangpura, Ahmedabad</p>
+            <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-start [(rating1)]="rating1"></app-start>
+        <app-start [(rating2)]="rating2"></app-start>
+        <app-start [(rating3)]="rating3"></app-start>
+        <app-start [(rating4)]="rating4"></app-start>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="fixed-bottom-button">
+    <ion-row>
+      <ion-col>
+
+        <ion-button class="proceed-button" expand="block" color="primary">PROCEED
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content> -->
+
+<ion-content>
+  <ion-slides>
+
+
+    <!-- distance radius -->
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon routerLink="/review" name="arrow-back"></ion-icon> &nbsp; Please Rate
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="rest_address_item">
+              <div slot="start" class="rest-img">
+                <img src="assets/restaurent.png">
+              </div>
+              <ion-label>
+                <h4 class="rest-heading">Chai Sutta Bar</h4>
+                <p class="small-content">Veg, Cafe & restaurent <br>
+                  Navrangpura, Ahmedabad</p>
+                <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <h5> food Type</h5>
+          </ion-col>
+          <ion-col size="12">
+            <ion-icon style="font-size: 7vh; margin-right: 15px;" name="1star1" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 1-1)"
+            [ngStyle]="{'color': getColor(num, 1-1)}">
+          </ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon routerLink="/review" name="arrow-back"></ion-icon> &nbsp; Please Rate
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="rest_address_item">
+              <div slot="start" class="rest-img">
+                <img src="assets/restaurent.png">
+              </div>
+              <ion-label>
+                <h4 class="rest-heading">Chai Sutta Bar</h4>
+                <p class="small-content">Veg, Cafe & restaurent <br>
+                  Navrangpura, Ahmedabad</p>
+                <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon routerLink="/review" name="arrow-back"></ion-icon> &nbsp; Please Rate
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="rest_address_item">
+              <div slot="start" class="rest-img">
+                <img src="assets/restaurent.png">
+              </div>
+              <ion-label>
+                <h4 class="rest-heading">Chai Sutta Bar</h4>
+                <p class="small-content">Veg, Cafe & restaurent <br>
+                  Navrangpura, Ahmedabad</p>
+                <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="backbar">
+              <h5 class="page-heading">
+                <ion-icon routerLink="/review" name="arrow-back"></ion-icon> &nbsp; Please Rate
+              </h5>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="rest_address_item">
+              <div slot="start" class="rest-img">
+                <img src="assets/restaurent.png">
+              </div>
+              <ion-label>
+                <h4 class="rest-heading">Chai Sutta Bar</h4>
+                <p class="small-content">Veg, Cafe & restaurent <br>
+                  Navrangpura, Ahmedabad</p>
+                <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top">
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top">
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

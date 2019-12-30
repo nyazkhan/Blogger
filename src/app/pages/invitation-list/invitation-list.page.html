@@ -4,7 +4,7 @@
       <ion-col>
         <div class="backbar">
           <h5 class="page-heading">
-            <ion-icon routerLink="/profile-dashboard" name="arrow-back"></ion-icon> &nbsp; Invitation
+            <ion-icon routerLink="/dashboard" name="arrow-back"></ion-icon> &nbsp; Invitation
           </h5>
         </div>
       </ion-col>
@@ -12,7 +12,7 @@
     <ion-row>
         <ion-col>
           <h5 class="list-heading-2">New Invitation Recived</h5>
-          <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+          <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
             <ion-label>
               <h5 class="rest-heading danger">Today, 04:30 PM</h5>
               <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -20,7 +20,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+          <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
             <ion-label>
               <h5 class="rest-heading primary">Today, 04:30 PM</h5>
               <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -33,7 +33,7 @@
       <ion-row>
         <ion-col>
           <h5 class="list-heading-2">Upcoming Invitations</h5>
-          <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+          <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
             <ion-label>
               <h5 class="rest-heading primary">Today, 04:30 PM</h5>
               <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -41,7 +41,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+          <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
             <ion-label>
               <h5 class="rest-heading primary">Today, 04:30 PM</h5>
               <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -54,7 +54,7 @@
       <ion-row>
           <ion-col>
             <h5 class="list-heading-2">Past Invitations</h5>
-            <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+            <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
               <ion-label>
                 <h5 class="rest-heading primary">26 Aug, 04:30 PM <span class="ion-float-right success">Accepted</span></h5>
                 <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -62,7 +62,7 @@
               </ion-label>
             </ion-item>
 
-            <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+            <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
                 <ion-label>
                   <h5 class="rest-heading primary">26 Aug, 04:30 PM <span class="ion-float-right danger">Rejected</span></h5>
                   <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -70,7 +70,7 @@
                 </ion-label>
               </ion-item>
 
-              <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+              <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
                   <ion-label>
                     <h5 class="rest-heading primary">26 Aug, 04:30 PM <span class="ion-float-right success">Accepted</span></h5>
                     <p class="small-content">Invitation @ Chai sutta bar</p>
@@ -78,7 +78,7 @@
                   </ion-label>
                 </ion-item>
 
-                <ion-item class="rest_address_item mb-20"  routerLink="/invitation/invitationdetails">
+                <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
                     <ion-label>
                       <h5 class="rest-heading primary">26 Aug, 04:30 PM <span class="ion-float-right success">Accepted</span></h5>
                       <p class="small-content">Invitation @ Chai sutta bar
