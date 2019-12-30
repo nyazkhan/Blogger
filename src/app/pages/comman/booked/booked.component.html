@@ -44,10 +44,10 @@
             
         <p class="ico-list success">
             <img class="ico-small" src="assets/toys.svg">&nbsp; Booking Confirmed
-            <br>
-            <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled
-
         </p>
+        <p class="ico-list success">
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled
+      </p>
         <p class="ico-list">
             <img class="ico-small" src="assets/pass.svg">&nbsp; Booking for 
             <!-- {{bookingDetails.persons}} -->
@@ -70,7 +70,7 @@
       </ion-row>
   </ion-grid>
 
-  <div *ngIf="x!==2" (click)="x=2" class="panel-card cancel-transition fixed-back-white">
+  <div *ngIf="x!==2" (click)="x=2" class="panel-card fixed-bottom-Cancel-div fixed-back-white">
     <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
     <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
     <ion-button color="light" size="large" class="cancel-button ion-margin-top" expand="block">No, Please Don’t Cancel </ion-button>
