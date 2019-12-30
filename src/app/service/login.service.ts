@@ -70,7 +70,7 @@ export class LoginService {
 
   bookTable(bookingDetails) {
 
-    return this.Http.post('/connect/booking/save', bookingDetails);
+    return this.Http.post('connect/booking/save', bookingDetails);
 
   }
 

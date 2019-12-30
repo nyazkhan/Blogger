@@ -15,11 +15,11 @@ export class BookTableComponent implements OnInit {
   currentDate = (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
   maxDate = ((new Date()).getFullYear() + 1) + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate();
   bookingDetails = {
-    id: null,
+    // id: null,
     persons: 1,
-    bookingDate: this.currentDate,
-    bookingTime: '15:59',
-    bookingTo: null
+    toDate: this.currentDate,
+    onTime: '15:59',
+    to: null
   };
 
 
@@ -65,7 +65,8 @@ export class BookTableComponent implements OnInit {
   bookTable() {
     // this.back();
     // this.presentBookedModelModal();
-    this.bookingDetails.bookingTo = this.restaurantListCopy.id;
+    this.bookingDetails.to = this.restaurantListCopy.id;
+    this.bookingDetails.toDate = '2020-01-01';
     this.loginservice.bookTable(this.bookingDetails).subscribe((res: any) => {
       if (res.status === 200) {
         this.back();
