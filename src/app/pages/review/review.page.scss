@@ -268,3 +268,20 @@ ion-thumbnail{
     height:25px;
     width: auto;
 }
+.slider-restaurant {
+    width: 100%;
+    height: auto;
+    display: -webkit-box;
+    display: flex;
+    overflow-x: auto;
+}
+.rest-slide-img {
+    height: 70px;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+    width: 25%;
+    margin-right: 15px;
+    flex-shrink: 0;
+    margin-bottom: 15px;
+}
