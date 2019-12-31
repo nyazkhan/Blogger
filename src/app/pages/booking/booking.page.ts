@@ -12,6 +12,7 @@ export class BookingPage implements OnInit {
 
   bookingList: any = [];
   bookingListCopy: any = [];
+  filterBy = 'all';
 
 
   pastBooking: any = [];
@@ -32,6 +33,7 @@ export class BookingPage implements OnInit {
     this.loginservice.getAllBooking().subscribe((res) => {
       if (res.status === 200) {
         this.bookingList = res.data;
+        this.bookingListCopy = res.data;
       }
     });
   }
@@ -46,22 +48,41 @@ export class BookingPage implements OnInit {
   }
 
 
+  filterResponse(val) {
+    this.filterBookingByCurrentDate(val);
+  }
 
 
   filterBookingByCurrentDate(val) {
-    this.bookingListCopy = this.bookingList;
-    if (val === 'past') {
-      this.pastBooking = this.bookingListCopy.filter((el) => {
-        return el.date < new Date();
+    this.filterBy = val;
+
+    if (val === 'all') {
+      this.bookingList = this.bookingListCopy;
+      return;
+    }
+    if (val === 'cancel') {
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        console.log(el.status);
+
+        return (el.status === 4) || (el.status === 2);
       });
 
     }
     if (val === 'next') {
-      this.upcomingBooking = this.bookingListCopy.filter((el) => {
-        return el.date >= new Date();
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        return (el.status === 5);
       });
 
     }
+
+    if (val === 'opend') {
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        return (el.status === 1);
+      });
+
+    }
+    console.log(this.bookingList);
+
   }
 
   async presentBookingDetailsModal(i) {

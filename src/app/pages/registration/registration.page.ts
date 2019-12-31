@@ -57,6 +57,7 @@ export class RegistrationPage implements OnInit {
     this.bloggerDetail = newObj;
     console.log(this.bloggerDetail);
     this.nxtStage = this.bloggerDetail.stage - 4;
+    this.storageService.storeData('stage', this.bloggerDetail.stage);
     this.editDetails(this.nxtStage);
   }
   ngOnInit() {

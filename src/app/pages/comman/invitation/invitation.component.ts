@@ -3,6 +3,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { AlertService } from 'src/app/service/alert.service';
+import { RestaurantDetailsComponent } from '../restaurant-details/restaurant-details.component';
 
 @Component({
   selector: 'app-invitation',
@@ -72,4 +73,15 @@ export class InvitationComponent implements OnInit {
   }
 
 
+  async presentRestaurantDetailsModal() {
+    const modal = await this.modalController.create({
+      component: RestaurantDetailsComponent,
+      componentProps: {
+
+        userDetails: {
+          isData: true, data: this.invitationDetails.userDetails, mobileNo: null,
+        },      }
+    });
+    return await modal.present();
+  }
 }

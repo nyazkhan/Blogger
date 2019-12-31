@@ -12,7 +12,7 @@ export class InvitationListPage implements OnInit {
   invitaionList: any = [];
   invitaionListCopy: any = [];
 
-
+  filterBy = 'all';
   pastInvitation: any = [];
   upcomingInvitation: any = [];
   constructor(
@@ -31,6 +31,7 @@ export class InvitationListPage implements OnInit {
     this.loginservice.getAllInvitaion().subscribe((res) => {
       if (res.status === 200) {
         this.invitaionList = res.data;
+        this.invitaionListCopy = res.data;
       }
     });
   }
@@ -56,20 +57,49 @@ export class InvitationListPage implements OnInit {
     return await modal.present();
   }
 
+
+  filterResponse(val) {
+    this.filterBy = val;
+    if (this.filterBy === 'all') {
+
+      this.invitaionList = this.invitaionListCopy;
+      return;
+    }
+
+
+    this.filterInvitationByCurrentDate(val);
+
+
+  }
+
+
+
+
+
   filterInvitationByCurrentDate(val) {
-    this.invitaionListCopy = this.invitaionList;
-    if (val === 'past') {
-      this.pastInvitation = this.invitaionListCopy.filter((el) => {
-        return el.date < new Date();
+    if (val === 'cancel') {
+      this.invitaionList = this.invitaionListCopy.filter((el) => {
+        console.log(el.status);
+
+        return (el.status === 4) || (el.status === 2);
       });
 
     }
     if (val === 'next') {
-      this.upcomingInvitation = this.invitaionListCopy.filter((el) => {
-        return el.date >= new Date();
+      this.invitaionList = this.invitaionListCopy.filter((el) => {
+        return (el.status === 5);
       });
 
     }
+
+    if (val === 'opend') {
+      this.invitaionList = this.invitaionListCopy.filter((el) => {
+        return (el.status === 1);
+      });
+
+    }
+    console.log(this.invitaionList);
+
   }
 
 }

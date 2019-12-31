@@ -12,7 +12,8 @@ import { BookTableComponent } from '../book-table/book-table.component';
   styleUrls: ['./restaurant-details.component.scss'],
 })
 export class RestaurantDetailsComponent implements OnInit {
-  @Input() mobileNo: object;
+  @Input() userDetails: object;
+  inputDetails: any = {};
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
   sliderOne: any;
   slideOptsOne = {
@@ -46,16 +47,37 @@ export class RestaurantDetailsComponent implements OnInit {
 
 
   ) {
-    this.restauratMoblieNo = navParams.get('mobileNo');
-    this.geolocation.getCurrentPosition().then((position: Geoposition) => {
-      this.position = {
-        lat: position.coords.latitude, lon: position.coords.longitude,
-      };
-      console.log(this.position);
+    this.inputDetails = navParams.get('userDetails');
 
-      // position.coords.latitude, position.coords.longitude
-      this.getRestaurantDetails();
-    });
+    if (this.inputDetails.isData) {
+      this.restaurantDetail = this.inputDetails.data;
+      this.setImageIntoSlides();
+
+    } else {
+      // if (this.inputDetails.mobileNo) {
+
+      this.restauratMoblieNo = this.inputDetails.mobileNo;
+      this.geolocation.getCurrentPosition().then((position: Geoposition) => {
+        this.position = {
+          lat: position.coords.latitude, lon: position.coords.longitude,
+          mobile: this.restauratMoblieNo,
+          type: 1,
+        };
+        console.log(this.position);
+
+        // position.coords.latitude, position.coords.longitude
+        this.getRestaurantDetails();
+      });
+      // }
+
+
+    }
+
+
+
+
+
+
 
 
 
@@ -97,56 +119,60 @@ export class RestaurantDetailsComponent implements OnInit {
   }
 
   getRestaurantDetails() {
-    this.loginservice.restaurantDetails({
-      mobile: this.restauratMoblieNo,
-      type: 1,
-      lat: 23.046549499999998,
-      lon: 72.5393268
-    }).subscribe((res) => {
+    this.loginservice.restaurantDetails(this.position).subscribe((res) => {
       console.log(res);
       if (res.status === 200) {
-        this.sliderOne = {
-          isBeginningSlide: true,
-          isEndSlide: false,
-          slidesItems: []
-        };
+
         this.restaurantDetail = res.data;
         console.log(res);
-        this.restaurantDetail.list.forEach(element => {
-          element.data.forEach(elem => {
-            this.sliderOne.slidesItems.push(elem.storagePath);
-          });
-        });
-        console.log(this.sliderOne);
-
-        if (this.restaurantDetail.paymentOptions.length > 0) {
-          this.restaurantDetail.paymentOptions.forEach(ele => {
-            // tslint:disable-next-line: triple-equals
-            if (ele == 1) {
-              this.paymentOption.cash = true;
-
-            }
-            // tslint:disable-next-line: triple-equals
-            if (ele == 2) {
-              this.paymentOption.paytm = true;
-
-            }
-            // tslint:disable-next-line: triple-equals
-            if (ele == 3) {
-              this.paymentOption.upi = true;
-
-            }
-            // tslint:disable-next-line: triple-equals
-            if (ele == 4) {
-              this.paymentOption.credit = true;
-
-            }
-          });
-        }
+        this.setImageIntoSlides();
 
 
       }
     });
+  }
+
+
+
+  setImageIntoSlides() {
+    this.sliderOne = {
+      isBeginningSlide: true,
+      isEndSlide: false,
+      slidesItems: []
+    };
+
+    this.restaurantDetail.list.forEach(element => {
+      element.data.forEach(elem => {
+        this.sliderOne.slidesItems.push(elem.storagePath);
+      });
+    });
+    console.log(this.sliderOne);
+
+    if (this.restaurantDetail.paymentOptions.length > 0) {
+      this.restaurantDetail.paymentOptions.forEach(ele => {
+        // tslint:disable-next-line: triple-equals
+        if (ele == 1) {
+          this.paymentOption.cash = true;
+
+        }
+        // tslint:disable-next-line: triple-equals
+        if (ele == 2) {
+          this.paymentOption.paytm = true;
+
+        }
+        // tslint:disable-next-line: triple-equals
+        if (ele == 3) {
+          this.paymentOption.upi = true;
+
+        }
+        // tslint:disable-next-line: triple-equals
+        if (ele == 4) {
+          this.paymentOption.credit = true;
+
+        }
+      });
+    }
+
   }
 
   goBack() {

@@ -34,12 +34,14 @@ export class BookedComponent implements OnInit {
       dismissed: true
     });
   }
-  async presentRestaurantDetailsModal(mobile) {
+  async presentRestaurantDetailsModal() {
     const modal = await this.modalController.create({
       component: RestaurantDetailsComponent,
       componentProps: {
 
-        mobileNo: mobile,
+        userDetails: {
+          isData: true, data: this.bookingDetails.userDetails, mobileNo: null,
+        },
       }
     });
     return await modal.present();

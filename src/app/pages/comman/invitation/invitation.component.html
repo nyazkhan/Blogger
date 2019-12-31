@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item lines="none" class="rest_address_item">
+        <ion-item lines="none" class="rest_address_item" (click)="presentRestaurantDetailsModal()">
           <div *ngIf="invitationDetails.userDetails.profilePic" slot="start" class="rest-img">
             <img [src]="invitationDetails.userDetails.profilePic">
           </div>

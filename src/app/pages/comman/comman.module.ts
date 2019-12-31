@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { InvitationComponent } from './invitation/invitation.component';
 import { SocialprofileComponent } from './socialprofile/socialprofile.component';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 
@@ -35,8 +36,8 @@ import { SocialprofileComponent } from './socialprofile/socialprofile.component'
     RestaurantDetailsComponent,
     ProfileListComponent,
     BookedComponent],
-  entryComponents: [ReviewDetailsComponent, SocialprofileComponent, InvitationComponent, BookTableComponent],
-  providers: [CallNumber]
+  entryComponents: [ReviewDetailsComponent, RestaurantDetailsComponent, SocialprofileComponent, InvitationComponent, BookTableComponent],
+  providers: [CallNumber , Geolocation]
 
 })
 export class CommanModule { }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-socialprofile',
@@ -7,13 +7,16 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./socialprofile.component.scss'],
 })
 export class SocialprofileComponent implements OnInit {
-
+  @Input() userDetails: object;
+  userDetailsCopy: any = {};
   constructor(
+    navParams: NavParams,
     public modalController: ModalController,
+  ) {
+    this.userDetailsCopy = navParams.get('userDetails');
+  }
 
-  ) { }
-
-  ngOnInit() {}
+  ngOnInit() { }
 
 
   dismiss() {

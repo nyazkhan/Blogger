@@ -13,8 +13,14 @@
   </ion-row>
   <ion-row>
       <ion-col>
-        <h5 class="list-heading-2">Booking Requested</h5>
-
+        <div class="btn-list">
+          <h6 [ngClass]="{'active': (filterBy ==='all')}" (click)="filterResponse('all')">All</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='next')}" (click)="filterResponse('next')" >Upcoming</h6>
+          <h6 [ngClass]="{'active': (filterBy ==='opend')}" (click)="filterResponse('opend')">Open</h6>
+          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Closed</h6> -->
+          <h6 [ngClass]="{'active': (filterBy ==='cancel')}" (click)="filterResponse('cancel')">Cancel</h6>
+          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6> -->
+        </div>
         <ion-item class="rest_address_item mb-20" *ngFor="let book of bookingList; let i = index" (click)="presentBookingDetailsModal(i)">
           <ion-label>
             <h5   [ngClass]="((book.status ==3)|| (book.status ==2))?'invi-date danger':'invi-date primary'">{{book.toDate | date:'EEE,  d MMM ,  y'}}</h5>

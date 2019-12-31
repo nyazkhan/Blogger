@@ -38,7 +38,7 @@ export class ProfileListComponent implements OnInit {
     const modal = await this.modalController.create({
       component: SocialprofileComponent,
       componentProps: {
-
+        userDetails:  this.userDetailsCopy
       }
     });
     return await modal.present();

@@ -55,7 +55,9 @@ export class SearchComponent implements OnInit {
       component: RestaurantDetailsComponent,
       componentProps: {
 
-        mobileNo: mobile,
+        userDetails: {
+          isData: false, data: {}, mobileNo: mobile,
+        },
       }
     });
     return await modal.present();

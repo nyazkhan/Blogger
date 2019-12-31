@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item lines="none" class="rest_address_item">
+        <ion-item lines="none" class="rest_address_item" (click)="presentRestaurantDetailsModal()">
           <div *ngIf="bookingDetails.userDetails.profilePic" slot="start" class="rest-img">
             <img [src]="bookingDetails.userDetails.profilePic">
           </div>
@@ -127,7 +127,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="bookingDetails.status==1" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="((bookingDetails.status==1)||(bookingDetails.status==5))" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
 
         <div class="crab-bootm-vector">
