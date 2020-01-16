@@ -19,10 +19,10 @@ export class RegistrationGuard implements  CanActivate {
   ): Promise<boolean> {
     const stage = this.storageService.getData('stage');
 
-    if ((stage < 12) && (3 > stage)) {
+    if ((stage < 13) && (3 < stage)) {
       return true;
     } else {
-      if (stage >= 12) {
+      if (stage >= 13) {
 
         this.router.navigateByUrl('/dashboard');
       }

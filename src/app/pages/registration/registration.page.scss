@@ -98,3 +98,25 @@ opacity: 0;
     }
  
 
+    .img-part{
+      height: 50vh;
+      width: 100%;
+      background-size: cover;
+      overflow: hidden;
+      margin-right: 15px;
+      padding-top: 20px;
+      flex-shrink: 0;
+      margin-bottom: 15px;
+      position: relative;
+      .rm-btn{
+        position: absolute;
+        right: 20px;
+        padding: 17px;
+        margin-top: -3px;
+        border: 4px solid white;
+        border-radius: 14px;
+        background: #ff0000;
+        color: var(--main-white-font-color);
+      }
+  }
+

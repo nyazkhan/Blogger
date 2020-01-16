@@ -75,20 +75,30 @@
           </ion-note>
         </ion-item>
 
-        <p *ngIf="bookingDetails.status == 1" class="ico-list orange">
+        <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
+        <p>
+        <p *ngIf="invitationDetails.status == 8" class="ico-list pink">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; You Miss  the Booking 
         </p>
+        <p *ngIf="invitationDetails.status == 7" class="ico-list primary">
 
-        <p *ngIf="bookingDetails.status == 2" class="ico-list success">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled
+          <img class="ico-small" src="assets/tik.svg">&nbsp; You Enjoy the Booking 
         </p>
+        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
 
-        <p *ngIf="bookingDetails.status == 4" class="ico-list success">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel By Restaurant
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Restaurant
         </p>
-        <p *ngIf="bookingDetails.status==5" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 16" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Expired
+        </p>
+        <p *ngIf="invitationDetails.status == 17" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
+        </p>
+        <p *ngIf="invitationDetails.status==10" class="ico-list success">
           <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
         </p>
         <p class="ico-list">
@@ -127,7 +137,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="((bookingDetails.status==1)||(bookingDetails.status==5))" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="((bookingDetails.status==1)||(bookingDetails.status==10))" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
 
         <div class="crab-bootm-vector">

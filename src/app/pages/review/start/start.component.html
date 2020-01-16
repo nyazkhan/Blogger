@@ -1,17 +1,321 @@
-<div>
-  <ion-icon style="font-size: 7vh; margin-right: 15px;" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star1(num)"
-    [ngStyle]="{'color': getColor(num)}">
-  </ion-icon>
-</div>
-<!-- <div>
-  <ion-icon style="font-size: 7vh; margin-right: 15px;" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star2(num)" [ngStyle]="{'color': getColor(num)}">
-  </ion-icon>
-</div>
-<div>
-  <ion-icon style="font-size: 7vh; margin-right: 15px;" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star3(num)" [ngStyle]="{'color': getColor(num)}">
-  </ion-icon>
-</div>
-<div>
-  <ion-icon style="font-size: 7vh; margin-right: 15px;" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star4(num)" [ngStyle]="{'color': getColor(num)}">
-  </ion-icon>
-</div> -->
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="backbar">
+          <h5 class="page-heading">
+            <ion-icon (click)="back()" name="arrow-back"></ion-icon> &nbsp; Please Rate
+          </h5>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="rest_address_item">
+          <div *ngIf="reviewDetail.userDetails.profilePic" slot="start" class="rest-img">
+            <img [src]="reviewDetail.userDetails.profilePic">
+          </div>
+          <div *ngIf="!reviewDetail.userDetails.profilePic" slot="start" class="rest-img">
+            <img src="assets/b2.svg">
+          </div>
+          <ion-label>
+            <h4 class="rest-heading">{{reviewDetail.userDetails.name}}</h4>
+            <p class="small-content">
+
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==1">
+                Veg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==2">
+                Nonveg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.foodType==3">
+
+                Veg & Nonveg
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==1">
+                Cafe
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==2">
+                Restaurent
+              </ng-container>
+              <ng-container *ngIf="reviewDetail.userDetails.restaurantType==3">
+
+                Cafe & Restaurent
+              </ng-container>
+
+
+              <br>
+              <ng-container *ngIf="reviewDetail.userDetails.address">
+
+                {{reviewDetail.userDetails.address.locality}}
+                {{reviewDetail.userDetails.address.city}}
+              </ng-container>
+            </p>
+            <!-- <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span> -->
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-slides >
+
+
+    <ion-slide style="vertical-align:top; ">
+      <ion-grid style="text-align:left">
+
+        <ion-row>
+          <ion-col size="12">
+            <h5> How was the Food ?</h5>
+          </ion-col>
+          <ion-col size="12" style="padding-left: 30px !important">
+
+            <div>
+              <p class="star-sub-heading"> Presentation</p>
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  1 , 1)"
+                [ngStyle]="{'color': getColor(num , rating11)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Plating</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  1 , 2)"
+                [ngStyle]="{'color': getColor(num , rating12)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Taste</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  1 , 3)"
+                [ngStyle]="{'color': getColor(num , rating13)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Texture / Mouth Fill </p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  1 , 4)"
+                [ngStyle]="{'color': getColor(num, rating14)}">
+              </ion-icon>
+            </div>
+            
+           
+             
+          </ion-col>
+          <ion-col size="12" class="fixed-bottom-button">
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveFoodRatting()"
+              expand="block">PROCEED</ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+
+    <ion-slide style="vertical-align:top; ">
+      <ion-grid style="text-align:left">
+
+        <ion-row>
+          <ion-col size="12">
+            <h5> How was the Service ?</h5>
+          </ion-col>
+          <ion-col size="12" style="padding-left: 30px !important">
+
+            <div>
+              <p class="star-sub-heading"> Cleanliness</p>
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  2 , 1)"
+                [ngStyle]="{'color': getColor(num , rating21)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Understanding of Menu</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  2 , 2)"
+                [ngStyle]="{'color': getColor(num , rating22)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Attitute</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num,  2 , 3)"
+                [ngStyle]="{'color': getColor(num , rating23)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Promptness </p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 2 , 4)"
+                [ngStyle]="{'color': getColor(num, rating24)}">
+              </ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="12" class="fixed-bottom-button">
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveServiceRatting()"
+              expand="block">PROCEED</ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+    <ion-slide style="vertical-align:top; ">
+      <ion-grid style="text-align:left">
+
+        <ion-row>
+          <ion-col size="12">
+            <h5> How was the Ambience ?</h5>
+          </ion-col>
+          <ion-col size="12" style="padding-left: 30px !important">
+
+            <div>
+              <p class="star-sub-heading"> Cleanliness</p>
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 3 , 1)"
+                [ngStyle]="{'color': getColor(num , rating31)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Lighting</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 3 , 2)"
+                [ngStyle]="{'color': getColor(num , rating32)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Music</p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 3 , 3)"
+                [ngStyle]="{'color': getColor(num , rating33)}">
+              </ion-icon>
+            </div>
+            <div>
+              <p class="star-sub-heading"> Overall Fell </p>
+
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 3 , 4)"
+                [ngStyle]="{'color': getColor(num, rating34)}">
+              </ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="12" class="fixed-bottom-button">
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveAmbienceRatting()"
+              expand="block">PROCEED</ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide style="vertical-align:top; ">
+      <ion-grid style="text-align:left">
+
+        <ion-row>
+          <ion-col size="12">
+            <h5> What about the Value for Money ?</h5>
+          </ion-col>
+          <ion-col size="12" style="padding-left: 30px !important">
+
+            <div>
+              <ion-icon class="star-size" name="star" *ngFor="let num of [1,2,3,4,5]" (click)="star(num , 4 , 1)"
+                [ngStyle]="{'color': getColor(num , rating41)}">
+              </ion-icon>
+            </div>
+
+          </ion-col>
+          <ion-col size="12" class="fixed-bottom-button">
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveMoneyRatting()"
+              expand="block">PROCEED</ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+
+    <ion-slide style="vertical-align:top; ">
+      <ion-grid>
+    
+
+        <ion-row>
+          <ion-col size="12">
+            <div class="slide-image-box">
+              <div class="img-part" (click)="presentActionSheetForCamera()">
+                <img class="gal-img" style="width: 100% !important;" src="assets/addImg.svg" />
+              </div>
+              <div class="img-part">
+                <button class="rm-btn">
+                  <span>&#10005;</span>
+                </button>
+                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+              </div>
+
+              <div class="img-part  ">
+                <button class="rm-btn">
+                  <span>&#10005;</span>
+                </button>
+                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+              </div>
+
+              <div class="img-part">
+                <button class="rm-btn">
+                  <span>&#10005;</span>
+                </button>
+                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+              </div>
+
+              <div class="img-part">
+                <button class="rm-btn">
+                  <span>&#10005;</span>
+                </button>
+                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+              </div>
+
+              <div class="img-part">
+                <button class="rm-btn">
+                  <span>&#10005;</span>
+                </button>
+                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+
+            <div  style="max-height: 40vh; overflow: hidden;">
+
+              <ion-textarea style=" line-height: 26px; max-height: 40vh; min-height: 7vh; overflow: scroll; border: 2px solid red;"
+                name="description" [(ngModel)]="description" type="text" class="ion-text-left" auto-grow="true"
+                placeholder="tripAd Profile Username"></ion-textarea>
+            </div>
+
+
+          </ion-col>
+          <ion-col size="12" class="fixed-bottom-button">
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveDecreptionRating()"
+              expand="block">PROCEED</ion-button>
+            <div class="crab-bootm-vector">
+              <img src="assets/CRAB_Vector.svg">
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+
+
+
+ 
+</ion-content>

@@ -5,9 +5,9 @@
     </h5>
   </div>
 
-  <div class="panel-card back-white" style="margin:0;border-radius:0;">
-    <div class="profile-part">
-      <img class="profimg" src="assets/b1.svg">
+  <div class="panel-card back-white" *ngIf="bloggerDetails.list" style="margin:0;border-radius:0;">
+    <div class="profile-part" *ngIf="bloggerDetails.list[0].data.length > 0">
+      <img class="profimg" [src]="bloggerDetails.list[0].data[0].storagePath">
       <h5 *ngIf="bloggerDetails.name">{{bloggerDetails.name}}</h5>
       <p *ngIf="bloggerDetails.address" class="text ion-text-center" style="margin:0;">
         {{bloggerDetails.address?.locality}},

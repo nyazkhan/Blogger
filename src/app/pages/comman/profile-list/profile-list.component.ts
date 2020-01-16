@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavParams, ModalController } from '@ionic/angular';
 import { SocialprofileComponent } from '../socialprofile/socialprofile.component';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-profile-list',
@@ -14,6 +15,7 @@ export class ProfileListComponent implements OnInit {
   constructor(
     @Inject(Router) private router: Router,
     navParams: NavParams,
+    private storageService: StorageService,
     public modalController: ModalController,
   ) {
     this.userDetailsCopy = navParams.get('userDetails');
@@ -42,5 +44,11 @@ export class ProfileListComponent implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  LogOut() {
+    this.storageService.clearData();
+    this.dismiss();
+    this.router.navigateByUrl('/login');
   }
 }

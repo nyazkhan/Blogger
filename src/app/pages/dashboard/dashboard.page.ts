@@ -35,7 +35,7 @@ export class DashboardPage implements OnInit {
     @Inject(Geolocation) public geolocation: Geolocation,
 
   ) {
-    this.loginservice.getAllBooking().subscribe((res) => {
+    this.loginservice.masterApi().subscribe((res) => {
       console.log(res);
 
     });

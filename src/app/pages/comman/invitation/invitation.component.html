@@ -79,20 +79,32 @@
         <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         </p>
+        <p *ngIf="invitationDetails.status == 8" class="ico-list pink">
 
-        <p *ngIf="invitationDetails.status == 2" class="ico-list danger">
+          <img class="ico-small" src="assets/cross.svg">&nbsp; You Miss  the Invitation 
+        </p>
+        <p *ngIf="invitationDetails.status == 7" class="ico-list primary">
+
+          <img class="ico-small" src="assets/tik.svg">&nbsp; You Enjoy the Invitation 
+        </p>
+        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
         </p>
+        <p *ngIf="invitationDetails.status == 16" class="ico-list danger">
 
-        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
-
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Blogger
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Expired
         </p>
-        <p *ngIf="invitationDetails.status==5" class="ico-list success">
+        <p *ngIf="invitationDetails.status == 17" class="ico-list danger">
+
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Restaurant
+        </p>
+        <p *ngIf="invitationDetails.status==10" class="ico-list success">
           <img class="ico-small" src="assets/tik.svg">&nbsp; Invitation confirmed
         </p>
-
+        <p *ngIf="invitationDetails.status==9" class="ico-list success">
+          <img class="ico-small" src="assets/tik.svg">&nbsp;  Request a Review 
+        </p>
 
         <!-- <p class="ico-list success">
             <img class="ico-small" src="assets/success.svg">&nbsp; Invitation Accepted
@@ -132,7 +144,7 @@
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="invitationDetails.status==5" (click)="cancelButtonClick = true" size="large" color="undefine"
+        <ion-button *ngIf="invitationDetails.status==10" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
         <ion-button *ngIf="invitationDetails.status==1" (click)="acceptinvitation()" size="large" color="primary"
           class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>

@@ -1,4 +1,9 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output, ViewChild, Inject } from '@angular/core';
+import { IonSlides, ModalController, NavParams, ActionSheetController } from '@ionic/angular';
+import { LoginService } from 'src/app/service/login.service';
+import { AlertService } from 'src/app/service/alert.service';
+import { CameraService } from 'src/app/service/camera.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 enum COLORS {
   GREY = '#e0e0e0',
@@ -13,41 +18,88 @@ enum COLORS {
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
+  @ViewChild(IonSlides, { static: false }) slides: IonSlides;
 
-  @Input() rating1: number;
-  @Input() rating2: number;
-  @Input() rating3: number;
-  @Input() rating4: number;
+  rating11: number;
+  rating12: number;
+  rating13: number;
+  rating14: number;
+  rating21: number;
+  rating22: number;
+  rating23: number;
+  rating24: number;
+  rating31: number;
+  rating32: number;
+  rating33: number;
+  rating34: number;
+  rating41: number;
+  description: string;
+  ratingObject: any = {};
+  @Input() reviewDetails: object;
+  reviewDetail: any = {};
+  starValue = {
+    star1: null,
+    star2: null,
+    star3: null,
+    star4: null,
+  };
 
+  // @Output() ratingChange: EventEmitter<number> = new EventEmitter();
 
+  constructor(
+    public modalController: ModalController,
+    navParams: NavParams,
+    private loginservice: LoginService,
+    @Inject(AlertService) private alertService: AlertService,
+    private storageService: StorageService,
+    public cameraService: CameraService,
+    public actionSheetController: ActionSheetController,
+  ) {
 
-
-  @Output() ratingChange: EventEmitter<number> = new EventEmitter();
-
-  constructor() { }
-
-  star1(index: number) {
-
-    this.rating1 = index;
-    this.ratingChange.emit(this.rating1);
+    this.reviewDetail = navParams.get('reviewDetails');
+    console.log(this.reviewDetail);
+    this.getReviewById();
   }
-  star2(index: number) {
 
-    this.rating2 = index;
-    this.ratingChange.emit(this.rating2);
+  getReviewById() {
+    this.loginservice.getReviewById(this.reviewDetail.id).subscribe((res) => {
+      console.log();
+      if (res.status === 200) {
+        if (res.data.reviewQueAns) {
+          if (res.data.reviewQueAns.length < 1) {
+            this.goToSlide(0);
+          } else {
+            this.goToSlide(res.data.reviewQueAns.length);
+            console.log(res.data.reviewQueAns.length);
+
+          }
+        }
+      }
+    });
   }
-  star3(index: number) {
 
-    this.rating3 = index;
-    this.ratingChange.emit(this.rating3);
+  goToSlide(id) {
+    this.slides.slideTo(id, 10);
+
   }
-  star4(index: number) {
-
-    this.rating4 = index;
-    this.ratingChange.emit(this.rating4);
+  next() {
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+    this.slides.lockSwipes(true);
   }
 
-  getColor(index: number, id: any) {
+  previous() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+    this.slides.lockSwipes(true);
+  }
+
+  star(index: number, i, j) {
+    this['rating' + i + j] = index;
+
+
+  }
+  getColor(index: number, rating: any) {
     /* function to return the color of a star based on what
      index it is. All stars greater than the index are assigned
      a grey color , while those equal or less than the rating are
@@ -56,29 +108,274 @@ export class StartComponent implements OnInit {
           3 stars  : yellow
           4-5 stars: green
     */
-    if (this.isAboveRating(index)) {
+    if (this.isAboveRating(index, rating)) {
       return COLORS.GREY;
     }
-    switch (this.rating1) {
+    switch (rating) {
       case 1:
       case 2:
         return COLORS.RED;
       case 3:
-        return COLORS.YELLOW;
+        return COLORS.GREEN;
       case 4:
       case 5:
-        return COLORS.GREEN;
+        return COLORS.YELLOW;
       default:
         return COLORS.GREY;
     }
   }
 
-  isAboveRating(index: number): boolean {
+  isAboveRating(index: number, rating): boolean {
     // returns whether or not the selected index is above ,the current rating
     // function is called from the getColor function.
-    return index > this.rating1;
+    return index > rating;
   }
 
   ngOnInit() { }
+  back() {
+    this.modalController.dismiss({
+      dismissed: true
+    });
+
+
+  }
+
+
+
+
+  saveFoodRatting() {
+    if (!this.rating11) {
+      this.alertService.showErrorAlert('Prease Rate Presentation');
+      return;
+    }
+
+    if (!this.rating12) {
+      this.alertService.showErrorAlert('Prease Rate Plating');
+      return;
+    }
+
+
+    if (!this.rating13) {
+      this.alertService.showErrorAlert('Prease Rate Taste');
+      return;
+    }
+
+
+    if (!this.rating14) {
+      this.alertService.showErrorAlert('Prease Rate Texture / Mouth Fill');
+      return;
+    }
+
+    this.saveRatting({
+      reviewRequestId: this.reviewDetail.id,
+      stage: 1,
+      mainQuestionId: 1,
+      queAnsList: [
+        {
+          questionId: 1,
+          answer: this.rating11
+        },
+        {
+          questionId: 2,
+          answer: this.rating12
+        },
+        {
+          questionId: 3,
+          answer: this.rating13
+        },
+        {
+          questionId: 4,
+          answer: this.rating14
+        }
+      ]
+
+    });
+
+  }
+  saveServiceRatting() {
+    if (!this.rating21) {
+      this.alertService.showErrorAlert('Prease Rate Cleanliness');
+      return;
+    }
+
+    if (!this.rating22) {
+      this.alertService.showErrorAlert('Prease Rate Understanding of Menu');
+      return;
+    }
+
+
+    if (!this.rating23) {
+      this.alertService.showErrorAlert('Prease Rate Attitute');
+      return;
+    }
+
+
+    if (!this.rating24) {
+      this.alertService.showErrorAlert('Prease Rate Promptness');
+      return;
+    }
+    this.saveRatting({
+      reviewRequestId: this.reviewDetail.id,
+      stage: 2,
+      mainQuestionId: 2,
+      queAnsList: [
+        {
+          questionId: 5,
+          answer: this.rating21
+        },
+        {
+          questionId: 6,
+          answer: this.rating22
+        },
+        {
+          questionId: 7,
+          answer: this.rating23
+        },
+        {
+          questionId: 8,
+          answer: this.rating24
+        }
+      ]
+
+    });
+
+  }
+  saveAmbienceRatting() {
+    if (!this.rating31) {
+      this.alertService.showErrorAlert('Prease Rate Cleanliness');
+      return;
+    }
+
+    if (!this.rating32) {
+      this.alertService.showErrorAlert('Prease Rate Lighting');
+      return;
+    }
+
+
+    if (!this.rating33) {
+      this.alertService.showErrorAlert('Prease Rate Music ');
+      return;
+    }
+
+
+    if (!this.rating34) {
+      this.alertService.showErrorAlert('Prease Rate Overall Fell');
+      return;
+    }
+    this.saveRatting({
+      reviewRequestId: this.reviewDetail.id,
+      stage: 3,
+      mainQuestionId: 3,
+      queAnsList: [
+        {
+          questionId: 5,
+          answer: this.rating31
+        },
+        {
+          questionId: 9,
+          answer: this.rating32
+        },
+        {
+          questionId: 10,
+          answer: this.rating33
+        },
+        {
+          questionId: 11,
+          answer: this.rating34
+        }
+      ]
+
+    });
+
+  }
+  saveMoneyRatting() {
+    if (!this.rating41) {
+      this.alertService.showErrorAlert('Prease Rate  Value for Money ');
+      return;
+    }
+    this.saveRatting({
+      reviewRequestId: this.reviewDetail.id,
+      stage: 4,
+      mainQuestionId: 4,
+      queAnsList: [
+        {
+          questionId: 4,
+          answer: this.rating41
+        },
+
+      ]
+
+    });
+
+  }
+
+  saveDecreptionRating() {
+    this.saveRatting(
+      {
+        reviewRequestId: this.reviewDetail.id,
+        stage: 5,
+        mainQuestionId: 5,
+
+        description: this.description
+      }
+    );
+  }
+  saveRatting(ratObj) {
+    this.loginservice.submitReview(ratObj).subscribe((res) => {
+      if (res.status === 200) {
+
+        this.next();
+      }
+
+    });
+  }
+
+
+  async presentActionSheetForCamera() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Albums',
+      buttons: [{
+        text: 'Take Picture',
+        // role: 'destructive',
+        icon: 'camera',
+        handler: () => {
+
+          this.saveImage('camera');
+
+        }
+      }, {
+        text: 'Gallery',
+        // role: 'destructive',
+        icon: 'images',
+        handler: () => {
+
+          this.saveImage('gallery');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  saveImage(from) {
+    this.cameraService.takeImage(from).then((imgData) => {
+      this.alertService.showLoader('Uploading Image');
+      const images = new FormData();
+
+      images.append('mobile', this.storageService.getData('mobile'));
+      images.append('file', imgData);
+      images.append('type', '6');
+      this.loginservice.uploadSingleImg(images).subscribe((res) => {
+        this.alertService.closeLoader();
+      });
+    });
+  }
+
 
 }

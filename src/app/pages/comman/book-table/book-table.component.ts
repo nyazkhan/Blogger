@@ -64,7 +64,7 @@ export class BookTableComponent implements OnInit {
 
   bookTable() {
     // this.back();
-    // this.presentBookedModelModal();
+    this.bookingDetails.toDate = this.bookingDetails.toDate.toString().slice(0, 10);
     this.bookingDetails.to = this.restaurantListCopy.id;
     // this.bookingDetails.toDate = '2020-01-01';
     this.loginservice.bookTable(this.bookingDetails).subscribe((res: any) => {

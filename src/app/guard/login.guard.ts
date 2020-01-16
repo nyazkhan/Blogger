@@ -16,7 +16,11 @@ export class LoginGuard implements CanActivate {
   ): Promise<boolean> {
 
 
-    if (this.storageService.getData('accessToken')) {
+    let token;
+
+    token = this.storageService.getData('accessToken');
+
+    if (token) {
 
       this.router.navigateByUrl('/map');
     }

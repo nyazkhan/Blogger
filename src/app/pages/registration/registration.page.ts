@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { IonSlides, } from '@ionic/angular';
+import { IonSlides, ActionSheetController, } from '@ionic/angular';
 import { AlertService } from 'src/app/service/alert.service';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { Router } from '@angular/router';
+import { CameraService } from 'src/app/service/camera.service';
 
 @Component({
   selector: 'app-registration',
@@ -23,6 +24,8 @@ export class RegistrationPage implements OnInit {
     private loginservice: LoginService,
     private storageService: StorageService,
     @Inject(Router) private router: Router,
+    public cameraService: CameraService,
+    public actionSheetController: ActionSheetController,
 
 
   ) {
@@ -32,15 +35,15 @@ export class RegistrationPage implements OnInit {
 
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
-      if (res.data) {
+      if (res.status === 200) {
+        this.bloggerDetail = res.data;
         console.log(res.data);
-        if (res.data.stage >= 12) {
-          this.router.navigateByUrl('/dashboard');
-        }
+        // if (res.data.stage >= 12) {
+        //   this.router.navigateByUrl('/dashboard');
+        // }
         this.nxtStage = res.data.stage - 4;
         this.editDetails(res.data.stage - 4);
         // this.next(res.data.stage);
-        this.bloggerDetail = res.data;
         if (!this.bloggerDetail.maxDistance) {
           this.bloggerDetail.maxDistance = 5;
         }
@@ -87,13 +90,116 @@ export class RegistrationPage implements OnInit {
   }
 
 
+  saveUserName() {
+
+    this.loginservice.updateBloggerDetails({
+      mobile: this.bloggerDetail.mobile,
+      stage: 4,
+      name: this.bloggerDetail.name
+
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.updateObject(res.data);
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
+    });
+  }
+
+
+  // saveProfilePic() {
+
+  //   this.loginservice.updateBloggerDetails({
+  //     mobile: this.bloggerDetail.mobile,
+  //     stage: 5,
+  //     maxDistance: this.bloggerDetail.maxDistance
+
+  //   }).subscribe((res) => {
+  //     if (res.status === 200) {
+  //       this.updateObject(res.data);
+  //     } else {
+  //       this.alertService.showErrorAlert(res.message);
+  //     }
+  //   });
+  // }
+
+
+
+  async presentActionSheetForCamera() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Albums',
+      buttons: [{
+        text: 'Take Picture',
+        // role: 'destructive',
+        icon: 'camera',
+        handler: () => {
+
+          this.saveImage('camera');
+
+        }
+      }, {
+        text: 'Gallery',
+        // role: 'destructive',
+        icon: 'images',
+        handler: () => {
+
+          this.saveImage('gallery');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  saveImage(from) {
+    this.cameraService.takeImage(from).then((imgData) => {
+      this.alertService.showLoader('Uploading Image');
+      const images = new FormData();
+
+      images.append('mobile', this.bloggerDetail.mobile);
+      images.append('file', imgData);
+      images.append('type', '5');
+      this.loginservice.uploadSingleImg(images).subscribe((res) => {
+        this.editDetails(6);
+        this.alertService.closeLoader();
+      });
+    });
+  }
+  deleteImgByid(id) {
+    this.alertService.showLoader('Deleting Image ..');
+    this.loginservice.deleteImgById(this.bloggerDetail.list[0].data[0].id).subscribe((res) => {
+      if (res.status === 200) {
+        // this.restaurantDetail.list[i].data.splice(j, 1);
+        this.alertService.closeLoader();
+
+      }
+    });
+  }
+
+
+  goTONext() {
+    if (!this.bloggerDetail.list[0].data[0]) {
+      this.alertService.showErrorAlert('Please Upload The Profile Picture');
+      return;
+    }
+    this.next();
+  }
+
+
+
 
 
   saveDistance() {
 
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 4,
+      stage: 6,
       maxDistance: this.bloggerDetail.maxDistance
 
     }).subscribe((res) => {
@@ -113,7 +219,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 5,
+      stage: 7,
       foodType: this.bloggerDetail.foodType
 
     }).subscribe((res) => {
@@ -134,7 +240,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 6,
+      stage: 8,
       invitationType: this.bloggerDetail.invitationType
 
     }).subscribe((res) => {
@@ -156,7 +262,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 7,
+      stage: 9,
       reviewAmount: this.bloggerDetail.reviewAmount,
       reviewType: this.bloggerDetail.reviewType
     }).subscribe((res) => {
@@ -190,7 +296,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 8,
+      stage: 10,
       fbProfile: this.bloggerDetail.fbProfile,
       instaProfile: this.bloggerDetail.instaProfile,
       twitterProfile: this.bloggerDetail.twitterProfile,
@@ -206,6 +312,9 @@ export class RegistrationPage implements OnInit {
     });
   }
 
+
+
+
   saveAboutUser() {
     if (!this.bloggerDetail.description) {
       this.alertService.showErrorAlert('Please Tell us About You');
@@ -213,7 +322,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 9,
+      stage: 11,
       description: this.bloggerDetail.description
 
     }).subscribe((res) => {
@@ -248,7 +357,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 10,
+      stage: 12,
       email: this.bloggerDetail.email
 
     }).subscribe((res) => {
@@ -273,7 +382,7 @@ export class RegistrationPage implements OnInit {
     }
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 11,
+      stage: 13,
       email: this.bloggerDetail.email,
       code: this.bloggerDetail.code
 
@@ -298,7 +407,7 @@ export class RegistrationPage implements OnInit {
   resendEmailOTP() {
     this.loginservice.updateBloggerDetails({
       mobile: this.bloggerDetail.mobile,
-      stage: 10,
+      stage: 12,
       email: this.bloggerDetail.email
 
     }).subscribe((res) => {

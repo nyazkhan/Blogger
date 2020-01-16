@@ -285,3 +285,10 @@ ion-thumbnail{
     flex-shrink: 0;
     margin-bottom: 15px;
 }
+
+
+.fixed-bottom-part {
+    position: sticky;
+    top: 79vh;
+    width: 100%;
+  }

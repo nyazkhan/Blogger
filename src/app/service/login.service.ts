@@ -33,7 +33,7 @@ export class LoginService {
 
 
   masterApi() {
-    return this.Http.post('master/data/get', [1, 2, 3, 4]);
+    return this.Http.post('master/data/get', [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
 
   }
 
@@ -112,5 +112,18 @@ export class LoginService {
 
   }
 
+  getReviewRequest() {
+    return this.Http.get('connect/reviewRequest/get');
+
+
+  }
+  submitReview(rating) {
+    return this.Http.post('connect/review/save', rating);
+
+  }
+  getReviewById(id) {
+    return this.Http.post('connect/review/byReviewRequest/get' , id);
+
+  }
 
 }

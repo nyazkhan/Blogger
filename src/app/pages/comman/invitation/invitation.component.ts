@@ -61,11 +61,11 @@ export class InvitationComponent implements OnInit {
   acceptinvitation() {
     this.loginservice.updateInvitationStatus({
       id: this.invitationDetails.id,
-      status: 5
+      status: 10
     }).subscribe((res) => {
       if (res.status === 200) {
         console.log(res.data);
-        this.invitationDetails.status = 5;
+        this.invitationDetails.status = 10;
         this.alertService.presentToast('Accept Invitation Request Successfuly');
 
       }
