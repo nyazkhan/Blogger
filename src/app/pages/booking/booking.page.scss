@@ -5,7 +5,7 @@
     border: 1px solid rgba(60, 60, 60, 0.1);
     box-sizing: border-box;
     border-radius: 7px;
-    padding: 7px 20px;
+    padding: 3px 12px;
     font-size: 13px;
     color: rgba(0, 0, 0, 0.4);
     margin-right: 10px;
@@ -16,4 +16,14 @@
 .btn-list .active{
     border: 1px solid #1966FB;
     color: #1966FB;
+}
+.right-table-part {
+    -webkit-box-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: flex;
+    font-size: 11px;
+    float: right;
+    position: relative;
+    top: -18px;
 }

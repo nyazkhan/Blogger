@@ -57,12 +57,12 @@ export class BookedComponent implements OnInit {
     this.cancelButtonClick = false;
     this.loginservice.updateInvitationStatus({
       id: this.bookingDetails.id,
-      status: 2
+      status: 17
     }).subscribe((res) => {
       if (res.status === 200) {
         this.alertService.presentToast('Cancel Booking Request Successfuly');
         console.log(res.data);
-        this.bookingDetails.status = 2;
+        this.bookingDetails.status = 17;
       }
     });
   }

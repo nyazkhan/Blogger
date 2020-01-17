@@ -53,7 +53,9 @@
 
                 Cafe & Restaurent
               </ng-container> <br>
-              {{restaurantListCopy.address.locality}}, {{restaurantListCopy.address.city}}
+              {{  (restaurantListCopy.address?.locality.length>20)? (restaurantListCopy.address?.locality | slice:0:20)+'..':(restaurantListCopy.address?.locality)}},
+
+              {{restaurantListCopy.address.city}}
             </p>
             <span class="km-part"> {{restaurantListCopy.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img
                 src="assets/km-arrorw.svg"> </span>

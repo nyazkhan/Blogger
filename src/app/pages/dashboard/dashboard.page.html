@@ -6,13 +6,13 @@
     <ion-row style="padding-left: 40px;">
       <ion-col size="3">
         <div class="review-list">
-          <h6>22</h6>
+          <h6>{{dashBoardCount.reviews}}</h6>
           <span>Reviews</span>
         </div>
       </ion-col>
       <ion-col size="3">
         <div class="review-list">
-          <h6>22</h6>
+          <h6>{{dashBoardCount.invitations}}</h6>
           <span>Invites</span>
         </div>
       </ion-col>
@@ -92,7 +92,9 @@
     
               Cafe & Restaurent
             </ng-container> <br>
-              {{restaurant.address.locality}}, {{restaurant.address.city}}</p>
+            {{  (restaurant.address?.locality.length>20)? (restaurant.address?.locality | slice:0:20)+'..':(restaurant.address?.locality)}},
+
+              {{restaurant.address.city}}</p>
             <span class="km-part"> {{restaurant.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img src="assets/km-arrorw.svg"> </span>
           </ion-label>
         </ion-item>

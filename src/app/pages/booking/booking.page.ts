@@ -64,13 +64,13 @@ export class BookingPage implements OnInit {
       this.bookingList = this.bookingListCopy.filter((el) => {
         console.log(el.status);
 
-        return (el.status === 4) || (el.status === 2);
+        return (el.status === 3) || (el.status === 17);
       });
 
     }
     if (val === 'next') {
       this.bookingList = this.bookingListCopy.filter((el) => {
-        return (el.status === 5);
+        return (el.status === 10);
       });
 
     }
@@ -82,7 +82,14 @@ export class BookingPage implements OnInit {
 
     }
     console.log(this.bookingList);
+    if (val === 'past') {
+      this.bookingList = this.bookingListCopy.filter((el) => {
+        console.log(el.status);
 
+        return (el.status === 8) || (el.status === 7) || (el.status === 16);
+      });
+
+    }
   }
 
   async presentBookingDetailsModal(i) {

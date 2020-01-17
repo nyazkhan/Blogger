@@ -12,6 +12,9 @@ import { StartComponent } from './start/start.component';
 })
 export class ReviewPage implements OnInit {
   reviewList: any = [];
+  reviewListCopy: any = [];
+  uncompleteReview: any = [];
+  filterBy = 'all';
   constructor(
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
@@ -27,16 +30,17 @@ export class ReviewPage implements OnInit {
       if (res.status === 200) {
 
         this.reviewList = res.data;
+        this.reviewListCopy = res.data;
       }
     });
   }
 
-  async presentReviewModal() {
+  async presentReviewModal(i) {
     const modal = await this.modalController.create({
       component: ReviewDetailsComponent,
       componentProps: {
 
-        // reviewDetails: this.reviewList[i],
+        reviewId: { id: this.reviewList[i].id },
       }
     });
     return await modal.present();
@@ -46,10 +50,46 @@ export class ReviewPage implements OnInit {
       component: StartComponent,
       componentProps: {
 
-        reviewDetails: this.reviewList[i],
+        reviewId: { id: this.reviewList[i].id },
       }
     });
     return await modal.present();
   }
 
+  filterResponse(val) {
+    this.filterBy = val;
+
+    if (val === 'all') {
+      this.reviewList = this.reviewListCopy;
+
+    }
+    if (val === 'pending') {
+      this.reviewList = this.reviewListCopy.filter((el) => {
+        return (el.status === 9);
+      });
+
+    }
+
+    if (val === 'InProgres') {
+      this.reviewList = this.reviewListCopy.filter((el) => {
+        return (el.status === 11);
+      });
+
+    }
+    if (val === 'complete') {
+      this.reviewList = this.reviewListCopy.filter((el) => {
+        return (el.status === 13);
+      });
+
+    }
+
+  }
+  navigateByStatus(status, index) {
+    if ((status === 9) || (status === 11)) {
+      this.presentReatingModal(index);
+    }
+    if (status === 13) {
+      this.presentReviewModal(index);
+    }
+  }
 }

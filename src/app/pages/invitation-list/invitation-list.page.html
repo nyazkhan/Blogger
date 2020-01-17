@@ -17,7 +17,7 @@
           <h6 [ngClass]="{'active': (filterBy ==='opend')}" (click)="filterResponse('opend')">Open</h6>
           <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Closed</h6> -->
           <h6 [ngClass]="{'active': (filterBy ==='cancel')}" (click)="filterResponse('cancel')">Cancel</h6>
-          <!-- <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6> -->
+          <h6 [ngClass]="{'active': (filterBy ==='past')}" (click)="filterResponse('past')">Past</h6>
         </div>
         <ion-item class="rest_address_item mb-20" *ngFor=" let invite of invitaionList; let i =index"
           (click)="presentInvitationModal(i)">
@@ -25,17 +25,16 @@
             <h5 [ngClass]="((invite.status ==3)|| (invite.status ==2))?'invi-date danger':'invi-date primary'">
               {{invite.toDate | date:'EEE,  d MMM ,  y'}} </h5>
             <p class="small-content">Invitation | {{invite.userDetails.name}}</p>
-            <!-- <span class="km-part"> {{invite.userDetails.name}} 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span> -->
-          </ion-label>
+            <span class="right-table-part danger" *ngIf="((invite.status ==3)|| (invite.status ==17))"> Cancel </span>
+            <span class="right-table-part orange" *ngIf="invite.status ==1"> Waiting </span>
+            <span class="right-table-part danger" *ngIf="invite.status ==16"> Expired </span>
+            <span class="right-table-part succes" *ngIf="invite.status ==11"> Review in Process </span>
+            <span class="right-table-part primary" *ngIf="invite.status ==10"> Accepted </span>
+            <span class="right-table-part primary" *ngIf="invite.status ==13"> Completed </span>
+            <span class="right-table-part primary" *ngIf="invite.status ==9"> Review Requested </span>         
+           </ion-label>
         </ion-item>
 
-        <!-- <ion-item class="rest_address_item mb-20" (click)="presentInvitationModal()">
-            <ion-label>
-              <h5 class="rest-heading primary">Today, 04:30 PM</h5>
-              <p class="small-content">Invitation @ Chai sutta bar</p>
-              <span class="km-part"> 3.2km &nbsp; <img src="assets/km-arrorw.svg"> </span>
-            </ion-label>
-          </ion-item> -->
       </ion-col>
     </ion-row>
 

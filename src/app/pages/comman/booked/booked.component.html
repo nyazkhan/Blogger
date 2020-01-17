@@ -50,8 +50,8 @@
 
               <br>
               <ng-container *ngIf="bookingDetails.userDetails.address">
+                {{  (bookingDetails.userDetails.address?.locality.length>20)? (bookingDetails.userDetails.address?.locality | slice:0:20)+'..':(bookingDetails.userDetails.address?.locality)}},
 
-                {{bookingDetails.userDetails.address.locality}}
                 {{bookingDetails.userDetails.address.city}}
               </ng-container>
             </p>
@@ -75,30 +75,30 @@
           </ion-note>
         </ion-item>
 
-        <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
+        <p *ngIf="bookingDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
         <p>
-        <p *ngIf="invitationDetails.status == 8" class="ico-list pink">
+        <p *ngIf="bookingDetails.status == 8" class="ico-list pink">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; You Miss  the Booking 
         </p>
-        <p *ngIf="invitationDetails.status == 7" class="ico-list primary">
+        <p *ngIf="bookingDetails.status == 7" class="ico-list primary">
 
           <img class="ico-small" src="assets/tik.svg">&nbsp; You Enjoy the Booking 
         </p>
-        <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
+        <p *ngIf="bookingDetails.status == 3" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Restaurant
         </p>
-        <p *ngIf="invitationDetails.status == 16" class="ico-list danger">
+        <p *ngIf="bookingDetails.status == 16" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Expired
         </p>
-        <p *ngIf="invitationDetails.status == 17" class="ico-list danger">
+        <p *ngIf="bookingDetails.status == 17" class="ico-list danger">
 
           <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
         </p>
-        <p *ngIf="invitationDetails.status==10" class="ico-list success">
+        <p *ngIf="bookingDetails.status==10" class="ico-list success">
           <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
         </p>
         <p class="ico-list">
@@ -125,13 +125,13 @@
   </ion-grid>
 
   <div *ngIf="cancelButtonClick" class="panel-card fixed-bottom-Cancel-div cancel-transition fixed-back-white">
-    <h5 class="panel-heading ion-margin-bottom">Cancel Invitation</h5>
-    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the invitation</p>
+    <h5 class="panel-heading ion-margin-bottom">Cancel Booking</h5>
+    <p class="small-content ion-margin-bottom">Are you sure you want to cancel the Booking</p>
     <ion-button color="light" size="large" (click)="cancelButtonClick=false"
       class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
       Don’t Cancel </ion-button>
     <ion-button color="danger" (click)="cancelBooking();" size="large"
-      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My invitation </ion-button>
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My Booking </ion-button>
 
   </div>
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">

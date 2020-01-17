@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { AlertService } from 'src/app/service/alert.service';
 import { RestaurantDetailsComponent } from '../restaurant-details/restaurant-details.component';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-invitation',
@@ -14,19 +15,20 @@ export class InvitationComponent implements OnInit {
   @Input() invitaion: object;
   invitationDetails: any = {};
   cancelButtonClick = false;
-
+  bloggerDetails: any = {};
   constructor(
     public modalController: ModalController,
     navParams: NavParams,
     private loginservice: LoginService,
     @Inject(CallNumber) private callNumber: CallNumber,
     @Inject(AlertService) private alertService: AlertService,
+    private storageService: StorageService,
 
   ) {
 
     this.invitationDetails = navParams.get('invitaion');
     console.log(this.invitationDetails);
-
+    this.bloggerDetails = this.storageService.getData('userDetails');
   }
 
   ngOnInit() { }
@@ -80,7 +82,8 @@ export class InvitationComponent implements OnInit {
 
         userDetails: {
           isData: true, data: this.invitationDetails.userDetails, mobileNo: null,
-        },      }
+        },
+      }
     });
     return await modal.present();
   }

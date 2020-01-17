@@ -125,5 +125,14 @@ export class LoginService {
     return this.Http.post('connect/review/byReviewRequest/get' , id);
 
   }
+  uploadReviewImg(imgDetails) {
+    return this.Http.post('file/other/uploadFile', imgDetails);
 
+  }
+
+
+  getDashboardCount(typeOfCount) {
+    return this.Http.post('connect/counts', typeOfCount);
+
+  }
 }

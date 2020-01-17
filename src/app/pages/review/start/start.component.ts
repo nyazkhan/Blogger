@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output, ViewChild, Inject } from '@angular/core';
-import { IonSlides, ModalController, NavParams, ActionSheetController } from '@ionic/angular';
+import { IonSlides, ModalController, NavParams, ActionSheetController, AlertController } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { AlertService } from 'src/app/service/alert.service';
 import { CameraService } from 'src/app/service/camera.service';
@@ -35,7 +35,8 @@ export class StartComponent implements OnInit {
   rating41: number;
   description: string;
   ratingObject: any = {};
-  @Input() reviewDetails: object;
+  idOfReview: any = {};
+  @Input() reviewId: object;
   reviewDetail: any = {};
   starValue = {
     star1: null,
@@ -54,17 +55,24 @@ export class StartComponent implements OnInit {
     private storageService: StorageService,
     public cameraService: CameraService,
     public actionSheetController: ActionSheetController,
+    public alertController: AlertController
   ) {
 
-    this.reviewDetail = navParams.get('reviewDetails');
+    this.idOfReview = navParams.get('reviewId');
     console.log(this.reviewDetail);
-    this.getReviewById();
+    if (this.idOfReview.id) {
+
+      this.getReviewById();
+    } else {
+      this.back();
+    }
   }
 
   getReviewById() {
-    this.loginservice.getReviewById(this.reviewDetail.id).subscribe((res) => {
+    this.loginservice.getReviewById(this.idOfReview.id).subscribe((res) => {
       console.log();
       if (res.status === 200) {
+        this.reviewDetail = res.data;
         if (res.data.reviewQueAns) {
           if (res.data.reviewQueAns.length < 1) {
             this.goToSlide(0);
@@ -299,7 +307,7 @@ export class StartComponent implements OnInit {
       mainQuestionId: 4,
       queAnsList: [
         {
-          questionId: 4,
+          questionId: 12,
           answer: this.rating41
         },
 
@@ -309,27 +317,54 @@ export class StartComponent implements OnInit {
 
   }
 
+
+
+
   saveDecreptionRating() {
-    this.saveRatting(
+    this.loginservice.submitReview(
       {
         reviewRequestId: this.reviewDetail.id,
         stage: 5,
-        mainQuestionId: 5,
-
         description: this.description
       }
-    );
+    ).subscribe((res) => {
+      if (res.status === 200) {
+        this.alertService.showInfoAlert('Review Submit Successfuly');
+        this.back();
+      }
+    });
   }
   saveRatting(ratObj) {
     this.loginservice.submitReview(ratObj).subscribe((res) => {
       if (res.status === 200) {
-
         this.next();
       }
 
     });
   }
+  async presentFinamlSubmitConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Final Submit!',
+      message: '<strong> After submit you can not Upload images.</strong> <br> Please Uplaod Image frist then submit !!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Submit',
+          handler: () => {
+            this.saveDecreptionRating();
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
 
   async presentActionSheetForCamera() {
     const actionSheet = await this.actionSheetController.create({
@@ -371,11 +406,22 @@ export class StartComponent implements OnInit {
       images.append('mobile', this.storageService.getData('mobile'));
       images.append('file', imgData);
       images.append('type', '6');
-      this.loginservice.uploadSingleImg(images).subscribe((res) => {
+      images.append('otherId', this.reviewDetail.id);
+      this.loginservice.uploadReviewImg(images).subscribe((res) => {
         this.alertService.closeLoader();
+        this.getReviewById();
       });
     });
   }
 
+  deleteImgByid(id, index) {
+    this.alertService.showLoader('Deleting Image ..');
+    this.loginservice.deleteImgById(id).subscribe((res) => {
+      if (res.status === 200) {
+        this.reviewDetail.list.splice(index, 1);
+        this.alertService.closeLoader();
 
+      }
+    });
+  }
 }

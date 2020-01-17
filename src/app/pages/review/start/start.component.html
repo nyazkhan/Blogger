@@ -49,8 +49,8 @@
 
               <br>
               <ng-container *ngIf="reviewDetail.userDetails.address">
+                {{  (reviewDetail.userDetails.address?.locality.length>20)? (reviewDetail.userDetails.address?.locality | slice:0:20)+'..':(reviewDetail.userDetails.address?.locality)}},
 
-                {{reviewDetail.userDetails.address.locality}}
                 {{reviewDetail.userDetails.address.city}}
               </ng-container>
             </p>
@@ -62,7 +62,7 @@
   </ion-grid>
 
 
-  <ion-slides >
+  <ion-slides class="swiper-no-swiping">
 
 
     <ion-slide style="vertical-align:top; ">
@@ -101,9 +101,9 @@
                 [ngStyle]="{'color': getColor(num, rating14)}">
               </ion-icon>
             </div>
-            
-           
-             
+
+
+
           </ion-col>
           <ion-col size="12" class="fixed-bottom-button">
             <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveFoodRatting()"
@@ -245,7 +245,7 @@
 
     <ion-slide style="vertical-align:top; ">
       <ion-grid>
-    
+
 
         <ion-row>
           <ion-col size="12">
@@ -253,40 +253,13 @@
               <div class="img-part" (click)="presentActionSheetForCamera()">
                 <img class="gal-img" style="width: 100% !important;" src="assets/addImg.svg" />
               </div>
-              <div class="img-part">
-                <button class="rm-btn">
+              <div class="img-part" *ngFor="let review of reviewDetail.list;let i=index" >
+                <button class="rm-btn" (click)="deleteImgByid(review.id , i)">
                   <span>&#10005;</span>
                 </button>
-                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
+                <img class="gal-img" style="width: 100% !important;" [src]="review.storagePath" />
               </div>
 
-              <div class="img-part  ">
-                <button class="rm-btn">
-                  <span>&#10005;</span>
-                </button>
-                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
-              </div>
-
-              <div class="img-part">
-                <button class="rm-btn">
-                  <span>&#10005;</span>
-                </button>
-                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
-              </div>
-
-              <div class="img-part">
-                <button class="rm-btn">
-                  <span>&#10005;</span>
-                </button>
-                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
-              </div>
-
-              <div class="img-part">
-                <button class="rm-btn">
-                  <span>&#10005;</span>
-                </button>
-                <img class="gal-img" style="width: 100% !important;" src="assets/b2.svg" />
-              </div>
             </div>
           </ion-col>
         </ion-row>
@@ -294,9 +267,10 @@
         <ion-row>
           <ion-col size="12">
 
-            <div  style="max-height: 40vh; overflow: hidden;">
+            <div style="max-height: 40vh; overflow: hidden;">
 
-              <ion-textarea style=" line-height: 26px; max-height: 40vh; min-height: 7vh; overflow: scroll; border: 2px solid red;"
+              <ion-textarea
+                style=" line-height: 26px; max-height: 20vh; min-height: 7vh; overflow: scroll;"
                 name="description" [(ngModel)]="description" type="text" class="ion-text-left" auto-grow="true"
                 placeholder="tripAd Profile Username"></ion-textarea>
             </div>
@@ -304,8 +278,8 @@
 
           </ion-col>
           <ion-col size="12" class="fixed-bottom-button">
-            <ion-button size="large" class="proceed-button cancel-button ion-margin-top" (click)="saveDecreptionRating()"
-              expand="block">PROCEED</ion-button>
+            <ion-button size="large" class="proceed-button cancel-button ion-margin-top"
+              (click)="presentFinamlSubmitConfirm()" expand="block">PROCEED</ion-button>
             <div class="crab-bootm-vector">
               <img src="assets/CRAB_Vector.svg">
             </div>
@@ -317,5 +291,5 @@
 
 
 
- 
+
 </ion-content>

@@ -23,7 +23,7 @@ export class DashboardPage implements OnInit {
 
   position: any = {};
 
-
+  dashBoardCount: any = {};
 
 
   constructor(
@@ -39,6 +39,7 @@ export class DashboardPage implements OnInit {
       console.log(res);
 
     });
+    this.getCount();
     this.geolocation.getCurrentPosition().then((position: Geoposition) => {
       this.position = {
         lat: position.coords.latitude, lon: position.coords.longitude,
@@ -62,6 +63,19 @@ export class DashboardPage implements OnInit {
     });
 
   }
+  getCount() {
+    this.loginservice.getDashboardCount({
+      searchType: 5,
+      status: null
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.dashBoardCount = JSON.parse( res.data);
+        console.log(this.dashBoardCount);
+
+      }
+    });
+  }
+
   async presentRestaurantSearchModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,

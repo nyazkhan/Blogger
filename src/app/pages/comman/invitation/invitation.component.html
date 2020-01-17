@@ -50,8 +50,8 @@
 
               <br>
               <ng-container *ngIf="invitationDetails.userDetails.address">
+                {{  (invitationDetails.userDetails.address?.locality.length>20)? (invitationDetails.userDetails.address?.locality | slice:0:20)+'..':(invitationDetails.userDetails.address?.locality)}},
 
-              {{invitationDetails.userDetails.address.locality}}
               {{invitationDetails.userDetails.address.city}}
               </ng-container>
             </p>
@@ -74,7 +74,18 @@
           <img class="ico-small" src="assets/pass.svg">&nbsp; Invitation for 1 people
         </p>
         <p class="ico-list">
-          <img class="ico-small" src="assets/dollar_gray.svg">&nbsp; Paid Review
+          <img class="ico-small" src="assets/dollar_gray.svg">&nbsp;
+          <ng-container *ngIf="bloggerDetails.reviewType==1">
+            Paid Review
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.reviewType==2">
+            Unpaid Review
+          </ng-container>
+          <ng-container *ngIf="bloggerDetails.reviewType==3">
+
+            Paid & Unpaid both Review
+          </ng-container>
+          
         </p>
         <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
           <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
@@ -138,7 +149,7 @@
       class="cancel-button proceed-button ion-margin-top" expand="block">No, Please
       Don’t Cancel </ion-button>
     <ion-button color="danger" (click)="cancelInvitation();" size="large"
-      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My Appointment </ion-button>
+      class="cancel-button proceed-button ion-margin-top" expand="block">Yes, Cancel My invitation </ion-button>
 
   </div>
   <ion-grid *ngIf="!cancelButtonClick" class="fixed-bottom-button">
