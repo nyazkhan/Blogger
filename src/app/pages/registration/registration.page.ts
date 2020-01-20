@@ -45,7 +45,7 @@ export class RegistrationPage implements OnInit {
         this.editDetails(res.data.stage - 4);
         // this.next(res.data.stage);
         if (!this.bloggerDetail.maxDistance) {
-          this.bloggerDetail.maxDistance = 5;
+          this.bloggerDetail.maxDistance = 10;
         }
         if (!this.bloggerDetail.reviewAmount) {
           this.bloggerDetail.reviewAmount = 0;
@@ -397,7 +397,24 @@ export class RegistrationPage implements OnInit {
   }
 
   showData() {
-    this.router.navigateByUrl('/dashboard');
+
+
+    if (this.bloggerDetail.status === 5) {
+
+      this.router.navigateByUrl('/dashboard');
+    }
+
+    if (this.bloggerDetail.status === 2) {
+      this.alertService.showInfoAlert('On Hold Becouse ..   ' + this.bloggerDetail.reason);
+    }
+    if (this.bloggerDetail.status === 4) {
+      this.alertService.showInfoAlert('Please change The mention Contant..   ' + this.bloggerDetail.reason);
+    }
+    if (this.bloggerDetail.status === 3) {
+      this.alertService.showInfoAlert('Rejected Becouse ..   ' + this.bloggerDetail.reason);
+    }
+
+    // this.router.navigateByUrl('/dashboard');
     console.log(this.bloggerDetail);
 
   }
