@@ -91,3 +91,60 @@ ion-slide{
 // .swiper-container {
 //   overflow: scroll;
 // }
+.part-1{
+  // border:1px solid red;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-center-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.part-2{
+  // border:1px solid blue;
+  height: 40vh;
+  overflow: hidden;
+}
+.part-2 img{
+  width: 100%;
+  background-size: cover;
+  height: 40vh;
+  overflow: hidden;
+}
+.part-3{
+  // border:1px solid green;
+  height: 40vh;
+  overflow: scroll;
+}
+.contant{
+  line-height: 26px;
+}
+.part-4{
+  // border:1px solid orange;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.mybutton{
+width: 100%;
+}
+
+
+
+
+// kkljlk
+
+.bold {
+  font-weight: 500;
+}

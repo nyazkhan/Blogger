@@ -29,13 +29,44 @@
 h1, h2, h3, h4, h5, h6, button, p, span{
     font-family: 'Roboto', sans-serif;
 }
-ion-content{
-    --background: #fbfbfd;
+h1, h2, h3, h4, h5, h6, button, p, span{
+    font-family: 'Roboto', sans-serif;
 }
-ion-button{
-    margin-bottom: 10px;
+h6{
+    line-height: 28px;
+    color: var(--main-font-color);
+    font-size: 16px;
+    font-weight: 400;
+}
+p{
+    line-height: 28px;
+    color: var(--main-font-color);
+    font-size: 18px;
+}
+.main-color{
+    color:var(--main-font-color) !important;
+}
+.main-light-color{
+    color:var(--light-font-color) !important;
+}
+ion-content {
+    --background: #FBFBFD;
 }
 
+ion-item{
+    --padding-start: 0px !important;
+    --inner-padding-end: 0px !important;
+    --border-color:rgba(0, 0, 0, 0.1);
+    --background: transparent;
+}
+ion-input{
+    --placeholder-color: #000000 !important;
+    --placeholder-font-weight: 500 !important;
+    --placeholder-opacity: 1 !important;
+}
+ion-label{
+    margin: 0;
+}
 
 
 .mb-20{
@@ -59,6 +90,9 @@ ion-button{
 .ml-10{
     margin-left: 10px;
 }
+.mr-10{
+    margin-right: 10px;
+}
 .mb-30{
     margin-bottom: 30px;
 }
@@ -80,6 +114,26 @@ ion-button{
 .mb-6{
     margin-bottom: 6px;
 }
+.km-part{
+    justify-content: start;
+    display: flex;
+    font-size: 11px;
+    float: right;
+    position: relative;
+    top: -18px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part ion-icon{
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.km-part img{
+    height: 14px;
+    width: auto;
+}
+
+
 .primary{
     color: #1966FB;
 }
@@ -100,6 +154,25 @@ ion-button{
 }
 .white{
     color: #ffffff;
+}
+
+
+.f-18 {
+    font-size: 18px;
+    }
+.f-16 {
+        font-size: 16px;
+        }
+.f-14 {
+            font-size: 14px;
+            }
+.f-12 {
+     font-size: 12px;
+  }
+.f-10 {
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
 }
 .light-gray{
     color: rgba(0, 0, 0, 0.4);
@@ -208,24 +281,7 @@ ion-label{
     color: rgba(0, 0, 0, 0.4) !important;
     margin-top: 5px !important;
 }
-.km-part{
-    justify-content: start;
-    display: flex;
-    font-size: 11px;
-    float: right;
-    position: relative;
-    top: -18px;
-    color: rgba(0, 0, 0, 0.4);
-}
-.km-part ion-icon{
-    font-size: 10px;
-    line-height: 12px;
-    color: rgba(0, 0, 0, 0.4);
-}
-.km-part img{
-    height: 14px;
-    width: auto;
-}
+
 .time-heading{
     font-weight: bold;
     font-size: 20px !important;

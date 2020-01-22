@@ -3,29 +3,74 @@
   <ion-slides options="myOptions" class="swiper-no-swiping">
 
     <ion-slide style="vertical-align:top">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div class="backbar">
-              <h5 class="page-heading">
-                &nbsp; Set your residance location
-              </h5>
-            </div>
-
-            <!-- <div class="svg-image-box">
-              <img src="assets/Location_House.svg">
-            </div> -->
-
-
-
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <img style="height: 40vh;" src="assets/Location_House.svg">
-
-          </ion-col>
-        </ion-row>
+      
+      <ion-row class="part-1">
+        <ion-col size="12">
+          <span class="top-center-heading bold f-18" >Set your residance location</span>
+        </ion-col>
+    
+      </ion-row>
+      <ion-row class="part-2">
+        <ion-col class="ion-no-padding">
+    
+          <img src="assets/Location_House.svg">
+    
+    
+        </ion-col>
+    
+      </ion-row>
+      <ion-row class="part-3">
+    
+        <ion-col size="12">
+          <ion-row *ngIf="address.premisesNo ==''">
+            <ion-col>
+              <ion-label  class="text ion-text-start mb-25">
+                <p> We need to know where you live so we can
+                  make our suggestion
+                  confortable for you</p>
+              </ion-label>
+            </ion-col>
+  
+          </ion-row>
+  
+          <ion-row *ngIf="address.premisesNo !==''">
+            <ion-col size="8">
+              <ion-label  class=" ion-text-start mb-25">
+                <p>
+  
+                  {{address.premisesNo}} ,
+                  {{address.locality}} ,
+                  {{address.landmark}} ,{{address.city}} ,
+                  <br>{{address.district}} , {{address.state}}
+                  <br>
+                  {{address.pincode}}
+                </p>
+              </ion-label>
+            </ion-col>
+            <ion-col size="4">
+                <span  class=" primary"  (click)="next()">
+                    Change</span>
+            </ion-col>
+          </ion-row>
+       
+    
+        </ion-col>
+    
+      </ion-row>
+    
+      <ion-row class="part-4">
+        <ion-col size="12">
+          <div class="button-list ion-no-padding">
+            <ion-button *ngIf="address.premisesNo =='' " (click)="next()" class="mybutton" color="primary">Set Location On Map</ion-button>
+            <ion-button color="mybutton"  color="primary" (click)="saveAddress()" *ngIf="address.premisesNo !==''">Next</ion-button>
+            <ion-button *ngIf="false" color="mybutton" color="primary">Primary</ion-button>
+          </div>
+        </ion-col>
+    
+      </ion-row>
+      
+      <!-- <ion-grid>
+      
         <ion-row *ngIf="address.premisesNo ==''">
           <ion-col>
             <ion-label  class="text ion-text-start mb-25">
@@ -44,7 +89,7 @@
 
                 {{address.premisesNo}} ,
                 {{address.locality}} ,
-                <br>{{address.landmark}} ,{{address.city}} ,
+                {{address.landmark}} ,{{address.city}} ,
                 <br>{{address.district}} , {{address.state}}
                 <br>
                 {{address.pincode}}
@@ -66,12 +111,10 @@
             <ion-button *ngIf="address.premisesNo !==''" size="large" (click)="saveAddress()"
               class="proceed-button  ion-margin-top" expand="block">Next
             </ion-button>
-            <div class="crab-bootm-vector">
-              <img src="assets/CRAB_Vector.svg">
-            </div>
+          
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
     </ion-slide>
 
     <ion-slide style="vertical-align:top">

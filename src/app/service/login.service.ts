@@ -135,4 +135,11 @@ export class LoginService {
     return this.Http.post('connect/counts', typeOfCount);
 
   }
+
+
+
+  restaurantTimeSlot(dateAndId) {
+    return this.Http.post('search/rest/timeslot', dateAndId);
+
+  }
 }

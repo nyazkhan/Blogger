@@ -65,7 +65,9 @@ export class MapPage implements OnInit {
 
   ) {
     this.userPhoneNo = this.storageService.getData('mobile');
+    this.loginservice.getUserDetails(this.userPhoneNo).subscribe((res) => {
 
+    });
   }
 
   ngOnInit() {
@@ -120,7 +122,7 @@ export class MapPage implements OnInit {
     this.input = document.getElementById('autocomplete');
 
     const searchBox = new google.maps.places.SearchBox(document.getElementById('autocomplete'), {
-      types: ['(address)'], componentRestrictions: { country: 'In' }
+      fields: [ 'opening_hours', 'utc_offset_minutes'], types: ['(address)'], componentRestrictions: { country: 'In' }
     });
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(this.input);
 

@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { AlertService } from 'src/app/service/alert.service';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/service/storage.service';
 import { LoginService } from 'src/app/service/login.service';
+import { OtpComponent } from './otp/otp.component';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,6 @@ import { LoginService } from 'src/app/service/login.service';
 export class LoginPage implements OnInit {
 
   phoneNo = '';
-  // public PASSWORD_REGEX = '[789][0-9]{9}';
   seconds = 60;
   otp: string;
   timer: any;
@@ -23,23 +23,28 @@ export class LoginPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     @Inject(Router) private router: Router,
     private loginservice: LoginService,
-    // private storage: Storage,
+    public modalController: ModalController,
     private storageService: StorageService
 
   ) {
   }
 
-  next() {
-    this.slides.lockSwipes(false);
-    this.slides.slideNext();
-    this.slides.lockSwipes(true);
+  slidesDidLoad(slides: IonSlides) {
+    slides.startAutoplay();
   }
 
-  previous() {
-    this.slides.lockSwipes(false);
-    this.slides.slidePrev();
-    this.slides.lockSwipes(true);
+
+  async presentOTPModal() {
+    const modal = await this.modalController.create({
+      component: OtpComponent,
+      componentProps: {
+
+        phone: { phone: this.phoneNo }
+      }
+    });
+    return await modal.present();
   }
+
 
 
 
@@ -70,8 +75,7 @@ export class LoginPage implements OnInit {
     this.alertService.showLoader('OTP sending..');
     this.loginservice.signUp(this.phoneNo).subscribe((res) => {
       if (res.status === 200) {
-        this.next();
-        this.resendOtp();
+        this.presentOTPModal();
 
 
       }
@@ -85,57 +89,10 @@ export class LoginPage implements OnInit {
   }
 
 
-  otpSummit() {
-    // this.alertService.showLoader(' Verifying OTP ..');
-    console.log('its call');
-    this.loginservice.verifyOTP(this.phoneNo, this.otp).subscribe((res) => {
 
-      if (res.data) {
-        for (const key of Object.keys(res.data)) {
-          this.storageService.storeData(key, res.data[key]);
-        }
-        this.slides.slideTo(0, 1000);
-        this.router.navigateByUrl('/map');
-      }
-      this.alertService.closeLoader();
-
-    }, (err) => {
-      this.alertService.closeLoader();
-
-    });
-  }
-
-  resendOTP() {
-    this.loginservice.resendOTP(this.phoneNo).subscribe((res) => {
-      this.alertService.showInfoAlert('OTP SEND');
-      this.seconds = 60;
-      this.timer = null;
-      this.resendOtp();
-    });
-  }
 
   ngOnInit() {
 
   }
 
-
-  changeSeconds() {
-    // if ((this.seconds < 60) && (this.seconds > 0)) {
-    //   document.getElementById('timer').innerHTML = 'OTP will expire in ' + this.seconds.toString() + 'seconds';
-    // }
-    if (this.seconds > 0) {
-      this.seconds--;
-    } else {
-      clearInterval(this.timer);
-
-    }
-  }
-
-  resendOtp() {
-    if (!this.timer) {
-      this.timer = window.setInterval(() => {
-        this.changeSeconds();
-      }, 1000);
-    }
-  }
 }

@@ -19,6 +19,7 @@ export class RegistrationPage implements OnInit {
 
   seconds = 60;
   timer: any;
+  socialIndex = 1;
   constructor(
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
@@ -38,6 +39,7 @@ export class RegistrationPage implements OnInit {
       if (res.status === 200) {
         this.bloggerDetail = res.data;
         console.log(res.data);
+        this.storageService.storeData('userDetails', res.data);
         // if (res.data.stage >= 12) {
         //   this.router.navigateByUrl('/dashboard');
         // }
@@ -59,8 +61,13 @@ export class RegistrationPage implements OnInit {
   updateObject(newObj) {
     this.bloggerDetail = newObj;
     console.log(this.bloggerDetail);
-    this.nxtStage = this.bloggerDetail.stage - 4;
+    this.nxtStage = newObj.stage - 4;
     this.storageService.storeData('stage', this.bloggerDetail.stage);
+    if (newObj) {
+
+      this.storageService.storeData('userDetails', newObj);
+    }
+
     this.editDetails(this.nxtStage);
   }
   ngOnInit() {
@@ -70,7 +77,7 @@ export class RegistrationPage implements OnInit {
   }
   editDetails(id) {
     console.log(id);
-    if (id === 7) {
+    if (id === 9) {
       this.resendOtp();
 
     }
@@ -165,8 +172,19 @@ export class RegistrationPage implements OnInit {
       images.append('mobile', this.bloggerDetail.mobile);
       images.append('file', imgData);
       images.append('type', '5');
-      this.loginservice.uploadSingleImg(images).subscribe((res) => {
-        this.editDetails(6);
+      this.loginservice.uploadSingleImg(images).subscribe((res1) => {
+        this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
+          if (res.status === 200) {
+            this.bloggerDetail = res.data;
+            this.nxtStage = res.data.stage - 4;
+            if (!this.bloggerDetail.maxDistance) {
+              this.bloggerDetail.maxDistance = 10;
+            }
+            if (!this.bloggerDetail.reviewAmount) {
+              this.bloggerDetail.reviewAmount = 0;
+            }
+          }
+        });
         this.alertService.closeLoader();
       });
     });
@@ -175,7 +193,7 @@ export class RegistrationPage implements OnInit {
     this.alertService.showLoader('Deleting Image ..');
     this.loginservice.deleteImgById(this.bloggerDetail.list[0].data[0].id).subscribe((res) => {
       if (res.status === 200) {
-        // this.restaurantDetail.list[i].data.splice(j, 1);
+        this.bloggerDetail.list[0].data.splice(0, 1);
         this.alertService.closeLoader();
 
       }
@@ -444,7 +462,7 @@ export class RegistrationPage implements OnInit {
 
   changeSeconds() {
     if ((this.seconds < 60) && (this.seconds > 0)) {
-      document.getElementById('timer').innerHTML = 'Resend OTP in ' + this.seconds.toString() + 'seconds';
+      document.getElementById('timer').innerHTML = 'OTP expire in ' + this.seconds.toString() + 'seconds';
     }
     if (this.seconds > 0) {
       this.seconds--;

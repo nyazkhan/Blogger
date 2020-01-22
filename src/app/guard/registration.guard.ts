@@ -7,7 +7,7 @@ import { LoginService } from '../service/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrationGuard implements  CanActivate {
+export class RegistrationGuard implements CanActivate {
   constructor(
     @Inject(StorageService) private storageService: StorageService,
     private router: Router,
@@ -19,15 +19,29 @@ export class RegistrationGuard implements  CanActivate {
   ): Promise<boolean> {
     const stage = this.storageService.getData('stage');
 
-    if ((stage < 13) && (3 < stage)) {
-      return true;
-    } else {
-      if (stage >= 13) {
+    // if ((stage < 13) && (3 < stage)) {
+    //   return true;
+    // } else {
+    //   if (stage >= 13) {
 
-        this.router.navigateByUrl('/dashboard');
+    //     this.router.navigateByUrl('/dashboard');
+    //   }
+    // }
+    const userDetails = this.storageService.getData('userDetails');
+
+    if (userDetails.status !== 5) {
+
+      if ( (3 < stage)) {
+        return true;
       }
-    }
+      if (stage === 3) {
 
+        this.router.navigateByUrl('/map');
+      }
+    } else {
+      this.router.navigateByUrl('/dashboard');
+
+    }
   }
 
 }

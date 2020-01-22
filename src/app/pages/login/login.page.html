@@ -1,83 +1,80 @@
 <ion-content>
-  <ion-slides options="myOptions" class="swiper-no-swiping">
 
+  <ion-row class="part-2">
+    <ion-col class="ion-no-padding">
+      <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
+        <ion-slide  style=" vertical-align:top">
+          <ion-row>
+            <ion-col size="12">
+              <span class="top-center-heading bold f-18" >INVITE INFLUENCER</span>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12">
+              <img src="assets/intro2.png">
+            </ion-col>
+          </ion-row>
+        </ion-slide>
+        <ion-slide  style=" vertical-align:top">
+          <ion-row>
+            <ion-col  size="12">
+              <span class="top-center-heading bold f-18" >GET RATED</span>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12">
+              <img src="assets/intro11.png">
+            </ion-col>
+          </ion-row>
+        </ion-slide>
+        
+        <ion-slide  style=" vertical-align:top">
+          <ion-row>
+            <ion-col  size="12">
+              <span class="top-center-heading bold f-18" >GET CUSTOMER</span>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12">
+              <img src="assets/intro3.png">
+            </ion-col>
+          </ion-row>
+        </ion-slide>
+        <ion-slide style=" vertical-align:top">
+          <ion-row>
+            <ion-col  size="12">
+              <span class="top-center-heading bold f-18" >LET'S START</span>
+            </ion-col>
+            <ion-col class="ion-no-padding" size="12">
+              <img src="assets/intro4.png">
+            </ion-col>
+          </ion-row>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
 
+  </ion-row>
+  <ion-row class="part-3">
+    <ion-col size="12">
+      <h6 style="font-size: 16px !important;margin-bottom:0; margin-top: 0;" class="ion-text-left bold">Sign Up
+        /
+        Login</h6>
 
-    <ion-slide style="vertical-align:top">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div class="top-illu-box mb-20">
-              <img src="assets/illu_with_crab.svg">
-            </div>
-            <h6 class="ion-text-start sllide-dark-heading">let’s start our journey</h6>
-            <ion-item class="mb-20">
-              <ion-label class="lable-style" position="stacked">Mobile No.</ion-label>
-              <ion-input class="input-style" type="number" name="phoneNo" [(ngModel)]="phoneNo"></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item class="stylist-input" lines="none" color="undefine">
+              <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter Mobile Number</ion-label>
+              <ion-input class="opacity-1" type="number" name="phoneNo" [(ngModel)]="phoneNo">
+              </ion-input>
+
             </ion-item>
-            <p class="text ion-text-start mb-20">We will send an OTP on this mobile number to verify you</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+     
+    </ion-col>
+  
+  </ion-row>
 
-      <ion-grid class="fixed-bottom-part-2">
-        <ion-row>
-          <ion-col>
-            <ion-button  class="proceed-button  ion-margin-top" (click)="onSignInSubmit()" expand="block">
-              SEND OTP</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
+  <ion-row class="part-4">
+    <ion-col size="12">
+      <div class="button-list ion-no-padding">
+        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
+        <ion-button color="mybutton" color="primary" (click)="onSignInSubmit()">GET OTP</ion-button>
+        <ion-button *ngIf="false" color="mybutton" color="primary">Primary</ion-button>
+      </div>
+    </ion-col>
 
-
-
-
-    <ion-slide style="vertical-align:top">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div class="backbar">
-              <h5 class="page-heading">
-                &nbsp; Enter OTP Recived
-              </h5>
-            </div>
-            <ion-item lines="none">
-              <ion-label class="ion-padding-top ion-padding-bottom">
-                <h5 class="otp-change-no">+91 {{phoneNo}} <span class="ion-float-right primary" (click)="previous()">
-                    Change</span></h5>
-              </ion-label>
-            </ion-item>
-            <div class="svg-image-box">
-              <img src="assets/OTP_bird.svg">
-            </div>
-
-            <ion-item class="mb-30">
-              <ion-label class="lable-style" position="stacked">Enter OTP</ion-label>
-              <ion-input class="input-style" [(ngModel)]="otp" name="otp" placeholder="OTP"></ion-input>
-            </ion-item>
-
-            <p *ngIf="seconds !=0" id="timer" class="text ion-text-start mb-25">OTP will expire in {{seconds}} seconds</p>
-            <p *ngIf="seconds ==0" (click)="resendOTP()" class="text ion-text-start mb-25">Resend OTP</p>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="fixed-bottom-part">
-        <ion-row>
-          <ion-col>
-            <ion-button size="large" (click)="otpSummit()" class="proceed-button  ion-margin-top" expand="block">SUBMIT
-              OTP </ion-button>
-            <div class="crab-bootm-vector">
-              <img src="assets/CRAB_Vector.svg">
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-
-
-
-
-  </ion-slides>
+  </ion-row>
 </ion-content>

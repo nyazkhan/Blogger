@@ -204,6 +204,8 @@ export class RestaurantDetailsComponent implements OnInit {
 
 
   async bookTableModel() {
+
+  
     const modal = await this.modalCtrl.create({
       component: BookTableComponent,
       componentProps: {
