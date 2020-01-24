@@ -87,7 +87,8 @@
                     <ion-grid *ngIf="bloggerDetail.list">
 
                         <ion-row>
-                            <div class="img-part" style="height: 28vh; width: 28vh;" *ngIf="bloggerDetail.list[0].data.length > 0">
+                            <div class="img-part" style="height: 28vh; width: 28vh;"
+                                *ngIf="bloggerDetail.list[0].data.length > 0">
                                 <button class="rm-btn" (click)="deleteImgByid()">
                                     <span>&#10005;</span>
                                 </button>
@@ -97,8 +98,7 @@
                         </ion-row>
                         <ion-row class="ion-padding">
                             <ion-col *ngIf="!(bloggerDetail.list[0].data.length > 0)" class="ion-padding" size="5"
-                                (click)=" saveImage('gallery')"
-                                style="border: 1px solid #d4d4e2; border-radius:4px">
+                                (click)=" saveImage('gallery')" style="border: 1px solid #d4d4e2; border-radius:4px">
 
                                 <div>
                                     Upload Pic
@@ -109,8 +109,7 @@
 
                             </ion-col>
                             <ion-col *ngIf="!(bloggerDetail.list[0].data.length > 0)" class="ion-padding" size="5"
-                                (click)=" saveImage('camera')"
-                                style="border: 1px solid #d4d4e2; border-radius:4px">
+                                (click)=" saveImage('camera')" style="border: 1px solid #d4d4e2; border-radius:4px">
 
                                 <div>
                                     Take Selfie
@@ -166,9 +165,9 @@
 
             </ion-row>
             <ion-row class="part-2">
-                <ion-col class="ion-no-padding">
+                <ion-col class="ion-padding">
 
-                    <img src="assets/Location_House.svg">
+                    <img height="35vh" src="assets/Location_House.svg">
 
 
                 </ion-col>
@@ -1142,8 +1141,8 @@
             <ion-row class="part-2">
                 <ion-col class="ion-no-padding">
 
-                    <img   src="assets/socialplatform.png">
-                   
+                    <img src="assets/socialplatform.png">
+
 
                 </ion-col>
 
@@ -1153,9 +1152,9 @@
                 <ion-col size="12" *ngIf="socialIndex ==1">
                     <h6 style="font-size: 16px !important;" class="ion-text-left bold">Facebook</h6>
                     <ion-item class="stylist-input" lines="none" color="undefine">
-                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Facebook username here</ion-label>
-                        <ion-input  class="opacity-1" name="fbProfile" [(ngModel)]="bloggerDetail.fbProfile"
-                            type="text" >
+                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Facebook
+                            username here</ion-label>
+                        <ion-input class="opacity-1" name="fbProfile" [(ngModel)]="bloggerDetail.fbProfile" type="text">
                         </ion-input>
                     </ion-item>
                 </ion-col>
@@ -1163,41 +1162,45 @@
                 <ion-col size="12" *ngIf="socialIndex ==2">
                     <h6 style="font-size: 16px !important;" class="ion-text-left bold">Instagram</h6>
                     <ion-item class="stylist-input" lines="none" color="undefine">
-                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Instagram username here</ion-label>
-                        <ion-input  class="opacity-1" name="instaProfile" [(ngModel)]="bloggerDetail.instaProfile"
-                            type="text" ></ion-input>
+                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Instagram
+                            username here</ion-label>
+                        <ion-input class="opacity-1" name="instaProfile" [(ngModel)]="bloggerDetail.instaProfile"
+                            type="text"></ion-input>
                     </ion-item>
                 </ion-col>
 
                 <ion-col size="12" *ngIf="socialIndex ==3">
                     <h6 style="font-size: 16px !important;" class="ion-text-left bold">Twitter</h6>
                     <ion-item class="stylist-input" lines="none" color="undefine">
-                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Twitter username here</ion-label>
-                        <ion-input  class="opacity-1" name="twitterProfile" [(ngModel)]="bloggerDetail.twitterProfile"
-                            type="text" ></ion-input>
+                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your Twitter
+                            username here</ion-label>
+                        <ion-input class="opacity-1" name="twitterProfile" [(ngModel)]="bloggerDetail.twitterProfile"
+                            type="text"></ion-input>
                     </ion-item>
                 </ion-col>
 
                 <ion-col size="12" *ngIf="socialIndex ==4">
                     <h6 style="font-size: 16px !important;" class="ion-text-left bold">TripAdvisor</h6>
                     <ion-item class="stylist-input" lines="none" color="undefine">
-                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your TripAdvisor username here</ion-label>
-                        <ion-input  class="opacity-1" name="tripAdProfile" [(ngModel)]="bloggerDetail.tripAdProfile"
-                            type="text" ></ion-input>
+                        <ion-label slot="end" style="font-size: 12px;" class="main-light-color">Enter your TripAdvisor
+                            username here</ion-label>
+                        <ion-input class="opacity-1" name="tripAdProfile" [(ngModel)]="bloggerDetail.tripAdProfile"
+                            type="text"></ion-input>
                     </ion-item>
                 </ion-col>
-                <ion-col size="12" >
-                    
-                    <ion-item   lines="none" color="undefine">
+                <ion-col size="12">
+
+                    <ion-item lines="none" color="undefine">
                         <!-- <ion-label  style="font-size: 12px;" class="main-light-color">TripAdvisor</ion-label> -->
-                       <ion-button  size="large" *ngIf="socialIndex !==4" slot="end" (click)="socialIndex= socialIndex + 1">
-                        <ion-icon  name="arrow-round-forward"></ion-icon>
-                       </ion-button>
-                       <ion-button  size="large"
-                       *ngIf="socialIndex !==1" slot="start" (click)="socialIndex= socialIndex - 1">
-                        <ion-icon  name="arrow-round-back"></ion-icon>
-                    </ion-button>
-                   
+                        <ion-button size="large" *ngIf="socialIndex !==4" slot="end"
+                            (click)="socialIndex= socialIndex + 1">
+                            <ion-icon name="arrow-round-forward"></ion-icon>
+                        </ion-button>
+                        <ion-button size="large" *ngIf="socialIndex !==1" slot="start"
+                            (click)="socialIndex= socialIndex - 1">
+                            <ion-icon name="arrow-round-back"></ion-icon>
+                        </ion-button>
+
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -1214,7 +1217,7 @@
             </ion-row>
 
 
-          
+
 
 
         </ion-slide>
@@ -1232,8 +1235,8 @@
 
             <ion-row class="part-2 ">
                 <ion-col class="ion-no-padding">
-                    
-                                        <img   src="assets/About.png">
+
+                    <img src="assets/About.png">
 
                 </ion-col>
             </ion-row>
@@ -1370,7 +1373,217 @@
 
         </ion-slide>
 
-        <!-- email verified 11-->
+
+        <ion-slide style="vertical-align:top">
+
+
+            <div class="panel-card back-white" *ngIf="bloggerDetail.list" style="margin:0;border-radius:0; height: 60vh;">
+                <div class="profile-part" *ngIf="bloggerDetail.list[0].data.length > 0">
+                    
+                    <img class="profimg" [src]="bloggerDetail.list[0].data[0].storagePath">
+                    <ion-icon name="create"  (click)="editDetails(1)" ></ion-icon>
+                    <h5 *ngIf="bloggerDetail.name">{{bloggerDetail.name}}
+                        <ion-icon name="create" (click)="editDetails(0)"></ion-icon>
+
+                    </h5>
+                    <p *ngIf="bloggerDetail.address" class="text ion-text-center" style="margin:0;">
+                        {{bloggerDetail.address?.locality}},
+                        {{bloggerDetail.address?.city}}</p>
+                    <div class="socia-part">
+                        <p>
+
+                            <img src="assets/facebook.svg">
+
+
+
+                            {{bloggerDetail.fbProfile.slice(0, 10)}}
+
+                            <!-- 40.2k  -->
+                        </p>
+                        <p>
+                            <img src="assets/instagram.svg">
+
+
+                            {{bloggerDetail.instaProfile.slice(0, 10)}}
+                            <!-- 20.1k  -->
+                        </p>
+
+
+                    </div>
+                    <div class="socia-part">
+
+
+                        <p>
+                            <img src="assets/Twitter.svg">
+
+                            {{bloggerDetail.twitterProfile.slice(0, 10)}}
+                            <!-- 1200  -->
+                        </p>
+                        <p>
+                            <img src="assets/tripadvertising.svg">
+
+
+                            {{bloggerDetail.tripAdProfile.slice(0, 10)}}
+                            <!-- 203  -->
+                        </p>
+                        <ion-icon name="create"  (click)="editDetails(6)" ></ion-icon>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card back-orange pb-30" style="min-height: 13vh;">
+
+                <h5 class="panel-heading dark mb-20" (click)="detailsShow = !detailsShow"> Blogger Details <span> &nbsp;
+                        <ion-icon *ngIf="!detailsShow" name="arrow-dropdown"></ion-icon>
+                        <ion-icon *ngIf="detailsShow" name="arrow-dropup"></ion-icon>
+                    </span></h5>
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/call_gray.svg">
+                    </ion-avatar>
+                    <ion-label>
+                        {{bloggerDetail.maxDistance}} Km Radius
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(2)" slot="end"></ion-icon>
+
+                </ion-item>
+
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/veg-nonveg.svg">
+                    </ion-avatar>
+                    <ion-label>
+                        <ng-container *ngIf="bloggerDetail.foodType==1">
+                            Veg
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.foodType==2">
+                            Nonveg
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.foodType==3">
+
+                            Veg & Nonveg
+                        </ng-container>
+
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(3)" slot="end"></ion-icon>
+
+                </ion-item>
+
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/pass.svg">
+                    </ion-avatar>
+                    <ion-label>
+
+
+                        <ng-container *ngIf="bloggerDetail.invitationType==1">
+                            Prefer Single Invitation
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.invitationType==2">
+                            Prefer Table Invitation
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.invitationType==3">
+
+                            Prefer Both Single And Table Invitation
+                        </ng-container>
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(4)" slot="end"></ion-icon>
+
+                </ion-item>
+
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/star.svg">
+                    </ion-avatar>
+                    <ion-label>
+
+                        <ng-container *ngIf="bloggerDetail.reviewType==1">
+                            Prefer Paid Review
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.reviewType==2">
+                            Prefer Unpaid Review
+                        </ng-container>
+                        <ng-container *ngIf="bloggerDetail.reviewType==3">
+
+                            Prefer Both Paid & Unpaid Review
+                        </ng-container>
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(5)" slot="end"></ion-icon>
+
+                </ion-item>
+
+                <ion-item color="none" lines="full" *ngIf=" ((detailsShow) && (bloggerDetail.reviewType !==2))">
+                    <ion-avatar slot="start">
+                        <img src="assets/dollar_gray.svg">
+                    </ion-avatar>
+                    <ion-label>
+                        {{bloggerDetail.reviewAmount}} INR Per Review
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(5)" slot="end"></ion-icon>
+
+                </ion-item>
+
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/call_gray.svg">
+                    </ion-avatar>
+                    <ion-label>
+                        +91 {{bloggerDetail.mobile}}
+                    </ion-label>
+
+                </ion-item>
+
+                <ion-item color="none" *ngIf="detailsShow" lines="full">
+                    <ion-avatar slot="start">
+                        <img src="assets/veg-nonveg.svg">
+                    </ion-avatar>
+                    <ion-label>
+                        {{bloggerDetail.email}}
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(8)" slot="end"></ion-icon>
+
+                </ion-item>
+
+
+            </div>
+            <div class="panel-card light-green" style="min-height: 13vh;">
+                <ion-item color="none" lines="none">
+
+                    <ion-label (click)="aboutShow = !aboutShow" class="panel-heading dark">
+                      About
+                      <span> &nbsp; <ion-icon *ngIf="!aboutShow" name="arrow-dropdown"></ion-icon>
+                        <ion-icon *ngIf="aboutShow" name="arrow-dropup"></ion-icon>
+                      </span>
+                    </ion-label>
+                    <ion-icon name="create"  (click)="editDetails(7)" slot="end"></ion-icon>
+          
+                  </ion-item>
+
+                <div class="review-part" *ngIf="aboutShow">
+                    <h6 class="dark-text ion-text-start">{{bloggerDetail.description}} </h6>
+                </div>
+            </div>
+
+
+            <div class="panel-card fixed-back-white">
+                <!-- <ion-button size="large" class="proceed-button ion-margin-top" expand="block">Proceed </ion-button> -->
+                <ion-row class="part-4">
+                    <ion-col size="12">
+                        <div class="button-list ion-no-padding">
+                            <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                            <ion-button class="mybutton" color="primary" (click)="next()">NEXT</ion-button>
+                            <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        </div>
+                    </ion-col>
+    
+                </ion-row>
+            </div>
+        
+        </ion-slide>
+
+
+        <!-- Thank you 12-->
         <ion-slide style="vertical-align:top">
 
 

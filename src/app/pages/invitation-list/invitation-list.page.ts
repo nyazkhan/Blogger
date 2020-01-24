@@ -51,7 +51,7 @@ export class InvitationListPage implements OnInit {
       component: InvitationComponent,
       componentProps: {
 
-        invitaion: this.invitaionList[i],
+        invitation: this.invitaionList[i],
       }
     });
     return await modal.present();

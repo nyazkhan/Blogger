@@ -18,11 +18,11 @@ export class BookTableComponent implements OnInit {
     // id: null,
     persons: 1,
     toDate: this.currentDate,
-    onTime: '15:00',
+    onTime: null,
     to: null
   };
 
-
+  slotsOfRestaurant: any = [];
   constructor(
     public modalController: ModalController,
     navParams: NavParams,
@@ -31,8 +31,22 @@ export class BookTableComponent implements OnInit {
     console.log(this.bookingDetails);
 
     this.restaurantListCopy = navParams.get('restaurantDetail');
-
+    this.slotsStatus();
   }
+
+  slotsStatus() {
+
+    this.loginservice.restaurantTimeSlot({
+      restaurantId: this.restaurantListCopy.id,
+      date: '2020-01-25'
+    }).subscribe((res) => {
+      if (res.status === 200) {
+
+        this.slotsOfRestaurant = res.data;
+      }
+    });
+  }
+
 
   ngOnInit() { }
 
@@ -73,5 +87,6 @@ export class BookTableComponent implements OnInit {
         this.presentBookedModelModal(res.data);
       }
     });
+
   }
 }

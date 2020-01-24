@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./invitation.component.scss'],
 })
 export class InvitationComponent implements OnInit {
-  @Input() invitaion: object;
+  @Input() invitation: object;
   invitationDetails: any = {};
   cancelButtonClick = false;
   bloggerDetails: any = {};
@@ -26,7 +26,7 @@ export class InvitationComponent implements OnInit {
 
   ) {
 
-    this.invitationDetails = navParams.get('invitaion');
+    this.invitationDetails = navParams.get('invitation');
     console.log(this.invitationDetails);
     this.bloggerDetails = this.storageService.getData('userDetails');
   }

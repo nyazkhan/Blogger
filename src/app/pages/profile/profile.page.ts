@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/service/storage.service';
+import { ReviewDetailsComponent } from '../comman/review-details/review-details.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,14 @@ import { StorageService } from 'src/app/service/storage.service';
 export class ProfilePage implements OnInit {
   BloggerMoblieNo: any;
   bloggerDetails: any = {};
+
+
+  aboutShow = false;
+  detailsShow = false;
+  reviewShow = false;
+
+
+  reviewList: any = [];
   constructor(
 
     private loginservice: LoginService,
@@ -21,7 +30,6 @@ export class ProfilePage implements OnInit {
     private storageService: StorageService,
 
     public modalCtrl: ModalController,
-
 
   ) {
     this.BloggerMoblieNo = this.storageService.getData('mobile');
@@ -35,6 +43,7 @@ export class ProfilePage implements OnInit {
     this.loginservice.getBlogerDetails(this.BloggerMoblieNo).subscribe((res) => {
       if (res.status === 200) {
         this.bloggerDetails = res.data;
+        this.getListOfReviews();
       }
     });
   }
@@ -43,5 +52,30 @@ export class ProfilePage implements OnInit {
 
     this.router.navigateByUrl('/dashboard');
 
+  }
+
+  async presentReviewModal(reviewId) {
+    const modal = await this.modalCtrl.create({
+      component: ReviewDetailsComponent,
+      componentProps: {
+
+        reviewId: { id: reviewId },
+      }
+    });
+    return await modal.present();
+  }
+
+
+
+  getListOfReviews() {
+    this.loginservice.getReviewList().subscribe((res) => {
+      if (res.status === 200) {
+        this.reviewList = res.data.filter((el) => {
+          return (el.status === 13);
+        });
+
+
+      }
+    });
   }
 }

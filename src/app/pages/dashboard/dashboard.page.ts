@@ -24,7 +24,9 @@ export class DashboardPage implements OnInit {
   position: any = {};
 
   dashBoardCount: any = {};
-
+  commingInvitation: any = [];
+  commingBooking: any = [];
+  commingAppointments: any = [];
 
   constructor(
     @Inject(AlertService) private alertService: AlertService,
@@ -48,8 +50,7 @@ export class DashboardPage implements OnInit {
 
       };
       console.log(this.position);
-
-      // position.coords.latitude, position.coords.longitude
+      this.appointments(this.position);
       this.getListOfRestaurant();
     });
 
@@ -62,14 +63,58 @@ export class DashboardPage implements OnInit {
       }
     });
 
+
   }
+
+  appointments(pos) {
+    this.commingBooking = [];
+    this.commingInvitation = [];
+    this.commingAppointments = [];
+    this.loginservice.upCommingAppointents({
+      searchType: 1,
+      status: 10,
+      durationType: 1,
+      lat: pos.lat,
+      lon: pos.lon
+
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.commingInvitation = res.data;
+
+        this.loginservice.upCommingAppointents({
+          searchType: 2,
+          status: 10,
+          durationType: 1,
+          lat: pos.lat,
+          lon: pos.lon
+
+        }).subscribe((resp) => {
+          if (resp.status === 200) {
+            this.commingBooking = res.data;
+            this.commingAppointments = res.data.concat(resp.data);
+            this.commingAppointments.sort((a, b) => {
+              // Turn your strings into dates, and then subtract them
+              // to get a value that is either negative, positive, or zero.
+              const date1 = new Date(a.toDate);
+              const date2 = new Date(b.toDate);
+              return date1 > date2 ? 1 : date1 < date2 ? -1 : 0;
+            });
+            console.log(this.commingAppointments);
+
+          }
+        });
+      }
+    });
+  }
+
+
   getCount() {
     this.loginservice.getDashboardCount({
       searchType: 5,
       status: null
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.dashBoardCount = JSON.parse( res.data);
+        this.dashBoardCount = JSON.parse(res.data);
         console.log(this.dashBoardCount);
 
       }
@@ -112,32 +157,38 @@ export class DashboardPage implements OnInit {
 
 
   appointmenType(val) {
-    if (val === 'invitaion') {
-      this.presentInvitationModal();
+
+    console.log(val);
+
+    if (!val.persons) {
+      this.presentInvitationModal(val);
 
     }
-    if (val === 'booking') {
-      this.presentBookingModal();
+    if (val.persons) {
+      this.presentBookingModal(val);
     }
   }
 
 
-  async presentBookingModal() {
+  async presentBookingModal(val) {
+    
     const modal = await this.modalController.create({
       component: BookedComponent,
       componentProps: {
 
-        // userDetails: this.userDetails,
+        booking: val,
       }
     });
     return await modal.present();
   }
-  async presentInvitationModal() {
+  async presentInvitationModal(val) {
+    console.log(val);
+
     const modal = await this.modalController.create({
       component: InvitationComponent,
       componentProps: {
 
-        // invitaion: invitaion details jayegi yaha se,
+        invitation: val,
       }
     });
     return await modal.present();

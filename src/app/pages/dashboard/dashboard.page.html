@@ -29,16 +29,26 @@
     <ion-row>
       <ion-col>
         <h5 class="list-heading">Upcoming Appointments</h5>
-        <div class="slider-appointment">
+        <div class="slider-appointment" *ngIf="commingAppointments.length > 0">
 
-          <div class="white-box ion-margin-bottom" routerLink="/invitation">
-            <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
-            <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
-            <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
+          <div (click)="appointmenType(Appointment)" *ngFor="let Appointment of commingAppointments; let i = index;"
+           class="white-box ion-margin-bottom" >
+            <h6 class="ion-text-start sllide-box-heading danger">{{Appointment.toDate | date:'  d MMM y'}}</h6>
+            <p style="line-height: 1 !important;" class="text ion-text-start">  <ng-container *ngIf="Appointment.persons">
+              Booking
+            </ng-container>
+            <ng-container *ngIf="!Appointment.persons">
+              Invitation
+            </ng-container> at {{Appointment.onTime}}</p>
+            <p class="text ion-text-start">
+              {{  (Appointment.userDetails.name.length>14)? (Appointment.userDetails.name | slice:0:14)+'..':(Appointment.userDetails.name)}}
+
+              
+              <span class="ion-float-right"> {{Appointment.userDetails.distanceFromBlogger | number:'2.1-2'}}km &nbsp; <img
                   src="assets/km-arrorw.svg"> </span></p>
           </div>
 
-          <div class="white-box ion-margin-bottom" routerLink="/booking">
+          <!-- <div class="white-box ion-margin-bottom" routerLink="/booking">
             <h6 class="ion-text-start sllide-box-heading danger">Today</h6>
             <p style="line-height: 1 !important;" class="text ion-text-start">Invitation at 04:30 pm</p>
             <p class="text ion-text-start">Chai Sutta Bar <span class="ion-float-right"> 3.2km &nbsp; <img
@@ -48,7 +58,7 @@
           <div class="white-box-view-more ion-margin-bottom"  routerLink="/booking">
             <p class="ion-text-center primary">View All    ></p>
            
-          </div>
+          </div> -->
 
         </div>
       </ion-col>
@@ -57,9 +67,9 @@
     
       <ion-toolbar>
           <ion-searchbar (click)="presentRestaurantSearchModal()" placeholder="Search Restaurent"></ion-searchbar>
-          <ion-buttons slot="end">
+          <!-- <ion-buttons slot="end">
               <ion-button class="filter-btn" color="none"><img src="assets/filter.svg">&nbsp; Filter</ion-button>
-          </ion-buttons>
+          </ion-buttons> -->
         </ion-toolbar>
     </ion-row>
     <ion-row>

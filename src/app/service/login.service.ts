@@ -122,7 +122,7 @@ export class LoginService {
 
   }
   getReviewById(id) {
-    return this.Http.post('connect/review/byReviewRequest/get' , id);
+    return this.Http.post('connect/review/byReviewRequest/get', id);
 
   }
   uploadReviewImg(imgDetails) {
@@ -140,6 +140,22 @@ export class LoginService {
 
   restaurantTimeSlot(dateAndId) {
     return this.Http.post('search/rest/timeslot', dateAndId);
+
+  }
+
+
+  upCommingAppointents(type) {
+    return this.Http.post('connect/bookInv/upcoming', type);
+
+  }
+
+  getReviewListForBlogger(id) {
+    return this.Http.post('connect/review/user/get', id);
+
+  }
+  getReviewList() {
+    return this.Http.get('connect/reviewRequest/get');
+
 
   }
 }

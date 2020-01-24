@@ -206,8 +206,16 @@ export class RegistrationPage implements OnInit {
       this.alertService.showErrorAlert('Please Upload The Profile Picture');
       return;
     }
-    this.next();
-  }
+    this.loginservice.updateBloggerDetails({
+      mobile: this.bloggerDetail.mobile,
+      stage: 5,
+    }).subscribe((res) => {
+      if (res.status === 200) {
+        this.updateObject(res.data);
+      } else {
+        this.alertService.showErrorAlert(res.message);
+      }
+    });  }
 
 
 
@@ -223,6 +231,8 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
+        this.slides.slideTo(3, 10);
+
       } else {
         this.alertService.showErrorAlert(res.message);
       }
@@ -380,8 +390,15 @@ export class RegistrationPage implements OnInit {
 
     }).subscribe((res) => {
       if (res.status === 200) {
-        this.updateObject(res.data);
-        // this.next();
+        // this.updateObject(res.data);
+        this.bloggerDetail = res.data;
+        console.log(this.bloggerDetail);
+        this.nxtStage = res.data.stage - 4;
+        this.storageService.storeData('stage', this.bloggerDetail.stage);
+        if (res.data) {
+          this.storageService.storeData('userDetails', res.data);
+        }
+        this.next();
         this.seconds = 60;
         this.timer = null;
         this.resendOtp();

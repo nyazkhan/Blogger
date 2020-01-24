@@ -22,10 +22,12 @@ export class RestaurantDetailsComponent implements OnInit {
     autoplay: true
   };
 
+  aboutShow = false;
+  detailsShow = false;
+  reviewShow = false;
 
 
-
-
+  reviewList: any = [];
   restaurantDetail: any = {};
   restauratMoblieNo: any;
   paymentOption = {
@@ -118,6 +120,17 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
+
+
+  getReviewList(id) {
+    this.loginservice.getReviewListForBlogger(id).subscribe((res) => {
+      if (res.status === 200) {
+
+        this.reviewList = res.data;
+      }
+    });
+  }
+
   getRestaurantDetails() {
     this.loginservice.restaurantDetails(this.position).subscribe((res) => {
       console.log(res);
@@ -125,6 +138,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
         this.restaurantDetail = res.data;
         console.log(res);
+        this.getReviewList(res.data.id);
         this.setImageIntoSlides();
 
 
@@ -189,12 +203,12 @@ export class RestaurantDetailsComponent implements OnInit {
   }
 
 
-  async presentReviewgModal() {
+  async presentReviewModal(reviewId) {
     const modal = await this.modalCtrl.create({
       component: ReviewDetailsComponent,
       componentProps: {
 
-        // userDetails: this.userDetails,
+        reviewId: { id: reviewId },
       }
     });
     return await modal.present();
@@ -205,7 +219,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   async bookTableModel() {
 
-  
+
     const modal = await this.modalCtrl.create({
       component: BookTableComponent,
       componentProps: {

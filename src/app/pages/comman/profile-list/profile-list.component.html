@@ -15,6 +15,10 @@
         <div *ngIf="userDetailsCopy.list[0].data.length > 0" class="pro-pic">
           <img class="ico-small pro-pic" [src]="userDetailsCopy.list[0].data[0].storagePath">
         </div>
+        <div *ngIf="!(userDetailsCopy.list[0].data.length > 0)" class="pro-pic">
+          <img class="ico-small pro-pic" src="assets/reviewer.svg">
+        </div>
+       
         <h6 text-center class="ion-margin-bottom">{{userDetailsCopy.name}}</h6>
       </ion-col>
     </ion-row>
@@ -65,9 +69,9 @@
         </ion-item>
 
         <ion-item class="rest_address_item">
-          <ion-label class="ion-padding-top ion-padding-bottom" (click)="presentSocialprofileModal()">
+          <ion-label class="ion-padding-top ion-padding-bottom" >
             <h5><img class="ico-small" src="assets/review.svg">&nbsp; Social Profiles<span
-                class="ion-float-right danger">Attention Required &nbsp; &nbsp; <ion-icon class="arrow-forword"
+                class="ion-float-right danger">Comming Soon &nbsp; &nbsp; <ion-icon class="arrow-forword"
                   name="arrow-forward"></ion-icon></span></h5>
           </ion-label>
         </ion-item>
