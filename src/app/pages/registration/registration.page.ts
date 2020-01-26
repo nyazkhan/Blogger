@@ -11,15 +11,19 @@ import { CameraService } from 'src/app/service/camera.service';
   templateUrl: './registration.page.html',
   styleUrls: ['./registration.page.scss'],
 })
+
 export class RegistrationPage implements OnInit {
   @ViewChild(IonSlides, { static: false }) slides: IonSlides;
   userPhoneNO = null;
   nxtStage: any;
   bloggerDetail: any = {};
-
+  aboutShow = true;
+  detailsShow = true;
+  reviewShow = true;
   seconds = 60;
   timer: any;
   socialIndex = 1;
+  edit: any;
   constructor(
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
@@ -33,6 +37,7 @@ export class RegistrationPage implements OnInit {
     this.loginservice.masterApi().subscribe((res) => {
 
     });
+    this.edit = this.storageService.getData('edit');
 
     this.userPhoneNO = this.storageService.getData('mobile');
     this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
@@ -61,6 +66,12 @@ export class RegistrationPage implements OnInit {
   updateObject(newObj) {
     this.bloggerDetail = newObj;
     console.log(this.bloggerDetail);
+    if (!this.bloggerDetail.maxDistance) {
+      this.bloggerDetail.maxDistance = 10;
+    }
+    if (!this.bloggerDetail.reviewAmount) {
+      this.bloggerDetail.reviewAmount = 0;
+    }
     this.nxtStage = newObj.stage - 4;
     this.storageService.storeData('stage', this.bloggerDetail.stage);
     if (newObj) {
@@ -175,8 +186,7 @@ export class RegistrationPage implements OnInit {
       this.loginservice.uploadSingleImg(images).subscribe((res1) => {
         this.loginservice.getUserDetails(this.userPhoneNO).subscribe((res) => {
           if (res.status === 200) {
-            this.bloggerDetail = res.data;
-            this.nxtStage = res.data.stage - 4;
+            this.updateObject(res.data);
             if (!this.bloggerDetail.maxDistance) {
               this.bloggerDetail.maxDistance = 10;
             }
@@ -231,7 +241,7 @@ export class RegistrationPage implements OnInit {
     }).subscribe((res) => {
       if (res.status === 200) {
         this.updateObject(res.data);
-        this.slides.slideTo(3, 10);
+        // this.slides.slideTo(3, 10);
 
       } else {
         this.alertService.showErrorAlert(res.message);
@@ -435,7 +445,7 @@ export class RegistrationPage implements OnInit {
 
 
     if (this.bloggerDetail.status === 5) {
-
+      this.storageService.storeData('edit', false);
       this.router.navigateByUrl('/dashboard');
     }
 
@@ -454,7 +464,14 @@ export class RegistrationPage implements OnInit {
 
   }
 
-
+  checkStatusAndthenGoToDashboard() {
+    if (this.bloggerDetail.status === 5) {
+      this.storageService.storeData('edit', false);
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      this.next();
+    }
+  }
 
   resendEmailOTP() {
     this.loginservice.updateBloggerDetails({

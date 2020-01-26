@@ -88,19 +88,19 @@
           
         </p>
         <p *ngIf="invitationDetails.status == 1" class="ico-list orange">
-          <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting for confirmation
+          <img class="ico-small" src="assets/toy-orange.svg">&nbsp; Waiting For Confirmation
         </p>
         <p *ngIf="invitationDetails.status == 8" class="ico-list pink">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; You Miss  the Invitation 
+          <img class="ico-small" src="assets/cross.svg">&nbsp; You Missed  The Invitation 
         </p>
         <p *ngIf="invitationDetails.status == 7" class="ico-list primary">
 
-          <img class="ico-small" src="assets/tik.svg">&nbsp; You Enjoy the Invitation 
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Appointment Completed 
         </p>
         <p *ngIf="invitationDetails.status == 3" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Canceled
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancelled
         </p>
         <p *ngIf="invitationDetails.status == 16" class="ico-list danger">
 
@@ -108,13 +108,13 @@
         </p>
         <p *ngIf="invitationDetails.status == 17" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancel By Restaurant
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Invitation Cancelled By Restaurant
         </p>
         <p *ngIf="invitationDetails.status==10" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp; Invitation confirmed
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Invitation Confirmed
         </p>
         <p *ngIf="invitationDetails.status==9" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp;  Request a Review 
+          <img class="ico-small" src="assets/tik.svg">&nbsp;  Requested a Review 
         </p>
 
         <!-- <p class="ico-list success">
@@ -158,9 +158,9 @@
         <ion-button *ngIf="invitationDetails.status==10" (click)="cancelButtonClick = true" size="large" color="undefine"
           class="proceed-button cancel-button ion-margin-top" expand="block">CANCEL</ion-button>
         <ion-button *ngIf="invitationDetails.status==1" (click)="acceptinvitation()" size="large" color="primary"
-          class="proceed-button  ion-margin-top" expand="block">ACCEPT BOOKING</ion-button>
+          class="proceed-button  ion-margin-top" expand="block">ACCEPT  INVITATION </ion-button>
         <ion-button *ngIf="invitationDetails.status==1" (click)="cancelButtonClick = true" size="large" color="danger"
-          class="proceed-button  ion-margin-top" expand="block">REJECT BOOKING</ion-button>
+          class="proceed-button  ion-margin-top" expand="block">REJECT INVITATION</ion-button>
         <div class="crab-bootm-vector">
           <img src="assets/CRAB_Vector.svg">
         </div>

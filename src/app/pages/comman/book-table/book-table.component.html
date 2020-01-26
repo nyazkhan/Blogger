@@ -92,7 +92,7 @@
                 <!-- <span class="ion-float-right primary"> &nbsp; Select Date </span> -->
               </h5>
             </ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="bookingDetails.toDate"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY" (ionChange)="slotsStatus()" [(ngModel)]="bookingDetails.toDate"></ion-datetime>
           </ion-item>
 
           <ion-item lines="none">

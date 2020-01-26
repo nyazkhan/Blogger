@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { InvitationComponent } from '../comman/invitation/invitation.component';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-invitation-list',
@@ -18,8 +19,18 @@ export class InvitationListPage implements OnInit {
   constructor(
     public modalController: ModalController,
     // navParams: NavParams,
+    private statusBar: StatusBar,
+
     private loginservice: LoginService,
-  ) { }
+  ) {
+
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#3880ff');
+ }
 
   ngOnInit() {
     this.getInvitationList();

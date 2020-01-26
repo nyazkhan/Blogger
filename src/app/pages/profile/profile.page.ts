@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/service/storage.service';
 import { ReviewDetailsComponent } from '../comman/review-details/review-details.component';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-profile',
@@ -15,9 +16,9 @@ export class ProfilePage implements OnInit {
   bloggerDetails: any = {};
 
 
-  aboutShow = false;
-  detailsShow = false;
-  reviewShow = false;
+  aboutShow = true;
+  detailsShow = true;
+  reviewShow = true;
 
 
   reviewList: any = [];
@@ -31,7 +32,18 @@ export class ProfilePage implements OnInit {
 
     public modalCtrl: ModalController,
 
+    private statusBar: StatusBar,
+
   ) {
+
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#3880ff');
+
+
     this.BloggerMoblieNo = this.storageService.getData('mobile');
     this.getBloggerDetails();
   }
@@ -53,6 +65,14 @@ export class ProfilePage implements OnInit {
     this.router.navigateByUrl('/dashboard');
 
   }
+
+
+  goToEditProfile() {
+    this.storageService.storeData('edit', true);
+    this.router.navigateByUrl('/registration');
+
+  }
+
 
   async presentReviewModal(reviewId) {
     const modal = await this.modalCtrl.create({

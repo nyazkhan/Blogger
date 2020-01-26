@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/service/alert.service';
 import { ModalController } from '@ionic/angular';
 import { ReviewDetailsComponent } from '../comman/review-details/review-details.component';
 import { StartComponent } from './start/start.component';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-review',
@@ -19,8 +20,16 @@ export class ReviewPage implements OnInit {
     @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
     public modalController: ModalController,
+    private statusBar: StatusBar,
+  ) {
 
-  ) { }
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#3880ff');
+ }
 
   ngOnInit() {
     this.getReviewRequestList();

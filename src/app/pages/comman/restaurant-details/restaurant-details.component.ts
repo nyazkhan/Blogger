@@ -22,9 +22,9 @@ export class RestaurantDetailsComponent implements OnInit {
     autoplay: true
   };
 
-  aboutShow = false;
-  detailsShow = false;
-  reviewShow = false;
+  aboutShow = true;
+  detailsShow = true;
+  reviewShow = true;
 
 
   reviewList: any = [];

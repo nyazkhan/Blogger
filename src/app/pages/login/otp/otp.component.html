@@ -25,7 +25,7 @@
         <ion-label *ngIf="seconds !=0" slot="end" class="main-light-color">OTP</ion-label>
         <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
         margin: 0px;" (click)="resendOTP()" class="main-light-color">Resend OTP</h6>
-        <ion-input class="opacity-1" [(ngModel)]="otp" name="otp" placeholder="- - - - - -"></ion-input>
+        <ion-input class="opacity-1" [(ngModel)]="otp" type="number" name="otp" placeholder="- - - - - -"></ion-input>
       </ion-item>
 
       <h6 *ngIf="seconds !=0" id="timer" class=" text1 ion-text-start  f-12">OTP will expire in {{seconds.toString()}}
@@ -47,7 +47,7 @@
     <ion-col size="12">
       <div class="button-list ion-no-padding">
         <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
-        <ion-button class="mybutton" color="primary" (click)="otpSummit()">VARIFY OTP</ion-button>
+        <ion-button class="mybutton" color="primary" (click)="otpSummit()">VERIFY OTP</ion-button>
         <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
       </div>
     </ion-col>

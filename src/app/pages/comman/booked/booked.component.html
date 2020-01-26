@@ -80,7 +80,7 @@
         <p>
         <p *ngIf="bookingDetails.status == 8" class="ico-list pink">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; You Miss  the Booking 
+          <img class="ico-small" src="assets/cross.svg">&nbsp; You Missed  the Booking 
         </p>
         <p *ngIf="bookingDetails.status == 7" class="ico-list primary">
 
@@ -88,7 +88,7 @@
         </p>
         <p *ngIf="bookingDetails.status == 3" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Canceled By Restaurant
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled  By Restaurant
         </p>
         <p *ngIf="bookingDetails.status == 16" class="ico-list danger">
 
@@ -96,15 +96,15 @@
         </p>
         <p *ngIf="bookingDetails.status == 17" class="ico-list danger">
 
-          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancel 
+          <img class="ico-small" src="assets/cross.svg">&nbsp; Booking Cancelled By You 
         </p>
         <p *ngIf="bookingDetails.status==10" class="ico-list success">
-          <img class="ico-small" src="assets/tik.svg">&nbsp; Booking confirmed
+          <img class="ico-small" src="assets/tik.svg">&nbsp; Booking Confirmed
         </p>
         <p class="ico-list">
-          <img class="ico-small" src="assets/pass.svg">&nbsp; Booking for
+          <img class="ico-small" src="assets/pass.svg">&nbsp; Booking For
           {{bookingDetails.persons}}
-          people
+          People
         </p>
       </ion-col>
     </ion-row>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BookedComponent } from '../comman/booked/booked.component';
 import { LoginService } from 'src/app/service/login.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-booking',
@@ -20,8 +21,18 @@ export class BookingPage implements OnInit {
   constructor(
     public modalController: ModalController,
     // navParams: NavParams,
+    private statusBar: StatusBar,
+
     private loginservice: LoginService,
-  ) { }
+  ) {
+
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#3880ff');
+ }
 
   ngOnInit() {
     this.getBookingList();

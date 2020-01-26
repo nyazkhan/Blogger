@@ -122,7 +122,7 @@ export class MapPage implements OnInit {
     this.input = document.getElementById('autocomplete');
 
     const searchBox = new google.maps.places.SearchBox(document.getElementById('autocomplete'), {
-      fields: [ 'opening_hours', 'utc_offset_minutes'], types: ['(address)'], componentRestrictions: { country: 'In' }
+      fields: ['opening_hours', 'utc_offset_minutes'], types: ['(address)'], componentRestrictions: { country: 'In' }
     });
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(this.input);
 
@@ -300,8 +300,9 @@ export class MapPage implements OnInit {
     (document.getElementById('map') as HTMLInputElement).style.height = val;
 
   }
-  saveAddress() {
 
+
+  checkAddress() {
     if (this.address.premisesNo.length < 2) {
       this.alertService.showErrorAlert('Please Fill Premise No');
       return;
@@ -321,6 +322,11 @@ export class MapPage implements OnInit {
       this.alertService.showErrorAlert('Somthing wents wrong Please search again restaurant on map');
       return;
     }
+    this.previous();
+  }
+  saveAddress() {
+
+
 
     this.loginservice.updateBloggerDetails({
       mobile: this.userPhoneNo,

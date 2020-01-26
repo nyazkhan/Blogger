@@ -1098,7 +1098,7 @@
 
 
                 <ion-row style="width: 100%;">
-                    <span class="text ion-text-start ml-10">Select approx cost / review ?</span>
+                    <span class="text ion-text-start ml-10" *ngIf="(bloggerDetail.reviewType !== 2)">Select approx cost / review ?</span>
 
                     <ion-col *ngIf="(bloggerDetail.reviewType !== 2)" size="12">
                         <!-- <span>{{bloggerDetail.reviewAmount}}+ </span> -->
@@ -1106,7 +1106,7 @@
                                 style="font-size: 13px;">RS</span></h1>
 
                         <ion-item lines="none" style="padding: 0; margin: 0;">
-                            <ion-range min="100" max="30000" step="200" [(ngModel)]="bloggerDetail.reviewAmount"
+                            <ion-range min="100" max="30000" step="100" [(ngModel)]="bloggerDetail.reviewAmount"
                                 name="reviewAmount" color="primary">
                             </ion-range>
                         </ion-item>
@@ -1259,9 +1259,9 @@
             <ion-row class="part-4">
                 <ion-col size="12">
                     <div class="button-list ion-no-padding">
-                        <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                         <ion-button class="mybutton" color="primary" (click)="saveAboutUser()">NEXT</ion-button>
-                        <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                     </div>
                 </ion-col>
 
@@ -1341,13 +1341,13 @@
             <ion-row class="part-3">
                 <ion-col class="ion-padding">
                     <h6 class="ion-text-left bold f-16 main-color "> Enter the OTP shared @ {{bloggerDetail.email}}
-                        <span style="float: right;" class="link-btn" (click)="editDetails(8)">Change</span></h6>
+                        <span style="float: right;" class="link-btn" (click)="previous()">Change</span></h6>
                     <ion-item class="stylist-input" lines="none" color="undefine">
                         <ion-label *ngIf="seconds !=0" slot="end" class="main-light-color">OTP</ion-label>
                         <h6 *ngIf="seconds ==0" slot="end" style="line-height: inherit;
                 margin: 0px;" (click)="resendEmailOTP()" class="main-light-color">Resend OTP</h6>
 
-                        <ion-input class="opacity-1" type="text" name="email" [(ngModel)]="bloggerDetail.code">
+                        <ion-input class="opacity-1" type="number" name="email" [(ngModel)]="bloggerDetail.code">
                         </ion-input>
                     </ion-item>
                     <h6 *ngIf="seconds !=0" id="timer" class=" ion-text-start ">OTP expire in 1:00 seconds</h6>
@@ -1359,9 +1359,9 @@
             <ion-row class="part-4">
                 <ion-col size="12">
                     <div class="button-list ion-no-padding">
-                        <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                         <ion-button class="mybutton" color="primary" (click)="saveEmailOTP()">NEXT</ion-button>
-                        <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                     </div>
                 </ion-col>
 
@@ -1390,21 +1390,20 @@
                         {{bloggerDetail.address?.locality}},
                         {{bloggerDetail.address?.city}}</p>
                     <div class="socia-part">
-                        <p>
+                        <p *ngIf="bloggerDetail.fbProfile">
 
                             <img src="assets/facebook.svg">
 
 
-
-                            {{bloggerDetail.fbProfile.slice(0, 10)}}
+                            {{  (bloggerDetail.fbProfile.length>10)? (bloggerDetail.fbProfile | slice:0:10)+'..':(bloggerDetail.fbProfile)}},
 
                             <!-- 40.2k  -->
                         </p>
-                        <p>
+                        <p *ngIf="bloggerDetail.instaProfile">
                             <img src="assets/instagram.svg">
+                            {{  (bloggerDetail.instaProfile.length>10)? (bloggerDetail.instaProfile | slice:0:10)+'..':(bloggerDetail.instaProfile)}},
 
 
-                            {{bloggerDetail.instaProfile.slice(0, 10)}}
                             <!-- 20.1k  -->
                         </p>
 
@@ -1413,17 +1412,17 @@
                     <div class="socia-part">
 
 
-                        <p>
+                        <p *ngIf="bloggerDetail.twitterProfile">
                             <img src="assets/Twitter.svg">
+                            {{  (bloggerDetail.twitterProfile.length>10)? (bloggerDetail.twitterProfile | slice:0:10)+'..':(bloggerDetail.twitterProfile)}},
 
-                            {{bloggerDetail.twitterProfile.slice(0, 10)}}
                             <!-- 1200  -->
                         </p>
-                        <p>
+                        <p *ngIf="bloggerDetail.tripAdProfile">
                             <img src="assets/tripadvertising.svg">
 
+                            {{  (bloggerDetail.tripAdProfile.length>10)? (bloggerDetail.tripAdProfile | slice:0:10)+'..':(bloggerDetail.tripAdProfile)}},
 
-                            {{bloggerDetail.tripAdProfile.slice(0, 10)}}
                             <!-- 203  -->
                         </p>
                         <ion-icon name="create"  (click)="editDetails(6)" ></ion-icon>
@@ -1571,9 +1570,9 @@
                 <ion-row class="part-4">
                     <ion-col size="12">
                         <div class="button-list ion-no-padding">
-                            <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
-                            <ion-button class="mybutton" color="primary" (click)="next()">NEXT</ion-button>
-                            <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                            <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
+                            <ion-button class="mybutton" color="primary" (click)="checkStatusAndthenGoToDashboard()">NEXT</ion-button>
+                            <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                         </div>
                     </ion-col>
     
@@ -1584,7 +1583,7 @@
 
 
         <!-- Thank you 12-->
-        <ion-slide style="vertical-align:top">
+        <ion-slide  *ngIf="!edit" style="vertical-align:top">
 
 
             <ion-row class="part-2-1 ">
@@ -1617,7 +1616,7 @@
                         <ion-button *ngIf="(bloggerDetail.status === 5)" class="mybutton" color="primary"
                             (click)="showData()">Move to
                             Dashboard</ion-button>
-                        <ion-button *ngIf="flse" class="mybutton" color="primary">Primary</ion-button>
+                        <ion-button *ngIf="false" class="mybutton" color="primary">Primary</ion-button>
                     </div>
                 </ion-col>
 

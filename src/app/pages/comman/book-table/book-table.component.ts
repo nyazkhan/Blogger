@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 import { BookedComponent } from '../booked/booked.component';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'app-book-table',
@@ -26,6 +27,7 @@ export class BookTableComponent implements OnInit {
   constructor(
     public modalController: ModalController,
     navParams: NavParams,
+    @Inject(AlertService) private alertService: AlertService,
     private loginservice: LoginService,
   ) {
     console.log(this.bookingDetails);
@@ -35,11 +37,13 @@ export class BookTableComponent implements OnInit {
   }
 
   slotsStatus() {
-
+    this.slotsOfRestaurant = [];
+    this.alertService.showLoader();
     this.loginservice.restaurantTimeSlot({
       restaurantId: this.restaurantListCopy.id,
-      date: '2020-01-25'
+      date: this.bookingDetails.toDate.toString().slice(0, 10)
     }).subscribe((res) => {
+      this.alertService.closeLoader();
       if (res.status === 200) {
 
         this.slotsOfRestaurant = res.data;
@@ -58,7 +62,9 @@ export class BookTableComponent implements OnInit {
 
 
   noOfPerson(no) {
-
+    if (!(this.bookingDetails.persons < 6) ) {
+      this.alertService.presentToast(' Maximum  6 person allowed in  booking ');
+    }
     if ((no === 1) && (this.bookingDetails.persons > 1)) {
       this.bookingDetails.persons--;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/service/alert.service';
 import { LoginService } from 'src/app/service/login.service';
@@ -10,13 +10,14 @@ import { ProfileListComponent } from '../comman/profile-list/profile-list.compon
 import { RestaurantDetailsComponent } from '../comman/restaurant-details/restaurant-details.component';
 import { BookedComponent } from '../comman/booked/booked.component';
 import { InvitationComponent } from '../comman/invitation/invitation.component';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit , AfterViewInit {
   userPhoneNO = null;
   userDetails: any = {};
   restaurantDetails: any = [];
@@ -35,8 +36,17 @@ export class DashboardPage implements OnInit {
     @Inject(Router) private router: Router,
     public modalController: ModalController,
     @Inject(Geolocation) public geolocation: Geolocation,
+    private statusBar: StatusBar,
 
   ) {
+
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+
+    // set status bar to white
+    this.statusBar.backgroundColorByHexString('#9dff51');
+
     this.loginservice.masterApi().subscribe((res) => {
       console.log(res);
 
@@ -169,9 +179,15 @@ export class DashboardPage implements OnInit {
     }
   }
 
+  async ngAfterViewInit() {
+    this.statusBar.styleDefault();
+    // let status bar overlay webview
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.backgroundColorByHexString('#9dff51');
 
+  }
   async presentBookingModal(val) {
-    
+
     const modal = await this.modalController.create({
       component: BookedComponent,
       componentProps: {
